@@ -1,0 +1,335 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.1 effective-4.2 (swiftlang-1100.0.270.13 clang-1100.0.33.7)
+// swift-module-flags: -target i386-apple-ios10.3-simulator -enable-objc-interop -enable-library-evolution -swift-version 4.2 -enforce-exclusivity=checked -O -module-name biidSecProvSDK
+import Alamofire
+import Foundation
+import HTTPStatusCodes
+import LocalAuthentication
+import Swift
+import SwiftyRSA
+import UIKit
+import biidCommonLib
+import biidSecProvAPIClient
+@_exported import biidSecProvSDK
+@objc(BIIDSPClientError) public class ObjC_ClientError : Foundation.NSError {
+  public static let bundleID: Swift.String
+  public static let clientErrorDomain: Swift.String
+  public static let asymmetricCryptoExceptionErrorDomain: Swift.String
+  public static let nativeBiometricExceptionErrorDomain: Swift.String
+  @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public init(domain: Swift.String, code: Swift.Int, userInfo dict: [Swift.String : Any]? = nil)
+  @objc deinit
+}
+@objc(ClientException) public enum ObjC_ClientException : Swift.Int {
+  case clientNotSupported = 100
+  case failedToLogin
+  case failedToLogout
+  case failedToEnableNativeBiometricsAuthentication
+  case failedToRegisterUser
+  case failedToRequestConfig
+  case failedToRequestVerificationCode
+  case failedToUpdatePasscode
+  case generalError
+  case invalidEndpoint
+  case invalidConfigResponse
+  case invalidLoginResponse
+  case invalidRegisterResponse
+  case invalidUpdatePasscodeResponse
+  case missingOrInvalidParameter
+  case mustBeCalledOnTheMainThread
+  case nativeBiometricAuthenticationNotAvailable
+  case passcodeCouldNotBeEncrypted
+  case sdkNotInitialized
+  case unknownError
+  case userNotAuthenticated
+  case verificationCodeNotRequested
+  public typealias RawValue = Swift.Int
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc(AsymmetricCryptoException) public enum ObjC_AsymmetricCryptoException : Swift.Int {
+  case unknownError = 300
+  case duplicateFoundWhileTryingToCreateKey
+  case keyNotFound
+  case authFailed
+  case unableToAddPublicKeyToKeychain
+  case wrongInputDataFormat
+  case unableToEncrypt
+  case unableToDecrypt
+  case unableToSignData
+  case unableToVerifySignedData
+  case unableToPerformHashOfData
+  case unableToGenerateAccessControlWithGivenSecurity
+  case outOfMemory
+  public typealias RawValue = Swift.Int
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc(NativeBiometricException) public enum ObjC_NativeBiometricException : Swift.Int {
+  case biometryNotAvailable = 200
+  case biometryLockout
+  case biometryNotEnrolled
+  case touchIDLockout
+  case touchIDNotAvailable
+  case touchIDNotEnrolled
+  case unknown
+  public typealias RawValue = Swift.Int
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc(Client) public protocol ObjC_Client : AnyObject {
+  @objc(initializeWithInstallationID:error:) func initialize(withInstallationID installationID: Swift.String) throws
+  @objc(registerWithUsername:passcode:phoneNumber:onSuccess:onNoConnection:onValidationError:onClientError:) func register(withUsername username: Swift.String, andPasscode passcode: Swift.String, andPhoneNumber phoneNumber: Swift.String, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping () -> Swift.Void, onValidationError: @escaping (biidSecProvSDK.ObjC_ValidationError) -> Swift.Void, onClientError: @escaping (biidSecProvSDK.ObjC_ClientError) -> Swift.Void)
+  @objc(loginWithUsername:passcode:onSuccess:onNoConnection:onInvalidCredentials:onUserBlocked:onClientError:) func login(withUsername username: Swift.String, andPasscode passcode: Swift.String, onSuccess: @escaping (Swift.Bool) -> Swift.Void, onNoConnection: @escaping () -> Swift.Void, onInvalidCredentials: @escaping (biidSecProvSDK.ObjC_InvalidCredentialsError) -> Swift.Void, onUserBlocked: @escaping (biidSecProvSDK.ObjC_UserBlockedError) -> Swift.Void, onClientError: @escaping (biidSecProvSDK.ObjC_ClientError) -> Swift.Void)
+  @objc func getAccessToken() -> Swift.String?
+}
+@objc(BiidSecProvSDK) public class ObjC_SDK : ObjectiveC.NSObject {
+  @objc public class func getClient() -> biidSecProvSDK.ObjC_Client
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc(BIIDSPClientImplementation) public class ObjC_ClientImplementation : ObjectiveC.NSObject, biidSecProvSDK.ObjC_Client {
+  @objc convenience override dynamic public init()
+  @objc public func initialize(withInstallationID installationID: Swift.String) throws
+  @objc public func register(withUsername username: Swift.String, andPasscode passcode: Swift.String, andPhoneNumber phoneNumber: Swift.String, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping () -> Swift.Void, onValidationError: @escaping (biidSecProvSDK.ObjC_ValidationError) -> Swift.Void, onClientError: @escaping (biidSecProvSDK.ObjC_ClientError) -> Swift.Void)
+  @objc public func login(withUsername username: Swift.String, andPasscode passcode: Swift.String, onSuccess: @escaping (Swift.Bool) -> Swift.Void, onNoConnection: @escaping () -> Swift.Void, onInvalidCredentials: @escaping (biidSecProvSDK.ObjC_InvalidCredentialsError) -> Swift.Void, onUserBlocked: @escaping (biidSecProvSDK.ObjC_UserBlockedError) -> Swift.Void, onClientError: @escaping (biidSecProvSDK.ObjC_ClientError) -> Swift.Void)
+  @objc public func getAccessToken() -> Swift.String?
+  @objc deinit
+}
+@objc(BIIDSPValidationError) public class ObjC_ValidationError : Foundation.NSError {
+  public static let bundleID: Swift.String
+  public static let errorDomain: Swift.String
+  @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public init(domain: Swift.String, code: Swift.Int, userInfo dict: [Swift.String : Any]? = nil)
+  @objc deinit
+}
+public func optionalArraysAreEqual<T1>(lhsArray: [T1]?, rhsArray: [T1]?) -> Swift.Bool where T1 : Swift.Equatable
+public typealias InvalidCredentialsErrorDetails = [Swift.String : Any]
+public typealias ValidationErrors = [Swift.String : Swift.String]
+public struct ClientError {
+  public var error: biidSecProvSDK.ClientException
+  public var details: Swift.String?
+  public var traceID: Swift.String?
+  public init(error: biidSecProvSDK.ClientException, details: Swift.String? = nil, traceID: Swift.String? = nil)
+  public var description: Swift.String {
+    get
+  }
+}
+public struct InvalidCredentialsError {
+  public var error: Swift.String
+  public var attemptsLeft: Swift.Int
+  public var traceID: Swift.String?
+  public var description: Swift.String {
+    get
+  }
+}
+public struct UserBlockedError {
+  public var error: Swift.String
+  public var traceID: Swift.String?
+}
+public struct PhoneNumberVerificationLimitError {
+  public var error: Swift.String
+  public var traceID: Swift.String?
+}
+public struct ValidationError {
+  public var error: biidSecProvSDK.ValidationErrors
+  public var traceID: Swift.String?
+}
+public struct VerificationCodeExpiredError {
+  public var error: Swift.String
+  public var traceID: Swift.String?
+}
+public struct VerificationCodeBlockedError {
+  public var error: Swift.String
+  public var traceID: Swift.String?
+}
+public struct InvalidHashError {
+  public var error: Swift.String
+  public var traceID: Swift.String?
+}
+public enum ClientException : Swift.Error {
+  case cryptoError(exception: biidSecProvSDK.AsymmetricCryptoException)
+  case clientNotSupported
+  case failedToLogin
+  case failedToLogout
+  case failedToEnableNativeBiometricsAuthentication
+  case failedToRegisterUser
+  case failedToRequestConfig
+  case failedToRequestVerificationCode
+  case failedToUpdatePasscode
+  case generalError
+  case invalidEndpoint
+  case invalidConfigResponse
+  case invalidLoginResponse
+  case invalidRegisterResponse
+  case invalidUpdatePasscodeResponse
+  case manifestException(exception: biidCommonLib.BiidManifestException)
+  case missingOrInvalidParameter
+  case mustBeCalledOnTheMainThread
+  case nativeBiometricError(exception: biidSecProvSDK.NativeBiometricException)
+  case passcodeCouldNotBeEncrypted
+  case sdkNotInitialized
+  case unknownError
+  case userNotAuthenticated
+  case verificationCodeNotRequested
+}
+public enum AsymmetricCryptoException : Swift.Error {
+  case unknownError(OSStatus: Swift.String)
+  case duplicateFoundWhileTryingToCreateKey
+  case keyNotFound
+  case authFailed
+  case unableToAddPublicKeyToKeychain
+  case wrongInputDataFormat
+  case unableToEncrypt
+  case unableToDecrypt
+  case unableToSignData
+  case unableToVerifySignedData
+  case unableToPerformHashOfData
+  case unableToGenerateAccessControlWithGivenSecurity
+  case outOfMemory
+}
+public enum NativeBiometricException : Swift.Error {
+  case biometryNotAvailable
+  case biometryLockout
+  case biometryNotEnrolled
+  case touchIDLockout
+  case touchIDNotAvailable
+  case touchIDNotEnrolled
+  case unknown(errorCode: Swift.String?)
+}
+extension NativeBiometricException : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension ErrorResponse : Swift.CustomStringConvertible, Swift.CustomDebugStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+final public class SDK {
+  public static var getClient: biidSecProvSDK.Client {
+    get
+  }
+  @objc deinit
+}
+@objc(BIIDSPUserBlockedError) public class ObjC_UserBlockedError : Foundation.NSError {
+  public static let bundleID: Swift.String
+  @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public init(domain: Swift.String, code: Swift.Int, userInfo dict: [Swift.String : Any]? = nil)
+  @objc deinit
+}
+public protocol Client {
+  typealias ClientErrorCallBack = (biidSecProvSDK.ClientError) -> Swift.Void
+  typealias InvalidCredentialsErrorCallBack = (biidSecProvSDK.InvalidCredentialsError) -> Swift.Void
+  typealias InvalidHashErrorCallBack = (biidSecProvSDK.InvalidHashError) -> Swift.Void
+  typealias NoConnectionCallBack = () -> Swift.Void
+  typealias PhoneNumberVerificationLimitErrorCallBack = (biidSecProvSDK.PhoneNumberVerificationLimitError) -> Swift.Void
+  typealias UserBlockedErrorCallBack = (biidSecProvSDK.UserBlockedError) -> Swift.Void
+  typealias ValidationErrorCallBack = (biidSecProvSDK.ValidationError) -> Swift.Void
+  typealias VerificationCodeExpiredErrorCallBack = (biidSecProvSDK.VerificationCodeExpiredError) -> Swift.Void
+  typealias VerificationCodeBlockedErrorCallBack = (biidSecProvSDK.VerificationCodeBlockedError) -> Swift.Void
+  func initialize(withInstallationID installationID: Swift.String) throws
+  func requestPhoneNumberVerification(forPhoneNumber phoneNumber: Swift.String, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onValidationError: @escaping Self.ValidationErrorCallBack, onPhoneNumberVerificationLimitError: @escaping Self.PhoneNumberVerificationLimitErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func verifyPhoneNumber(forPhoneNumber phoneNumber: Swift.String, withVerificationCode verificationCode: Swift.Int, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onValidationError: @escaping Self.ValidationErrorCallBack, onVerificationCodeExpired: @escaping Self.VerificationCodeExpiredErrorCallBack, onInvalidCredentials: @escaping Self.InvalidCredentialsErrorCallBack, onVerificationCodeBlocked: @escaping Self.VerificationCodeBlockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func requestConfig(onSuccess: @escaping (biidSecProvSDK.SecurityProviderConfig) -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func register(withUsername username: Swift.String, andPasscode passcode: Swift.String, andPhoneNumber phoneNumber: Swift.String, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onValidationError: @escaping Self.ValidationErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func login(withUsername username: Swift.String, andPasscode passcode: Swift.String, onSuccess: @escaping (Swift.Bool) -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidCredentials: @escaping Self.InvalidCredentialsErrorCallBack, onUserBlocked: @escaping Self.UserBlockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func loginWithNativeBiometricAuthentication(onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidHashError: @escaping Self.InvalidHashErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func logout(onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func updatePasscode(withUsername username: Swift.String, withNewPasscode passcode: Swift.String, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onValidationError: @escaping Self.ValidationErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func enableNativeBiometricAuthentication(onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidHashError: @escaping Self.InvalidHashErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func disableNativeBiometricAuthentication(onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidCredentials: @escaping Self.InvalidCredentialsErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func isNativeBiometricAuthenticationEnabled() -> Swift.Bool
+  func getAccessToken() -> Swift.String?
+}
+@objc(BIIDSPInvalidCredentialsError) public class ObjC_InvalidCredentialsError : Foundation.NSError {
+  public static let bundleID: Swift.String
+  public var attemptsLeft: Swift.Int
+  @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public init(domain: Swift.String, code: Swift.Int, userInfo dict: [Swift.String : Any]? = nil)
+  @objc deinit
+}
+final public class SecurityProviderConfig {
+  final public var usernameMinLength: Swift.Int? {
+    get
+    }
+  final public var usernameMaxLength: Swift.Int? {
+    get
+    }
+  final public var passcodeMinLength: Swift.Int? {
+    get
+    }
+  final public var passcodeMaxLength: Swift.Int? {
+    get
+    }
+  @objc deinit
+}
+extension SecurityProviderConfig : Swift.CustomStringConvertible, Swift.CustomDebugStringConvertible {
+  final public var description: Swift.String {
+    get
+  }
+  final public var debugDescription: Swift.String {
+    get
+  }
+}
+extension SecurityProviderConfig {
+  public static func areEqual(_ lhs: biidSecProvSDK.SecurityProviderConfig, _ rhs: biidSecProvSDK.SecurityProviderConfig) -> Swift.Bool
+}
+open class SecureRequestBuilder<T> : biidSecProvAPIClient.AlamofireRequestBuilder<T> {
+  override open func createSessionManager() -> Alamofire.SessionManager
+  required public init(method: Swift.String, URLString: Swift.String, parameters: [Swift.String : Any]?, isBody: Swift.Bool, headers: [Swift.String : Swift.String] = super)
+  @objc deinit
+}
+open class SecureDecodableRequestBuilder<T> : biidSecProvAPIClient.AlamofireDecodableRequestBuilder<T> where T : Swift.Decodable {
+  override open func createSessionManager() -> Alamofire.SessionManager
+  required public init(method: Swift.String, URLString: Swift.String, parameters: [Swift.String : Any]?, isBody: Swift.Bool, headers: [Swift.String : Swift.String] = super)
+  @objc deinit
+}
+extension biidSecProvSDK.ObjC_ClientException : Swift.Equatable {}
+extension biidSecProvSDK.ObjC_ClientException : Swift.Hashable {}
+extension biidSecProvSDK.ObjC_ClientException : Swift.RawRepresentable {}
+extension biidSecProvSDK.ObjC_AsymmetricCryptoException : Swift.Equatable {}
+extension biidSecProvSDK.ObjC_AsymmetricCryptoException : Swift.Hashable {}
+extension biidSecProvSDK.ObjC_AsymmetricCryptoException : Swift.RawRepresentable {}
+extension biidSecProvSDK.ObjC_NativeBiometricException : Swift.Equatable {}
+extension biidSecProvSDK.ObjC_NativeBiometricException : Swift.Hashable {}
+extension biidSecProvSDK.ObjC_NativeBiometricException : Swift.RawRepresentable {}
+extension biidSecProvSDK.ClientError : Swift.CustomStringConvertible {}
+extension biidSecProvSDK.ClientError : Swift.Error {}
+extension biidSecProvSDK.InvalidCredentialsError : Swift.CustomStringConvertible {}
+extension biidSecProvSDK.InvalidCredentialsError : Swift.Error {}
+extension biidSecProvSDK.UserBlockedError : Swift.CustomStringConvertible {}
+extension biidSecProvSDK.UserBlockedError : Swift.Error {}
+extension biidSecProvSDK.PhoneNumberVerificationLimitError : Swift.CustomStringConvertible {}
+extension biidSecProvSDK.PhoneNumberVerificationLimitError : Swift.Error {}
+extension biidSecProvSDK.ValidationError : Swift.CustomStringConvertible {}
+extension biidSecProvSDK.ValidationError : Swift.Error {}
+extension biidSecProvSDK.VerificationCodeExpiredError : Swift.CustomStringConvertible {}
+extension biidSecProvSDK.VerificationCodeExpiredError : Swift.Error {}
+extension biidSecProvSDK.VerificationCodeBlockedError : Swift.CustomStringConvertible {}
+extension biidSecProvSDK.VerificationCodeBlockedError : Swift.Error {}
+extension biidSecProvSDK.InvalidHashError : Swift.CustomStringConvertible {}
+extension biidSecProvSDK.InvalidHashError : Swift.Error {}
+extension biidSecProvSDK.SecurityProviderConfig : Swift.Equatable {}

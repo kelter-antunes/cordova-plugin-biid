@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version='1.0'>
+  <dict>
+    <key>EndPoint</key>
+    <string>security.pre-biid.com</string>
+    <key>PublicKey</key>
+    <string>-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzKNoC6R7N1PrSqxKKBCe
+ZS5xJoNQhe1kMjXqgDJwpqhsA+hSWJr1rZD63QM6xq+ihKPovWEhkkHCeMzf/m9P
+Ljd/Brj2aYti6u5Odg2lDnci9EuF7fPxUa/l3KwBbnbDTAdacBxzFDm4HcxPn7u9
+lbzeCvZ58Wb0721EdzNFZI+K2/tbWwwrz3pBCRdLtAWZDHXiIiTlk9GSLT0+Y/bT
+5/GQVG54I9k+cKTrBXRsHzeuGmRJC5WgzWf1fAsaqQE03hHTzlmdWbV/CNMgZuCc
+08NgKfGK9Mky3b0egjZAUL8Dh+eBSOQnyIFqWftKK3BrEHvoZU8QiPql23xzxqF1
+RQIDAQAB
+-----END PUBLIC KEY-----</string>
+    <key>Checksum</key>
+    <string>2417D73A0A63603CCD9003A805390FBFB75B8C11C761911D22699446986E8E72CE77AAB3F8568ACDF364AE9430A027153CAE6B8B8588F2D0842188C0EC7A56FB</string>
+  </dict>
+</plist>

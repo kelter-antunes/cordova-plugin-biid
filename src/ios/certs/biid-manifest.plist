@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version='1.0'>
+  <dict>
+    <key>AppName</key>
+    <string>Demo</string>
+    <key>AppKey</key>
+    <string>9Yg5xaUO0ZoeB8qgCX3C4vF0VugBlPkI2addN01ZiRvwhcvmHrPP9EFVfRJt</string>
+    <key>BundleID</key>
+    <string>com.biid.bank.demo</string>
+    <key>EndPoint</key>
+    <string>mobile.pre-biid.com/api</string>
+    <key>PublicKey</key>
+    <string>-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzejUt4hyiJ/Y72QZsaiy
+jA1Ky+fLO9i56U95Of/U5YQIW8JKdFaB/J09cLY9H0Wa5ugAjOLZP4z7HcTA0GWG
+pyFOgaxJedLp5S4BcryLhhl9HcNo/9vThZ7dx+zwjihQ6Bct0PEFiJXVKrRy3YEA
+WOEGBhaGv9d18w3j5P0NpBpnCxZjAHOvOGa1xFhWVsT1gztCLI6iidq6m9bPDM4e
+KN3w6A47057LyaamtZwJugiO1Ts1HIfAoVzVfHktcVS3XSu0M0G3PXxt9xswf3bc
+Buo8m4WhxVZihYKuTplb2Ctu03uG15MlAMlyuDjhRJziN1Djzrmd16iJHD1bvdmO
+fQIDAQAB
+-----END PUBLIC KEY-----</string>
+    <key>AllowMultipleEntities</key>
+    <false />
+    <key>RequiresSecureEnclave</key>
+    <false />
+    <key>NativeBiometricsRequiredForKeyAccess</key>
+    <false />
+    <key>AutoRetryInvalidToken</key>
+    <true />
+    <key>Checksum</key>
+    <string>63B65C3EF718AE21BC78DDC77AEBB1A53E7B35ABDA5E707E8F1E06B88A7DF835D33401B0EDA5CB47DD037CF1C51ADA5E19E3350FB44A63D9D7392C87C604ACFF</string>
+  </dict>
+</plist>

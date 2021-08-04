@@ -1,0 +1,73 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.1 effective-4.2 (swiftlang-1100.0.270.13 clang-1100.0.33.7)
+// swift-module-flags: -target arm64-apple-ios10.3 -enable-objc-interop -enable-library-evolution -swift-version 4.2 -enforce-exclusivity=checked -O -module-name biidCommonLib
+import Foundation
+import Swift
+@_exported import biidCommonLib
+final public class BiidManifest {
+  final public subscript(key: Swift.String) -> Any? {
+    get
+  }
+  @objc deinit
+}
+extension BiidManifest {
+  public static func biidManifest(withManifestResource manifestResource: Swift.String) throws -> biidCommonLib.BiidManifest
+}
+public struct BiidManifestError {
+  public var error: biidCommonLib.BiidManifestException
+  public init(error: biidCommonLib.BiidManifestException)
+}
+public enum BiidManifestException : Swift.Error {
+  case failedToLoadManifest
+  case invalidChecksum
+  case manifestKeyMissing
+  case manifestNotFoundInBundle
+  public static func == (a: biidCommonLib.BiidManifestException, b: biidCommonLib.BiidManifestException) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+}
+extension BiidManifestException : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+public func loggingPrint<T>(_ object: @autoclosure () -> T, _ file: Swift.String = #file, _ function: Swift.String = #function, _ line: Swift.Int = #line)
+public func loggingDump<T>(_ object: @autoclosure () -> T, label: Swift.String? = nil, _ file: Swift.String = #file, _ function: Swift.String = #function, _ line: Swift.Int = #line)
+@objc(BiidManifest) @objcMembers public class ObjC_BiidManifest : ObjectiveC.NSObject {
+  @objc public subscript(key: Swift.String) -> Any? {
+    @objc get
+  }
+  @objc public static func biidManifest(withManifestResource manifestResource: Swift.String) throws -> biidCommonLib.ObjC_BiidManifest
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc(BiidManifestError) @objcMembers public class ObjC_BiidManifestError : Foundation.NSError {
+  @objc public static let manifestErrorDomain: Swift.String
+  public init(error: biidCommonLib.BiidManifestError)
+  @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public init(domain: Swift.String, code: Swift.Int, userInfo dict: [Swift.String : Any]? = nil)
+  @objc deinit
+}
+@objc(BiidManifestException) public enum ObjC_BiidManifestException : Swift.Int {
+  case failedToLoadManifest
+  case invalidChecksum
+  case manifestKeyMissing
+  case manifestNotFoundInBundle
+  public typealias RawValue = Swift.Int
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+extension biidCommonLib.BiidManifestError : Swift.CustomStringConvertible {}
+extension biidCommonLib.BiidManifestError : Swift.Error {}
+extension biidCommonLib.BiidManifestException : Swift.Equatable {}
+extension biidCommonLib.BiidManifestException : Swift.Hashable {}
+extension biidCommonLib.ObjC_BiidManifestException : Swift.Equatable {}
+extension biidCommonLib.ObjC_BiidManifestException : Swift.Hashable {}
+extension biidCommonLib.ObjC_BiidManifestException : Swift.RawRepresentable {}

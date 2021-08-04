@@ -1,0 +1,4 @@
+framework module biidSecProvSDK {
+  header "biidSecProvSDK-Swift.h"
+  requires objc
+}

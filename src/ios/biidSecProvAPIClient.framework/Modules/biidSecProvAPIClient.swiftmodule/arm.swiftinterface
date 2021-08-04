@@ -1,0 +1,534 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.2.2 effective-4.2 (swiftlang-1103.0.32.6 clang-1103.0.32.51)
+// swift-module-flags: -target armv7-apple-ios10.0 -enable-objc-interop -enable-library-evolution -swift-version 4.2 -enforce-exclusivity=checked -O -module-name biidSecProvAPIClient
+import Alamofire
+import Foundation
+import Swift
+@_exported import biidSecProvAPIClient
+@_hasMissingDesignatedInitializers open class ConfigAPI {
+  public enum Lang_listCountries : Swift.String {
+    case ca
+    case en
+    case es
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  open class func listCountries(lang: biidSecProvAPIClient.ConfigAPI.Lang_listCountries? = nil, completion: @escaping (([biidSecProvAPIClient.CountryResponse]?, Swift.Error?) -> Swift.Void))
+  open class func listCountriesWithRequestBuilder(lang: biidSecProvAPIClient.ConfigAPI.Lang_listCountries? = nil) -> biidSecProvAPIClient.RequestBuilder<[biidSecProvAPIClient.CountryResponse]>
+  open class func showConfig(completion: @escaping ((biidSecProvAPIClient.ClientConfigurationData?, Swift.Error?) -> Swift.Void))
+  open class func showConfigWithRequestBuilder() -> biidSecProvAPIClient.RequestBuilder<biidSecProvAPIClient.ClientConfigurationData>
+  @objc deinit
+}
+public typealias EncodeResult = (data: Foundation.Data?, error: Swift.Error?)
+@_hasMissingDesignatedInitializers open class CodableHelper {
+  public static var dateformatter: Foundation.DateFormatter?
+  open class func decode<T>(_ type: T.Type, from data: Foundation.Data) -> (decodableObj: T?, error: Swift.Error?) where T : Swift.Decodable
+  open class func encode<T>(_ value: T, prettyPrint: Swift.Bool = false) -> biidSecProvAPIClient.EncodeResult where T : Swift.Encodable
+  @objc deinit
+}
+public struct APIHelper {
+  public static func rejectNil(_ source: [Swift.String : Any?]) -> [Swift.String : Any]?
+  public static func rejectNilHeaders(_ source: [Swift.String : Any?]) -> [Swift.String : Swift.String]
+  public static func convertBoolToString(_ source: [Swift.String : Any]?) -> [Swift.String : Any]?
+  public static func mapValuesToQueryItems(collectionFormat: Swift.String, _ source: [Swift.String : Any?]) -> [Foundation.URLQueryItem]?
+}
+public struct ValidationErrorLinks : Swift.Codable {
+  public var _self: biidSecProvAPIClient.ValidationErrorLink?
+  public init(_self: biidSecProvAPIClient.ValidationErrorLink?)
+  public enum CodingKeys : Swift.String, Swift.CodingKey {
+    case _self
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+    public init?(stringValue: Swift.String)
+    public var intValue: Swift.Int? {
+      get
+    }
+    public init?(intValue: Swift.Int)
+  }
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct ValidationErrorLink : Swift.Codable {
+  public var href: Swift.String?
+  public init(href: Swift.String?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct JSONDataEncoding : Alamofire.ParameterEncoding {
+  public func encode(_ urlRequest: Alamofire.URLRequestConvertible, with parameters: Alamofire.Parameters?) throws -> Foundation.URLRequest
+  public static func encodingParameters(jsonData: Foundation.Data?) -> Alamofire.Parameters?
+}
+public struct ValidationError : Swift.Codable {
+  public var message: Swift.String?
+  public var path: Swift.String?
+  public var links: biidSecProvAPIClient.ValidationErrorLinks?
+  public init(message: Swift.String?, path: Swift.String?, links: biidSecProvAPIClient.ValidationErrorLinks?)
+  public enum CodingKeys : Swift.String, Swift.CodingKey {
+    case message
+    case path
+    case links
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+    public init?(stringValue: Swift.String)
+    public var intValue: Swift.Int? {
+      get
+    }
+    public init?(intValue: Swift.Int)
+  }
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct UserCheckResponse : Swift.Codable {
+  public var existsEmail: Swift.Bool
+  public var existsPhone: Swift.Bool
+  public var existsUsername: Swift.Bool
+  public init(existsEmail: Swift.Bool, existsPhone: Swift.Bool, existsUsername: Swift.Bool)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct LoginRequest : Swift.Codable {
+  public var username: Swift.String
+  public var passcode: Swift.String
+  public init(username: Swift.String, passcode: Swift.String)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct UsernameClientConfiguration : Swift.Codable {
+  public var minLength: Swift.Int?
+  public var maxLength: Swift.Int?
+  public init(minLength: Swift.Int?, maxLength: Swift.Int?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct DisableFingerprintRequest : Swift.Codable {
+  public var duid: Swift.String
+  public var passcode: Swift.String
+  public init(duid: Swift.String, passcode: Swift.String)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct ModelErrorResponse : Swift.Codable {
+  public var error: Swift.String?
+  public var errorDescription: Swift.String?
+  public var errorDetails: biidSecProvAPIClient.JSONValue?
+  public var traceId: Swift.String?
+  public init(error: Swift.String?, errorDescription: Swift.String?, errorDetails: biidSecProvAPIClient.JSONValue?, traceId: Swift.String?)
+  public enum CodingKeys : Swift.String, Swift.CodingKey {
+    case error
+    case errorDescription
+    case errorDetails
+    case traceId
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+    public init?(stringValue: Swift.String)
+    public var intValue: Swift.Int? {
+      get
+    }
+    public init?(intValue: Swift.Int)
+  }
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct FingerpringLoginResponse : Swift.Codable {
+  public var duid: Swift.String?
+  public var token: Swift.String?
+  public init(duid: Swift.String?, token: Swift.String?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct ValidationErrorDetails : Swift.Codable {
+  public var total: Swift.Int?
+  public var embedded: biidSecProvAPIClient.ValidationErrorList?
+  public init(total: Swift.Int?, embedded: biidSecProvAPIClient.ValidationErrorList?)
+  public enum CodingKeys : Swift.String, Swift.CodingKey {
+    case total
+    case embedded
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+    public init?(stringValue: Swift.String)
+    public var intValue: Swift.Int? {
+      get
+    }
+    public init?(intValue: Swift.Int)
+  }
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct LoginResponse : Swift.Codable {
+  public var username: Swift.String?
+  public var token: Swift.String?
+  public var updatePasscode: Swift.String?
+  public init(username: Swift.String?, token: Swift.String?, updatePasscode: Swift.String?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct UserRegisterRequest : Swift.Codable {
+  public var username: Swift.String
+  public var phoneNumber: Swift.String
+  public var passcode: Swift.String
+  public var duid: Swift.String?
+  public init(username: Swift.String, phoneNumber: Swift.String, passcode: Swift.String, duid: Swift.String?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct UserUpdateResponse : Swift.Codable {
+  public var username: Swift.String?
+  public var token: Swift.String?
+  public init(username: Swift.String?, token: Swift.String?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct CountryResponse : Swift.Codable {
+  public var key: Swift.String?
+  public var label: Swift.String?
+  public var phonePrefix: Swift.String?
+  public init(key: Swift.String?, label: Swift.String?, phonePrefix: Swift.String?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public enum ErrorResponse : Swift.Error {
+  case error(Swift.Int, Foundation.Data?, Swift.Error)
+}
+open class Response<T> {
+  final public let statusCode: Swift.Int
+  final public let header: [Swift.String : Swift.String]
+  final public let body: T?
+  public init(statusCode: Swift.Int, header: [Swift.String : Swift.String], body: T?)
+  convenience public init(response: Foundation.HTTPURLResponse, body: T?)
+  @objc deinit
+}
+public enum JSONValue : Swift.Codable, Swift.Equatable {
+  case boolean(Swift.Bool)
+  case double(Swift.Double)
+  case integer(Swift.Int)
+  case string(Swift.String)
+  case array([biidSecProvAPIClient.JSONValue?])
+  case object([Swift.String : biidSecProvAPIClient.JSONValue?])
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from elements: biidSecProvAPIClient.JSONValue?...)
+  public init(from elements: [biidSecProvAPIClient.JSONValue?])
+  public init(from elements: (Swift.String, biidSecProvAPIClient.JSONValue?)...)
+  public init(from elements: [Swift.String : biidSecProvAPIClient.JSONValue])
+  public init(from value: Swift.Bool)
+  public init(from value: Swift.Int)
+  public init(from value: Swift.Double)
+  public init(from value: Swift.String)
+  public static func == (a: biidSecProvAPIClient.JSONValue, b: biidSecProvAPIClient.JSONValue) -> Swift.Bool
+}
+extension JSONValue : Swift.ExpressibleByBooleanLiteral {
+  public init(booleanLiteral value: Swift.Bool)
+  public typealias BooleanLiteralType = Swift.Bool
+}
+extension JSONValue : Swift.ExpressibleByIntegerLiteral {
+  public init(integerLiteral value: Swift.Int)
+  public typealias IntegerLiteralType = Swift.Int
+}
+extension JSONValue : Swift.ExpressibleByFloatLiteral {
+  public init(floatLiteral value: Swift.Double)
+  public typealias FloatLiteralType = Swift.Double
+}
+extension JSONValue : Swift.ExpressibleByStringLiteral {
+  public init(stringLiteral value: Swift.String)
+  public typealias StringLiteralType = Swift.String
+  public typealias ExtendedGraphemeClusterLiteralType = Swift.String
+  public typealias UnicodeScalarLiteralType = Swift.String
+}
+extension JSONValue : Swift.ExpressibleByArrayLiteral {
+  public init(arrayLiteral elements: biidSecProvAPIClient.JSONValue?...)
+  public typealias ArrayLiteralElement = biidSecProvAPIClient.JSONValue?
+}
+extension JSONValue : Swift.ExpressibleByDictionaryLiteral {
+  public init(dictionaryLiteral elements: (Swift.String, biidSecProvAPIClient.JSONValue?)...)
+  public typealias Key = Swift.String
+  public typealias Value = biidSecProvAPIClient.JSONValue?
+}
+extension JSONValue {
+  public static func toJSONValue(fromDictionary additionalProperties: [Swift.String : Any]) -> [Swift.String : biidSecProvAPIClient.JSONValue]?
+  public static func toJSONValue(fromArray array: [Any]) -> [biidSecProvAPIClient.JSONValue]?
+}
+extension JSONValue : Swift.CustomStringConvertible, Swift.CustomDebugStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+public struct PasscodeClientConfiguration : Swift.Codable {
+  public enum ModelType : Swift.String, Swift.Codable {
+    case alphanumeric
+    case numeric
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public var minLength: Swift.Int?
+  public var maxLength: Swift.Int?
+  public var type: biidSecProvAPIClient.PasscodeClientConfiguration.ModelType?
+  public init(minLength: Swift.Int?, maxLength: Swift.Int?, type: biidSecProvAPIClient.PasscodeClientConfiguration.ModelType?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct ClientConfigurationData : Swift.Codable {
+  public var allowUserRegistration: Swift.Bool?
+  public var username: biidSecProvAPIClient.UsernameClientConfiguration?
+  public var passcode: biidSecProvAPIClient.PasscodeClientConfiguration?
+  public var phoneVerification: biidSecProvAPIClient.PhoneVerificationConfiguration?
+  public init(allowUserRegistration: Swift.Bool?, username: biidSecProvAPIClient.UsernameClientConfiguration?, passcode: biidSecProvAPIClient.PasscodeClientConfiguration?, phoneVerification: biidSecProvAPIClient.PhoneVerificationConfiguration?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct PhoneVerificationConfiguration : Swift.Codable {
+  public var maxNumberOfAttempts: Swift.Int?
+  public var codeValidityTime: Swift.Int?
+  public var maxNumberOfDailyRequests: Swift.Int?
+  public var isEnabled: Swift.Bool?
+  public init(maxNumberOfAttempts: Swift.Int?, codeValidityTime: Swift.Int?, maxNumberOfDailyRequests: Swift.Int?, isEnabled: Swift.Bool?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+@_hasMissingDesignatedInitializers open class SwaggerClientAPI {
+  public static var basePath: Swift.String
+  public static var credential: Foundation.URLCredential?
+  public static var customHeaders: [Swift.String : Swift.String]
+  public static var requestBuilderFactory: biidSecProvAPIClient.RequestBuilderFactory
+  @objc deinit
+}
+open class RequestBuilder<T> {
+  final public let parameters: [Swift.String : Any]?
+  final public let isBody: Swift.Bool
+  final public let method: Swift.String
+  final public let URLString: Swift.String
+  public var onProgressReady: ((Foundation.Progress) -> ())?
+  required public init(method: Swift.String, URLString: Swift.String, parameters: [Swift.String : Any]?, isBody: Swift.Bool, headers: [Swift.String : Swift.String] = [:])
+  open func addHeaders(_ aHeaders: [Swift.String : Swift.String])
+  open func execute(_ completion: @escaping (biidSecProvAPIClient.Response<T>?, Swift.Error?) -> Swift.Void)
+  public func addHeader(name: Swift.String, value: Swift.String) -> Self
+  open func addCredential() -> Self
+  @objc deinit
+}
+public protocol RequestBuilderFactory {
+  func getNonDecodableBuilder<T>() -> biidSecProvAPIClient.RequestBuilder<T>.Type
+  func getBuilder<T>() -> biidSecProvAPIClient.RequestBuilder<T>.Type where T : Swift.Decodable
+}
+public struct UserRegisterResponse : Swift.Codable {
+  public var username: Swift.String
+  public var phoneNumber: Swift.String
+  public var token: Swift.String?
+  public init(username: Swift.String, phoneNumber: Swift.String, token: Swift.String?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+@_hasMissingDesignatedInitializers open class Configuration {
+  public static var dateFormat: Swift.String
+  @objc deinit
+}
+public struct ValidationErrorList : Swift.Codable {
+  public var errors: [biidSecProvAPIClient.ValidationError]?
+  public init(errors: [biidSecProvAPIClient.ValidationError]?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct EnableFingerprintResponse : Swift.Codable {
+  public var key: Swift.String?
+  public init(key: Swift.String?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct FingerprintLoginResponse : Swift.Codable {
+  public var duid: Swift.String?
+  public var token: Swift.String?
+  public init(duid: Swift.String?, token: Swift.String?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct UserCheckRequest : Swift.Codable {
+  public var username: Swift.String
+  public var phoneNumber: Swift.String
+  public var email: Swift.String
+  public init(username: Swift.String, phoneNumber: Swift.String, email: Swift.String)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct FingerprintLoginRequest : Swift.Codable {
+  public var duid: Swift.String
+  public var hash: Swift.String
+  public var signedHash: Swift.String
+  public init(duid: Swift.String, hash: Swift.String, signedHash: Swift.String)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct ValidationErrorResponse : Swift.Codable {
+  public var error: Swift.String?
+  public var errorDescription: Swift.String?
+  public var errorDetails: biidSecProvAPIClient.ValidationErrorDetails?
+  public init(error: Swift.String?, errorDescription: Swift.String?, errorDetails: biidSecProvAPIClient.ValidationErrorDetails?)
+  public enum CodingKeys : Swift.String, Swift.CodingKey {
+    case error
+    case errorDescription
+    case errorDetails
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+    public init?(stringValue: Swift.String)
+    public var intValue: Swift.Int? {
+      get
+    }
+    public init?(intValue: Swift.Int)
+  }
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct VerifyPhoneNumberRequest : Swift.Codable {
+  public var duid: Swift.String
+  public var phoneNumber: Swift.String
+  public var code: Swift.Int
+  public init(duid: Swift.String, phoneNumber: Swift.String, code: Swift.Int)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct EnableFingerprintRequest : Swift.Codable {
+  public var duid: Swift.String
+  public var publicKey: Swift.String
+  public init(duid: Swift.String, publicKey: Swift.String)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+@_hasMissingDesignatedInitializers open class ClientAPI {
+  open class func check(body: biidSecProvAPIClient.UserCheckRequest, completion: @escaping ((biidSecProvAPIClient.UserCheckResponse?, Swift.Error?) -> Swift.Void))
+  open class func checkWithRequestBuilder(body: biidSecProvAPIClient.UserCheckRequest) -> biidSecProvAPIClient.RequestBuilder<biidSecProvAPIClient.UserCheckResponse>
+  open class func disableFingerprint(body: biidSecProvAPIClient.DisableFingerprintRequest, completion: @escaping ((Swift.Void?, Swift.Error?) -> Swift.Void))
+  open class func disableFingerprintWithRequestBuilder(body: biidSecProvAPIClient.DisableFingerprintRequest) -> biidSecProvAPIClient.RequestBuilder<Swift.Void>
+  open class func enableFingerprint(body: biidSecProvAPIClient.EnableFingerprintRequest, completion: @escaping ((biidSecProvAPIClient.EnableFingerprintResponse?, Swift.Error?) -> Swift.Void))
+  open class func enableFingerprintWithRequestBuilder(body: biidSecProvAPIClient.EnableFingerprintRequest) -> biidSecProvAPIClient.RequestBuilder<biidSecProvAPIClient.EnableFingerprintResponse>
+  open class func fingerprintLogin(body: biidSecProvAPIClient.FingerprintLoginRequest, completion: @escaping ((biidSecProvAPIClient.FingerprintLoginResponse?, Swift.Error?) -> Swift.Void))
+  open class func fingerprintLoginWithRequestBuilder(body: biidSecProvAPIClient.FingerprintLoginRequest) -> biidSecProvAPIClient.RequestBuilder<biidSecProvAPIClient.FingerprintLoginResponse>
+  open class func login(body: biidSecProvAPIClient.LoginRequest, completion: @escaping ((biidSecProvAPIClient.LoginResponse?, Swift.Error?) -> Swift.Void))
+  open class func loginWithRequestBuilder(body: biidSecProvAPIClient.LoginRequest) -> biidSecProvAPIClient.RequestBuilder<biidSecProvAPIClient.LoginResponse>
+  open class func logout(completion: @escaping ((Swift.Void?, Swift.Error?) -> Swift.Void))
+  open class func logoutWithRequestBuilder() -> biidSecProvAPIClient.RequestBuilder<Swift.Void>
+  open class func register(body: biidSecProvAPIClient.UserRegisterRequest, completion: @escaping ((biidSecProvAPIClient.UserRegisterResponse?, Swift.Error?) -> Swift.Void))
+  open class func registerWithRequestBuilder(body: biidSecProvAPIClient.UserRegisterRequest) -> biidSecProvAPIClient.RequestBuilder<biidSecProvAPIClient.UserRegisterResponse>
+  open class func sendVerification(body: biidSecProvAPIClient.SendVerificationCodeRequest, completion: @escaping ((Swift.Void?, Swift.Error?) -> Swift.Void))
+  open class func sendVerificationWithRequestBuilder(body: biidSecProvAPIClient.SendVerificationCodeRequest) -> biidSecProvAPIClient.RequestBuilder<Swift.Void>
+  open class func update(body: biidSecProvAPIClient.UserUpdateRequest, completion: @escaping ((biidSecProvAPIClient.UserUpdateResponse?, Swift.Error?) -> Swift.Void))
+  open class func updateWithRequestBuilder(body: biidSecProvAPIClient.UserUpdateRequest) -> biidSecProvAPIClient.RequestBuilder<biidSecProvAPIClient.UserUpdateResponse>
+  open class func verifyPhone(body: biidSecProvAPIClient.VerifyPhoneNumberRequest, completion: @escaping ((Swift.Void?, Swift.Error?) -> Swift.Void))
+  open class func verifyPhoneWithRequestBuilder(body: biidSecProvAPIClient.VerifyPhoneNumberRequest) -> biidSecProvAPIClient.RequestBuilder<Swift.Void>
+  @objc deinit
+}
+public struct UserUpdateRequest : Swift.Codable {
+  public var username: Swift.String?
+  public var passcode: Swift.String?
+  public init(username: Swift.String?, passcode: Swift.String?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+@_hasMissingDesignatedInitializers open class JSONEncodingHelper {
+  open class func encodingParameters<T>(forEncodableObject encodableObj: T?) -> Alamofire.Parameters? where T : Swift.Encodable
+  open class func encodingParameters(forEncodableObject encodableObj: Any?) -> Alamofire.Parameters?
+  @objc deinit
+}
+extension String : Swift.CodingKey {
+  public var stringValue: Swift.String {
+    get
+  }
+  public init?(stringValue: Swift.String)
+  public var intValue: Swift.Int? {
+    get
+  }
+  public init?(intValue: Swift.Int)
+}
+extension KeyedEncodingContainerProtocol {
+  public mutating func encodeArray<T>(_ values: [T], forKey key: Self.Key) throws where T : Swift.Encodable
+  public mutating func encodeArrayIfPresent<T>(_ values: [T]?, forKey key: Self.Key) throws where T : Swift.Encodable
+  public mutating func encodeMap<T>(_ pairs: [Self.Key : T]) throws where T : Swift.Encodable, Self.Key : Swift.Hashable
+  public mutating func encodeMapIfPresent<T>(_ pairs: [Self.Key : T]?) throws where T : Swift.Encodable, Self.Key : Swift.Hashable
+}
+extension KeyedDecodingContainerProtocol {
+  public func decodeArray<T>(_ type: T.Type, forKey key: Self.Key) throws -> [T] where T : Swift.Decodable
+  public func decodeArrayIfPresent<T>(_ type: T.Type, forKey key: Self.Key) throws -> [T]? where T : Swift.Decodable
+  public func decodeMap<T>(_ type: T.Type, excludedKeys: Swift.Set<Self.Key>) throws -> [Self.Key : T] where T : Swift.Decodable, Self.Key : Swift.Hashable
+}
+@_inheritsConvenienceInitializers open class AlamofireRequestBuilder<T> : biidSecProvAPIClient.RequestBuilder<T> {
+  required public init(method: Swift.String, URLString: Swift.String, parameters: [Swift.String : Any]?, isBody: Swift.Bool, headers: [Swift.String : Swift.String] = [:])
+  open func createSessionManager() -> Alamofire.SessionManager
+  open func contentTypeForFormPart(fileURL: Foundation.URL) -> Swift.String?
+  open func makeRequest(manager: Alamofire.SessionManager, method: Alamofire.HTTPMethod, encoding: Alamofire.ParameterEncoding, headers: [Swift.String : Swift.String]) -> Alamofire.DataRequest
+  override open func execute(_ completion: @escaping (biidSecProvAPIClient.Response<T>?, Swift.Error?) -> Swift.Void)
+  open func buildHeaders() -> [Swift.String : Swift.String]
+  @objc deinit
+}
+public enum AlamofireDecodableRequestBuilderError : Swift.Error {
+  case emptyDataResponse
+  case nilHTTPResponse
+  case jsonDecoding(Swift.DecodingError)
+  case generalError(Swift.Error)
+}
+@_inheritsConvenienceInitializers open class AlamofireDecodableRequestBuilder<T> : biidSecProvAPIClient.AlamofireRequestBuilder<T> where T : Swift.Decodable {
+  @objc deinit
+  required public init(method: Swift.String, URLString: Swift.String, parameters: [Swift.String : Any]?, isBody: Swift.Bool, headers: [Swift.String : Swift.String] = super)
+}
+public struct SendVerificationCodeRequest : Swift.Codable {
+  public var duid: Swift.String
+  public var phoneNumber: Swift.String
+  public init(duid: Swift.String, phoneNumber: Swift.String)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+extension biidSecProvAPIClient.ConfigAPI.Lang_listCountries : Swift.Equatable {}
+extension biidSecProvAPIClient.ConfigAPI.Lang_listCountries : Swift.Hashable {}
+extension biidSecProvAPIClient.ConfigAPI.Lang_listCountries : Swift.RawRepresentable {}
+extension biidSecProvAPIClient.ValidationErrorLinks.CodingKeys : Swift.Equatable {}
+extension biidSecProvAPIClient.ValidationErrorLinks.CodingKeys : Swift.Hashable {}
+extension biidSecProvAPIClient.ValidationErrorLinks.CodingKeys : Swift.RawRepresentable {}
+extension biidSecProvAPIClient.ValidationError.CodingKeys : Swift.Equatable {}
+extension biidSecProvAPIClient.ValidationError.CodingKeys : Swift.Hashable {}
+extension biidSecProvAPIClient.ValidationError.CodingKeys : Swift.RawRepresentable {}
+extension biidSecProvAPIClient.ModelErrorResponse.CodingKeys : Swift.Equatable {}
+extension biidSecProvAPIClient.ModelErrorResponse.CodingKeys : Swift.Hashable {}
+extension biidSecProvAPIClient.ModelErrorResponse.CodingKeys : Swift.RawRepresentable {}
+extension biidSecProvAPIClient.ValidationErrorDetails.CodingKeys : Swift.Equatable {}
+extension biidSecProvAPIClient.ValidationErrorDetails.CodingKeys : Swift.Hashable {}
+extension biidSecProvAPIClient.ValidationErrorDetails.CodingKeys : Swift.RawRepresentable {}
+extension biidSecProvAPIClient.PasscodeClientConfiguration.ModelType : Swift.Equatable {}
+extension biidSecProvAPIClient.PasscodeClientConfiguration.ModelType : Swift.Hashable {}
+extension biidSecProvAPIClient.PasscodeClientConfiguration.ModelType : Swift.RawRepresentable {}
+extension biidSecProvAPIClient.ValidationErrorResponse.CodingKeys : Swift.Equatable {}
+extension biidSecProvAPIClient.ValidationErrorResponse.CodingKeys : Swift.Hashable {}
+extension biidSecProvAPIClient.ValidationErrorResponse.CodingKeys : Swift.RawRepresentable {}

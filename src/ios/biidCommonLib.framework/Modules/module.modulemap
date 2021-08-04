@@ -1,0 +1,4 @@
+framework module biidCommonLib {
+  header "biidCommonLib-Swift.h"
+  requires objc
+}

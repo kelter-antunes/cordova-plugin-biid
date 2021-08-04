@@ -1,0 +1,2439 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.1 effective-4.2 (swiftlang-1100.0.270.13 clang-1100.0.33.7)
+// swift-module-flags: -target arm64-apple-ios10.3 -enable-objc-interop -enable-library-evolution -swift-version 4.2 -enforce-exclusivity=checked -O -module-name biidCoreSDK
+import Alamofire
+import CoreLocation
+import Foundation
+import HTTPStatusCodes
+import JOSESwift
+import LocalAuthentication
+import Swift
+import SwiftyRSA
+import UIKit
+import biidCommonLib
+@_exported import biidCoreSDK
+import biidPublicAPIClient
+@objc(BIIDCRClientImplementation) public class ObjC_ClientImplementation : ObjectiveC.NSObject, biidCoreSDK.ObjC_Client {
+  @objc convenience override dynamic public init()
+  @objc public func getLanguage() throws -> Swift.String
+  @objc public func setLanguage(toLanguage language: Swift.String?, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping biidCoreSDK.ObjC_ClientImplementation.NoConnectionCallBack, onInvalidToken: @escaping (biidCoreSDK.ObjC_InvalidTokenError) -> Swift.Void, onClientError: @escaping (biidCoreSDK.ObjC_ClientError) -> Swift.Void)
+  @objc public func initialize() throws
+  @objc public func authenticate(withUsername username: Swift.String, securityProviderAccessToken accessToken: Swift.String, entity: biidCoreSDK.ObjC_Entity?, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping biidCoreSDK.ObjC_ClientImplementation.NoConnectionCallBack, onInvalidToken: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidTokenErrorCallBack, onClientError: @escaping biidCoreSDK.ObjC_ClientImplementation.ClientErrorCallBack)
+  @objc public func reauthenticate(onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping biidCoreSDK.ObjC_ClientImplementation.NoConnectionCallBack, onInvalidToken: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidTokenErrorCallBack, onClientError: @escaping biidCoreSDK.ObjC_ClientImplementation.ClientErrorCallBack)
+  @objc public func logout() throws
+  @objc public func setInstallationID(installationID: Swift.String) throws
+  @objc public func getInstallationID() throws -> Swift.String
+  @objc public func checkEntityExists(withURLName urlName: Swift.String, onSuccess: @escaping (biidCoreSDK.ObjC_Entity?) -> Swift.Void, onNoConnection: @escaping biidCoreSDK.ObjC_ClientImplementation.NoConnectionCallBack, onClientError: @escaping (biidCoreSDK.ObjC_ClientError) -> Swift.Void)
+  @objc public func requestEntity(withURLName urlName: Swift.String, onSuccess: @escaping (biidCoreSDK.ObjC_Entity) -> Swift.Void, onNoConnection: @escaping biidCoreSDK.ObjC_ClientImplementation.NoConnectionCallBack, onInvalidUserStateError: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidUserStateErrorCallBack, onInvalidToken: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidTokenErrorCallBack, onValidationError: @escaping biidCoreSDK.ObjC_ClientImplementation.ValidationErrorCallBack, onClientError: @escaping biidCoreSDK.ObjC_ClientImplementation.ClientErrorCallBack)
+  @objc public func requestEntitiesForUser(onSuccess: @escaping ([biidCoreSDK.ObjC_Entity]) -> Swift.Void, onNoConnection: @escaping biidCoreSDK.ObjC_ClientImplementation.NoConnectionCallBack, onInvalidUserStateError: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidUserStateErrorCallBack, onInvalidToken: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidTokenErrorCallBack, onClientError: @escaping biidCoreSDK.ObjC_ClientImplementation.ClientErrorCallBack)
+  @objc public func selectEntity(entity: biidCoreSDK.ObjC_Entity, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping biidCoreSDK.ObjC_ClientImplementation.NoConnectionCallBack, onInvalidToken: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidTokenErrorCallBack, onClientError: @escaping biidCoreSDK.ObjC_ClientImplementation.ClientErrorCallBack)
+  @objc public func selectEntity(withEntityID id: Swift.String, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping biidCoreSDK.ObjC_ClientImplementation.NoConnectionCallBack, onInvalidToken: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidTokenErrorCallBack, onClientError: @escaping biidCoreSDK.ObjC_ClientImplementation.ClientErrorCallBack)
+  @objc public func getSelectedEntity() throws -> biidCoreSDK.ObjC_Entity
+  @objc public func requestCountries(onSuccess: @escaping ([biidCoreSDK.ObjC_Country]) -> Swift.Void, onNoConnection: @escaping biidCoreSDK.ObjC_ClientImplementation.NoConnectionCallBack, onInvalidToken: @escaping (biidCoreSDK.ObjC_InvalidTokenError) -> Swift.Void, onClientError: @escaping (biidCoreSDK.ObjC_ClientError) -> Swift.Void)
+  @objc public func requestUser(onSuccess: @escaping (biidCoreSDK.ObjC_User) -> Swift.Void, onNoConnection: @escaping biidCoreSDK.ObjC_ClientImplementation.NoConnectionCallBack, onInvalidToken: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidTokenErrorCallBack, onUserLockedError: @escaping biidCoreSDK.ObjC_ClientImplementation.UserLockedErrorCallBack, onClientError: @escaping biidCoreSDK.ObjC_ClientImplementation.ClientErrorCallBack)
+  @objc public func requestEntityDetails(onSuccess: @escaping (biidCoreSDK.ObjC_EntityDetails) -> Swift.Void, onNoConnection: @escaping biidCoreSDK.ObjC_ClientImplementation.NoConnectionCallBack, onInvalidToken: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidTokenErrorCallBack, onUserLockedError: @escaping biidCoreSDK.ObjC_ClientImplementation.UserLockedErrorCallBack, onClientError: @escaping biidCoreSDK.ObjC_ClientImplementation.ClientErrorCallBack)
+  @objc public func requestCheckpoints(_ max: Swift.Int, _ offset: Swift.Int, _ location: CoreLocation.CLLocation?, _ sortOrder: biidCoreSDK.ObjC_CheckpointsSortOrder, onSuccess: @escaping ([biidCoreSDK.ObjC_Checkpoint]) -> Swift.Void, onNoConnection: @escaping biidCoreSDK.ObjC_ClientImplementation.NoConnectionCallBack, onInvalidToken: @escaping (biidCoreSDK.ObjC_InvalidTokenError) -> Swift.Void, onUserLockedError: @escaping biidCoreSDK.ObjC_ClientImplementation.UserLockedErrorCallBack, onClientError: @escaping (biidCoreSDK.ObjC_ClientError) -> Swift.Void)
+  @objc public func requestNearestCheckpoints(_ max: Swift.Int, _ offset: Swift.Int, _ location: CoreLocation.CLLocation, onSuccess: @escaping ([biidCoreSDK.ObjC_Checkpoint]) -> Swift.Void, onNoConnection: @escaping biidCoreSDK.ObjC_ClientImplementation.NoConnectionCallBack, onInvalidToken: @escaping (biidCoreSDK.ObjC_InvalidTokenError) -> Swift.Void, onUserLockedError: @escaping biidCoreSDK.ObjC_ClientImplementation.UserLockedErrorCallBack, onClientError: @escaping (biidCoreSDK.ObjC_ClientError) -> Swift.Void)
+  @objc public func requestCheckpointDetails(_ checkpointID: Swift.String, _ location: CoreLocation.CLLocation?, onSuccess: @escaping (biidCoreSDK.ObjC_CheckpointDetails) -> Swift.Void, onNoConnection: @escaping biidCoreSDK.ObjC_ClientImplementation.NoConnectionCallBack, onInvalidToken: @escaping (biidCoreSDK.ObjC_InvalidTokenError) -> Swift.Void, onUserLockedError: @escaping biidCoreSDK.ObjC_ClientImplementation.UserLockedErrorCallBack, onClientError: @escaping (biidCoreSDK.ObjC_ClientError) -> Swift.Void)
+  @objc public func registerUser(user: biidCoreSDK.ObjC_User, onSuccess: @escaping (biidCoreSDK.ObjC_User) -> Swift.Void, onNoConnection: @escaping biidCoreSDK.ObjC_ClientImplementation.NoConnectionCallBack, onInvalidUserStateError: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidUserStateErrorCallBack, onInvalidToken: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidTokenErrorCallBack, onValidationError: @escaping biidCoreSDK.ObjC_ClientImplementation.ValidationErrorCallBack, onUserLockedError: @escaping biidCoreSDK.ObjC_ClientImplementation.UserLockedErrorCallBack, onClientError: @escaping biidCoreSDK.ObjC_ClientImplementation.ClientErrorCallBack)
+  @objc public func updateUser(user: biidCoreSDK.ObjC_User, onSuccess: @escaping (biidCoreSDK.ObjC_User) -> Swift.Void, onNoConnection: @escaping biidCoreSDK.ObjC_ClientImplementation.NoConnectionCallBack, onInvalidUserStateError: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidUserStateErrorCallBack, onInvalidToken: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidTokenErrorCallBack, onValidationError: @escaping biidCoreSDK.ObjC_ClientImplementation.ValidationErrorCallBack, onUserLockedError: @escaping biidCoreSDK.ObjC_ClientImplementation.UserLockedErrorCallBack, onClientError: @escaping biidCoreSDK.ObjC_ClientImplementation.ClientErrorCallBack)
+  @objc public func updateUserPhoneNumber(phoneNumber: Swift.String, withDIAC diac: Swift.String, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping biidCoreSDK.ObjC_ClientImplementation.NoConnectionCallBack, onInvalidUserStateError: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidUserStateErrorCallBack, onInvalidToken: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidTokenErrorCallBack, onValidationError: @escaping biidCoreSDK.ObjC_ClientImplementation.ValidationErrorCallBack, onUserLockedError: @escaping biidCoreSDK.ObjC_ClientImplementation.UserLockedErrorCallBack, onClientError: @escaping biidCoreSDK.ObjC_ClientImplementation.ClientErrorCallBack)
+  @objc public func requestUserDevices(onSuccess: @escaping ([biidCoreSDK.ObjC_UserDevice]) -> Swift.Void, onNoConnection: @escaping biidCoreSDK.ObjC_ClientImplementation.NoConnectionCallBack, onInvalidUserStateError: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidUserStateErrorCallBack, onInvalidToken: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidTokenErrorCallBack, onUserLockedError: @escaping biidCoreSDK.ObjC_ClientImplementation.UserLockedErrorCallBack, onClientError: @escaping biidCoreSDK.ObjC_ClientImplementation.ClientErrorCallBack)
+  @objc public func requestUserDeviceVerification(onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping biidCoreSDK.ObjC_ClientImplementation.NoConnectionCallBack, onInvalidUserStateError: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidUserStateErrorCallBack, onInvalidToken: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidTokenErrorCallBack, onVerificationRequestLimitError: @escaping biidCoreSDK.ObjC_ClientImplementation.VerificationRequestLimitErrorCallBack, onUserLockedError: @escaping biidCoreSDK.ObjC_ClientImplementation.UserLockedErrorCallBack, onClientError: @escaping biidCoreSDK.ObjC_ClientImplementation.ClientErrorCallBack)
+  @objc public func verifyUserDevice(withVericationCode code: Swift.String, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping biidCoreSDK.ObjC_ClientImplementation.NoConnectionCallBack, onInvalidUserStateError: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidUserStateErrorCallBack, onInvalidToken: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidTokenErrorCallBack, onValidationError: @escaping biidCoreSDK.ObjC_ClientImplementation.ValidationErrorCallBack, onVerificationCodeExpiredError: @escaping biidCoreSDK.ObjC_ClientImplementation.VerificationCodeExpiredErrorCallBack, onVerificationCodeAttemptsError: @escaping biidCoreSDK.ObjC_ClientImplementation.VerificationCodeAttemptsErrorCallBack, onUserLockedError: @escaping biidCoreSDK.ObjC_ClientImplementation.UserLockedErrorCallBack, onClientError: @escaping biidCoreSDK.ObjC_ClientImplementation.ClientErrorCallBack)
+  @objc public func certifyUserAtLevel1(onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping biidCoreSDK.ObjC_ClientImplementation.NoConnectionCallBack, onInvalidUserStateError: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidUserStateErrorCallBack, onInvalidToken: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidTokenErrorCallBack, onUserLockedError: @escaping biidCoreSDK.ObjC_ClientImplementation.UserLockedErrorCallBack, onClientError: @escaping biidCoreSDK.ObjC_ClientImplementation.ClientErrorCallBack)
+  @objc public func certifyUser(withDIAC diac: Swift.String, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping biidCoreSDK.ObjC_ClientImplementation.NoConnectionCallBack, onInvalidUserStateError: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidUserStateErrorCallBack, onInvalidToken: @escaping (biidCoreSDK.ObjC_InvalidTokenError) -> Swift.Void, onValidationError: @escaping (biidCoreSDK.ObjC_ValidationError) -> Swift.Void, onUserLockedError: @escaping biidCoreSDK.ObjC_ClientImplementation.UserLockedErrorCallBack, onClientError: @escaping (biidCoreSDK.ObjC_ClientError) -> Swift.Void)
+  @objc public func uncertify(onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping biidCoreSDK.ObjC_ClientImplementation.NoConnectionCallBack, onInvalidUserStateError: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidUserStateErrorCallBack, onInvalidToken: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidTokenErrorCallBack, onUserLockedError: @escaping biidCoreSDK.ObjC_ClientImplementation.UserLockedErrorCallBack, onClientError: @escaping biidCoreSDK.ObjC_ClientImplementation.ClientErrorCallBack)
+  @objc public func requestTransactions(max: Swift.Int, offset: Swift.Int, transactionStatus: [Foundation.NSNumber], transactionType: biidCoreSDK.ObjC_TransactionType, documentType: biidCoreSDK.ObjC_DocumentType, onSuccess: @escaping ([biidCoreSDK.ObjC_Transaction]) -> Swift.Void, onNoConnection: @escaping biidCoreSDK.ObjC_ClientImplementation.NoConnectionCallBack, onInvalidUserStateError: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidUserStateErrorCallBack, onInvalidToken: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidTokenErrorCallBack, onUserLockedError: @escaping biidCoreSDK.ObjC_ClientImplementation.UserLockedErrorCallBack, onClientError: @escaping biidCoreSDK.ObjC_ClientImplementation.ClientErrorCallBack)
+  @objc public func createAuthenticationTransaction(withTransactionInfo transactionInfo: biidCoreSDK.ObjC_TransactionInfo, onSuccess: @escaping (biidCoreSDK.ObjC_AuthenticationTransaction) -> Swift.Void, onNoConnection: @escaping biidCoreSDK.ObjC_ClientImplementation.NoConnectionCallBack, onInvalidUserStateError: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidUserStateErrorCallBack, onInvalidToken: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidTokenErrorCallBack, onValidationError: @escaping biidCoreSDK.ObjC_ClientImplementation.ValidationErrorCallBack, onUserLockedError: @escaping biidCoreSDK.ObjC_ClientImplementation.UserLockedErrorCallBack, onClientError: @escaping biidCoreSDK.ObjC_ClientImplementation.ClientErrorCallBack)
+  @objc public func requestAuthenticationTransaction(transactionID: Swift.String, onSuccess: @escaping (biidCoreSDK.ObjC_AuthenticationTransaction) -> Swift.Void, onNoConnection: @escaping biidCoreSDK.ObjC_ClientImplementation.NoConnectionCallBack, onInvalidUserStateError: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidUserStateErrorCallBack, onInvalidToken: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidTokenErrorCallBack, onUserLockedError: @escaping biidCoreSDK.ObjC_ClientImplementation.UserLockedErrorCallBack, onClientError: @escaping biidCoreSDK.ObjC_ClientImplementation.ClientErrorCallBack)
+  @objc public func confirmAuthentication(forTransaction transaction: biidCoreSDK.ObjC_AuthenticationTransaction, withLocation location: CoreLocation.CLLocation?, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping biidCoreSDK.ObjC_ClientImplementation.NoConnectionCallBack, onInvalidUserStateError: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidUserStateErrorCallBack, onInvalidToken: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidTokenErrorCallBack, onTransactionNotPendingError: @escaping biidCoreSDK.ObjC_ClientImplementation.TransactionNotPendingErrorCallBack, onUserLockedError: @escaping biidCoreSDK.ObjC_ClientImplementation.UserLockedErrorCallBack, onClientError: @escaping biidCoreSDK.ObjC_ClientImplementation.ClientErrorCallBack)
+  @objc public func rejectAuthenticationTransaction(transactionID: Swift.String, withLocation location: CoreLocation.CLLocation?, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping biidCoreSDK.ObjC_ClientImplementation.NoConnectionCallBack, onInvalidUserStateError: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidUserStateErrorCallBack, onInvalidToken: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidTokenErrorCallBack, onTransactionNotPendingError: @escaping biidCoreSDK.ObjC_ClientImplementation.TransactionNotPendingErrorCallBack, onUserLockedError: @escaping biidCoreSDK.ObjC_ClientImplementation.UserLockedErrorCallBack, onClientError: @escaping biidCoreSDK.ObjC_ClientImplementation.ClientErrorCallBack)
+  @objc public func requestDocumentsTransaction(transactionID: Swift.String, onSuccess: @escaping (biidCoreSDK.ObjC_DocumentsTransaction) -> Swift.Void, onNoConnection: @escaping biidCoreSDK.ObjC_ClientImplementation.NoConnectionCallBack, onInvalidUserStateError: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidUserStateErrorCallBack, onInvalidToken: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidTokenErrorCallBack, onUserLockedError: @escaping biidCoreSDK.ObjC_ClientImplementation.UserLockedErrorCallBack, onClientError: @escaping biidCoreSDK.ObjC_ClientImplementation.ClientErrorCallBack)
+  @objc public func requestDocument(forDocumentID documentID: Swift.String, onSuccess: @escaping (biidCoreSDK.ObjC_Document) -> Swift.Void, onNoConnection: @escaping biidCoreSDK.ObjC_ClientImplementation.NoConnectionCallBack, onInvalidUserStateError: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidUserStateErrorCallBack, onInvalidToken: @escaping (biidCoreSDK.ObjC_InvalidTokenError) -> Swift.Void, onUserLockedError: @escaping biidCoreSDK.ObjC_ClientImplementation.UserLockedErrorCallBack, onClientError: @escaping (biidCoreSDK.ObjC_ClientError) -> Swift.Void)
+  @objc public func requestDocumentContent(forDocument document: biidCoreSDK.ObjC_Document, onSuccess: @escaping (Foundation.URL) -> Swift.Void, onNoConnection: @escaping biidCoreSDK.ObjC_ClientImplementation.NoConnectionCallBack, onInvalidUserStateError: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidUserStateErrorCallBack, onInvalidToken: @escaping (biidCoreSDK.ObjC_InvalidTokenError) -> Swift.Void, onUserLockedError: @escaping biidCoreSDK.ObjC_ClientImplementation.UserLockedErrorCallBack, onClientError: @escaping (biidCoreSDK.ObjC_ClientError) -> Swift.Void)
+  @objc public func downloadPublicDocument(named document: Swift.String, onSuccess: @escaping (Foundation.URL) -> Swift.Void, onNoConnection: @escaping biidCoreSDK.ObjC_ClientImplementation.NoConnectionCallBack, onInvalidUserStateError: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidUserStateErrorCallBack, onInvalidToken: @escaping (biidCoreSDK.ObjC_InvalidTokenError) -> Swift.Void, onClientError: @escaping (biidCoreSDK.ObjC_ClientError) -> Swift.Void)
+  @objc public func requestDocumentPreview(forDocument document: biidCoreSDK.ObjC_Document, onSuccess: @escaping (Foundation.URL) -> Swift.Void, onNoConnection: @escaping biidCoreSDK.ObjC_ClientImplementation.NoConnectionCallBack, onInvalidUserStateError: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidUserStateErrorCallBack, onInvalidToken: @escaping (biidCoreSDK.ObjC_InvalidTokenError) -> Swift.Void, onUserLockedError: @escaping biidCoreSDK.ObjC_ClientImplementation.UserLockedErrorCallBack, onClientError: @escaping (biidCoreSDK.ObjC_ClientError) -> Swift.Void)
+  @objc public func signDocuments(transaction: biidCoreSDK.ObjC_DocumentsTransaction, withLocation location: CoreLocation.CLLocation?, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping biidCoreSDK.ObjC_ClientImplementation.NoConnectionCallBack, onInvalidUserStateError: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidUserStateErrorCallBack, onInvalidToken: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidTokenErrorCallBack, onTransactionNotPendingError: @escaping biidCoreSDK.ObjC_ClientImplementation.TransactionNotPendingErrorCallBack, onUserLockedError: @escaping biidCoreSDK.ObjC_ClientImplementation.UserLockedErrorCallBack, onClientError: @escaping biidCoreSDK.ObjC_ClientImplementation.ClientErrorCallBack)
+  @objc public func rejectDocuments(transactionID: Swift.String, withLocation location: CoreLocation.CLLocation?, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping biidCoreSDK.ObjC_ClientImplementation.NoConnectionCallBack, onInvalidUserStateError: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidUserStateErrorCallBack, onInvalidToken: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidTokenErrorCallBack, onTransactionNotPendingError: @escaping biidCoreSDK.ObjC_ClientImplementation.TransactionNotPendingErrorCallBack, onUserLockedError: @escaping biidCoreSDK.ObjC_ClientImplementation.UserLockedErrorCallBack, onClientError: @escaping biidCoreSDK.ObjC_ClientImplementation.ClientErrorCallBack)
+  @objc public func requestMessageTransaction(transactionID: Swift.String, onSuccess: @escaping (biidCoreSDK.ObjC_MessageTransaction) -> Swift.Void, onNoConnection: @escaping biidCoreSDK.ObjC_ClientImplementation.NoConnectionCallBack, onInvalidUserStateError: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidUserStateErrorCallBack, onInvalidToken: @escaping (biidCoreSDK.ObjC_InvalidTokenError) -> Swift.Void, onUserLockedError: @escaping biidCoreSDK.ObjC_ClientImplementation.UserLockedErrorCallBack, onClientError: @escaping (biidCoreSDK.ObjC_ClientError) -> Swift.Void)
+  @objc public func dismissMessage(forTransaction transaction: biidCoreSDK.ObjC_MessageTransaction, withLocation location: CoreLocation.CLLocation?, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping biidCoreSDK.ObjC_ClientImplementation.NoConnectionCallBack, onInvalidUserStateError: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidUserStateErrorCallBack, onInvalidToken: @escaping (biidCoreSDK.ObjC_InvalidTokenError) -> Swift.Void, onTransactionNotPendingError: @escaping (biidCoreSDK.ObjC_TransactionNotPendingError) -> Swift.Void, onUserLockedError: @escaping biidCoreSDK.ObjC_ClientImplementation.UserLockedErrorCallBack, onClientError: @escaping (biidCoreSDK.ObjC_ClientError) -> Swift.Void)
+  @objc public func forceAuthenticationOnNextKeyAccess(withReason reason: Swift.String)
+  @objc public func setAuthenticationReason(to reason: Swift.String)
+  @objc public func registerUserDevice(withDeviceToken deviceToken: Foundation.Data, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping biidCoreSDK.ObjC_ClientImplementation.NoConnectionCallBack, onInvalidToken: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidTokenErrorCallBack, onUserLockedError: @escaping biidCoreSDK.ObjC_ClientImplementation.UserLockedErrorCallBack, onClientError: @escaping biidCoreSDK.ObjC_ClientImplementation.ClientErrorCallBack)
+  @objc public func unregisterUserDevice(onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping biidCoreSDK.ObjC_ClientImplementation.NoConnectionCallBack, onInvalidToken: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidTokenErrorCallBack, onUserLockedError: @escaping biidCoreSDK.ObjC_ClientImplementation.UserLockedErrorCallBack, onClientError: @escaping biidCoreSDK.ObjC_ClientImplementation.ClientErrorCallBack)
+  @objc public func onPushNotificationReceived(userInfo: [Swift.AnyHashable : Any], onSuccess: @escaping (biidCoreSDK.ObjC_BiidNotification?) -> Swift.Void, onClientError: @escaping biidCoreSDK.ObjC_ClientImplementation.ClientErrorCallBack)
+  @objc public func requestExtendPermissions(withDIAC diac: Swift.String, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping biidCoreSDK.ObjC_ClientImplementation.NoConnectionCallBack, onInvalidUserStateError: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidUserStateErrorCallBack, onInvalidToken: @escaping biidCoreSDK.ObjC_ClientImplementation.InvalidTokenErrorCallBack, onValidationError: @escaping biidCoreSDK.ObjC_ClientImplementation.ValidationErrorCallBack, onDIACLimitError: @escaping biidCoreSDK.ObjC_ClientImplementation.DIACLimitErrorCallBack, onUserLockedError: @escaping biidCoreSDK.ObjC_ClientImplementation.UserLockedErrorCallBack, onClientError: @escaping biidCoreSDK.ObjC_ClientImplementation.ClientErrorCallBack)
+  @objc public func getRoles() throws -> [Swift.Int]
+  @objc public func isMultiEntityConfig() throws -> Foundation.NSNumber
+  @objc public func isSingleEntityConfig() throws -> Foundation.NSNumber
+  @objc public func getVersion() -> Swift.String
+  @objc deinit
+}
+@objc(BIIDCRUserNotRegisteredError) @objcMembers public class ObjC_UserNotRegisteredError : biidCoreSDK.ObjC_InvalidUserStateError {
+  @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc deinit
+}
+@objc(BIIDCRAuthenticationTransaction) @objcMembers public class ObjC_AuthenticationTransaction : biidCoreSDK.ObjC_Transaction {
+  @objc public var hashToSign: Swift.String? {
+    @objc get
+  }
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public var debugDescription: Swift.String {
+    @objc get
+  }
+  @objc deinit
+}
+extension ObjC_AuthenticationTransaction {
+  @objc override dynamic public func isEqual(_ object: Any?) -> Swift.Bool
+}
+@objc(BIIDCRLocation) @objcMembers public class ObjC_Location : ObjectiveC.NSObject {
+  @objc public init(latitude: Swift.Double, longitude: Swift.Double)
+  @objc public var latitude: Swift.Double {
+    @objc get
+  }
+  @objc public var longitude: Swift.Double {
+    @objc get
+  }
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension ObjC_Location {
+  @objc override dynamic public func isEqual(_ object: Any?) -> Swift.Bool
+}
+@objc(BIIDCROpeningHoursSchedule) @objcMembers public class ObjC_OpeningHoursSchedule : ObjectiveC.NSObject {
+  @objc public var from: Foundation.Date? {
+    @objc get
+  }
+  @objc public var to: Foundation.Date? {
+    @objc get
+  }
+  @objc public var days: [biidCoreSDK.ObjC_OpeningHoursDay]? {
+    @objc get
+  }
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public var debugDescription: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension ObjC_OpeningHoursSchedule {
+  @objc override dynamic public func isEqual(_ object: Any?) -> Swift.Bool
+}
+public typealias ValidationErrors = [Swift.String : Swift.String]
+public struct ClientError : Foundation.LocalizedError {
+  public var error: biidCoreSDK.ClientException
+  public var details: Swift.String?
+  public var traceID: Swift.String?
+  public init(error: biidCoreSDK.ClientException, details: Swift.String? = nil, traceID: Swift.String? = nil)
+  public var description: Swift.String {
+    get
+  }
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+public struct DIACLimitError {
+  public var error: Swift.String
+  public var traceID: Swift.String?
+}
+public struct InvalidTokenError {
+  public enum Resolution : Swift.String {
+    case login
+    case retry
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public var action: biidCoreSDK.InvalidTokenError.Resolution
+  public var error: Swift.String
+  public var traceID: Swift.String?
+  public var description: Swift.String {
+    get
+  }
+}
+public struct TransactionNotPendingError {
+  public var error: Swift.String
+  public var traceID: Swift.String?
+}
+public struct UserLockedError {
+  public var error: Swift.String
+  public var traceID: Swift.String?
+}
+public struct ValidationError {
+  public var error: biidCoreSDK.ValidationErrors
+  public var traceID: Swift.String?
+}
+public struct VerificationCodeAttemptsError {
+  public var error: Swift.String
+  public var traceID: Swift.String?
+}
+public struct VerificationRequestLimitError {
+  public var error: Swift.String
+  public var traceID: Swift.String?
+}
+public struct VerificationCodeExpiredError {
+  public var error: Swift.String
+  public var traceID: Swift.String?
+}
+public class InvalidUserStateError {
+  public enum InvalidState : Swift.String {
+    case notVerified
+    case notRegistered
+    case alreadyRegistered
+    case notAccredited
+    case notCertified
+    case userDeviceAlreadyVerified
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  final public let invalidState: biidCoreSDK.InvalidUserStateError.InvalidState
+  public var error: Swift.String
+  public var traceID: Swift.String?
+  @objc deinit
+}
+final public class UserAlreadyRegisteredError : biidCoreSDK.InvalidUserStateError {
+  @objc deinit
+}
+final public class UserDeviceAlreadyVerifiedError : biidCoreSDK.InvalidUserStateError {
+  @objc deinit
+}
+final public class UserDeviceNotVerifiedError : biidCoreSDK.InvalidUserStateError {
+  @objc deinit
+}
+final public class UserNotAccreditedError : biidCoreSDK.InvalidUserStateError {
+  @objc deinit
+}
+final public class UserNotCertifiedError : biidCoreSDK.InvalidUserStateError {
+  @objc deinit
+}
+final public class UserNotRegisteredError : biidCoreSDK.InvalidUserStateError {
+  @objc deinit
+}
+public enum ClientException : Foundation.LocalizedError, Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+  public var errorDescription: Swift.String? {
+    get
+  }
+  case appAndManifestBundleIDsDoNotMatch
+  case BiidNotificationCouldNotBeCreated
+  case certifyRequestFailed
+  case certificateException(exception: biidCoreSDK.CertificateException)
+  case clientNotSupported
+  case cryptoError(exception: biidCoreSDK.AsymmetricCryptoException)
+  case csrCouldNotBeSent
+  case csrGenerationFailed
+  case deviceWithSecureEnclaveRequired
+  case diacCouldNotBeEncrypted
+  case entityConfigCouldNotBeLoaded
+  case failedOAuthRequest
+  case failedToCheckEntityExists
+  case failedToConfirmAuthenticationTransaction
+  case failedToCreateAuthenticationTransaction
+  case failedToExtendPermissions
+  case failedToGetAuthenticationTransaction
+  case failedToGetCertificate
+  case failedToGetCountries
+  case failedToGetCheckpoints
+  case failedToGetCheckpointDetails
+  case failedToGetCSRAttributes
+  case failedToGetDIAC
+  case failedToGetDocument
+  case failedToGetDocumentContent
+  case failedToGetDocumentID
+  case failedToGetDocumentPreview
+  case failedToGetDocumentsTransaction
+  case failedToGetEntities
+  case failedToGetEntity
+  case failedToGetMessageTransaction
+  case failedToGetTransactions
+  case failedToGetUser
+  case failedToGetUserDevices
+  case failedToRegisterForPush
+  case failedToRegisterUser
+  case failedToRejectTransaction
+  case failedToRequestDeviceVerification
+  case failedToSaveCertCertInvalid
+  case failedToSignDocuments
+  case failedToSendCSR
+  case failedToSignTransaction
+  case failedToUnCertify
+  case failedToUnRegisterUserDevice
+  case failedToUpdateUser
+  case failedToUpdateUserPhoneNumber
+  case failedToVerifyUserDevice
+  case generatedDIACInvalid
+  case invalidAuthenticationTransaction
+  case invalidDocumentsTransaction
+  case invalidEndpoint
+  case jweTokenGenerationFailed(exception: biidCoreSDK.JWEException)
+  case manifestException(exception: biidCommonLib.BiidManifestException)
+  case missingOrInvalidParameter
+  case missingUsernameAndOrEntity
+  case multipleEntitiesNotSupported
+  case mustBeCalledOnTheMainThread
+  case noSelectedEntity
+  case parameterCanNotBeNegative
+  case publicKeyNotFound
+  case readOnlyField
+  case secureEnclaveUseRequiresMininumOfiOS10
+  case sdkNotInitialized
+  case unexpectedError
+  case unknownError
+  case userNotAuthenticated
+  case verificationCodeNotRequested
+}
+public enum JWEException : Swift.Error {
+  case appKeyMissing
+  case jwtCouldNotBeCreated
+  case publicKeyCouldNotBeCreatedFromPEM
+  case publicKeyMissing
+  case serializationFailed
+  case unspecifiedError
+  public static func == (a: biidCoreSDK.JWEException, b: biidCoreSDK.JWEException) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+}
+public enum AsymmetricCryptoException : Swift.Error {
+  case unknownError(OSStatus: Swift.String)
+  case duplicateFoundWhileTryingToCreateKey
+  case keyNotFound
+  case authFailed
+  case unableToAddPublicKeyToKeychain
+  case wrongInputDataFormat
+  case unableToEncrypt
+  case unableToDecrypt
+  case unableToSignData
+  case unableToVerifySignedData
+  case unableToPerformHashOfData
+  case unableToGenerateAccessControlWithGivenSecurity
+  case outOfMemory
+}
+public enum CertificateException : Swift.Error {
+  case certificateNotFound
+  case noCertificateReturned
+  case unableToDeleteFromKeychain
+  case unableToLoadFromKeychain
+  case unableToSaveToKeychain
+  public static func == (a: biidCoreSDK.CertificateException, b: biidCoreSDK.CertificateException) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+}
+public class AuthenticationTransaction : biidCoreSDK.Transaction {
+  public var hashToSign: Swift.String? {
+    get
+    }
+  override public var description: Swift.String {
+    get
+  }
+  public static func == (lhs: biidCoreSDK.AuthenticationTransaction, rhs: biidCoreSDK.AuthenticationTransaction) -> Swift.Bool
+  @objc deinit
+}
+final public class EntityDetails : biidCoreSDK.Entity {
+  final public var userFieldDefinitions: [biidCoreSDK.FieldDefinition]? {
+    get
+    }
+  public init(name: Swift.String, iconURL: Swift.String?, id: Swift.String, url: Swift.String, selected: Swift.Bool, terms: biidCoreSDK.Document?, privacy: biidCoreSDK.Document?, description: Swift.String?, userStatus: biidCoreSDK.User.Status?, userFieldDefinitions: [biidCoreSDK.FieldDefinition]?)
+  override final public var description: Swift.String {
+    get
+  }
+  override final public var debugDescription: Swift.String {
+    get
+  }
+  public static func == (lhs: biidCoreSDK.EntityDetails, rhs: biidCoreSDK.EntityDetails) -> Swift.Bool
+  override public init(id: Swift.String, name: Swift.String, url: Swift.String, iconURL: Swift.String?, selected: Swift.Bool, terms: biidCoreSDK.Document?, privacy: biidCoreSDK.Document?, description: Swift.String?, userStatus: biidCoreSDK.User.Status?)
+  @objc deinit
+}
+final public class OpeningHours : Swift.CustomStringConvertible, Swift.CustomDebugStringConvertible {
+  final public var from: Swift.String? {
+    get
+    }
+  final public var to: Swift.String? {
+    get
+    }
+  final public var description: Swift.String {
+    get
+  }
+  final public var debugDescription: Swift.String {
+    get
+  }
+  public static func areEqual(_ lhs: biidCoreSDK.OpeningHours, _ rhs: biidCoreSDK.OpeningHours) -> Swift.Bool
+  @objc deinit
+}
+@objc(BIIDCRDevice) @objcMembers public class ObjC_Device : ObjectiveC.NSObject {
+  @objc public var name: Swift.String? {
+    @objc get
+  }
+  @objc public var os: Swift.String? {
+    @objc get
+  }
+  @objc public var version: Swift.String? {
+    @objc get
+  }
+  @objc public var model: Swift.String? {
+    @objc get
+  }
+  @objc public var SDKVersion: Swift.String? {
+    @objc get
+  }
+  @objc public var language: Swift.String? {
+    @objc get
+  }
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public var debugDescription: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension ObjC_Device {
+  @objc override dynamic public func isEqual(_ object: Any?) -> Swift.Bool
+}
+@objc(BIIDCRUserDeviceNotVerifiedError) @objcMembers public class ObjC_UserDeviceNotVerifiedError : biidCoreSDK.ObjC_InvalidUserStateError {
+  @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc deinit
+}
+extension Client {
+  public func forceAuthenticationOnNextKeyAccess(withReason reason: Swift.String = NSLocalizedString("authentication-required", comment: ""))
+}
+@objc(BIIDCRInvalidState) public enum ObjC_InvalidState : Swift.Int {
+  case notVerified = 2500
+  case notRegistered = 2501
+  case alreadyRegistered = 2502
+  case notAccredited = 2503
+  case notCertified = 2504
+  case userDeviceAlreadyVerified = 2505
+  public typealias RawValue = Swift.Int
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc(BIIDCRInvalidUserStateError) @objcMembers public class ObjC_InvalidUserStateError : Foundation.NSError {
+  @objc public static let bundleID: Swift.String
+  @objc public var invalidState: biidCoreSDK.ObjC_InvalidState
+  @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public init(domain: Swift.String, code: Swift.Int, userInfo dict: [Swift.String : Any]? = nil)
+  @objc deinit
+}
+@objc(BiidCoreSDK) public class ObjC_SDK : ObjectiveC.NSObject {
+  @objc public class func getClient() -> biidCoreSDK.ObjC_Client
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc(BIIDCRCheckpointsSortOrder) public enum ObjC_CheckpointsSortOrder : Swift.Int {
+  case ascending
+  case descending
+  public typealias RawValue = Swift.Int
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc(BIIDCROpeningHoursStatus) public enum ObjC_OpeningHoursStatus : Swift.Int {
+  case open
+  case closed
+  case unknown
+  public typealias RawValue = Swift.Int
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc(BIIDCRCheckpoint) @objcMembers public class ObjC_Checkpoint : ObjectiveC.NSObject {
+  @objc public var id: Swift.String? {
+    @objc get
+  }
+  @objc public var name: Swift.String? {
+    @objc get
+  }
+  @objc public var notes: Swift.String? {
+    @objc get
+  }
+  @objc public var contactDetails: biidCoreSDK.ObjC_ContactDetails? {
+    @objc get
+  }
+  @objc public var address: biidCoreSDK.ObjC_Address? {
+    @objc get
+  }
+  @objc public var distance: Swift.Double {
+    @objc get
+  }
+  @objc public var openingHoursStatus: biidCoreSDK.ObjC_OpeningHoursStatus {
+    @objc get
+  }
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public var debugDescription: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension ObjC_Checkpoint {
+  @objc override dynamic public func isEqual(_ object: Any?) -> Swift.Bool
+}
+@objc(BIIDCRClientError) @objcMembers public class ObjC_ClientError : Foundation.NSError {
+  @objc public static let bundleID: Swift.String
+  @objc public static let clientErrorDomain: Swift.String
+  @objc public static let certificateExceptionErrorDomain: Swift.String
+  @objc public static let jweExceptionErrorDomain: Swift.String
+  @objc public static let asymmetricCryptoExceptionErrorDomain: Swift.String
+  @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public var localizedDescription: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public init(domain: Swift.String, code: Swift.Int, userInfo dict: [Swift.String : Any]? = nil)
+  @objc deinit
+}
+@objc(BIIDCRClientException) public enum ObjC_ClientException : Swift.Int {
+  case appAndManifestBundleIDsDoNotMatch = 100
+  case BiidNotificationCouldNotBeCreated
+  case certifyRequestFailed
+  case clientNotSupported
+  case csrCouldNotBeSent
+  case csrGenerationFailed
+  case deviceAlreadyVerified
+  case deviceWithSecureEnclaveRequired
+  case diacCouldNotBeEncrypted
+  case entityConfigCouldNotBeLoaded
+  case failedOAuthRequest
+  case failedToCheckEntityExists
+  case failedToConfirmAuthenticationTransaction
+  case failedToCreateAuthenticationTransaction
+  case failedToExtendPermissions
+  case failedToGetAuthenticationTransaction
+  case failedToGetCertificate
+  case failedToGetCheckpoints
+  case failedToGetCheckpointDetails
+  case failedToGetCountries
+  case failedToGetCSRAttributes
+  case failedToGetDIAC
+  case failedToGetDocument
+  case failedToGetDocumentContent
+  case failedToGetDocumentID
+  case failedToGetDocumentPreview
+  case failedToGetDocumentsTransaction
+  case failedToGetEntities
+  case failedToGetEntity
+  case failedToGetMessageTransaction
+  case failedToGetTransactions
+  case failedToGetUser
+  case failedToGetUserDevices
+  case failedToRegisterForPush
+  case failedToRegisterUser
+  case failedToRejectTransaction
+  case failedToRequestDeviceVerification
+  case failedToSaveCertCertInvalid
+  case failedToSignDocuments
+  case failedToUnCertify
+  case failedToSendCSR
+  case failedToSignTransaction
+  case failedToUnRegisterUserDevice
+  case failedToUpdateUser
+  case failedToUpdateUserPhoneNumber
+  case failedToVerifyUserDevice
+  case generatedDIACInvalid
+  case invalidAuthenticationTransaction
+  case invalidDocumentsTransaction
+  case invalidEndpoint
+  case missingOrInvalidParameter
+  case missingUsernameAndOrEntity
+  case multipleEntitiesNotSupported
+  case mustBeCalledOnTheMainThread
+  case noSelectedEntity
+  case parameterCanNotBeNegative
+  case publicKeyNotFound
+  case readOnlyField
+  case secureEnclaveUseRequiresMininumOfiOS10
+  case sdkNotInitialized
+  case unexpectedError
+  case unknownError
+  case userNotAuthenticated
+  case verificationCodeNotRequested
+  public typealias RawValue = Swift.Int
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc(BIIDCRJWEException) public enum ObjC_JWEException : Swift.Int {
+  case appKeyMissing = 200
+  case jwtCouldNotBeCreated
+  case publicKeyCouldNotBeCreatedFromPEM
+  case publicKeyMissing
+  case serializationFailed
+  case unspecifiedError
+  public typealias RawValue = Swift.Int
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc(BIIDCRAsymmetricCryptoException) public enum ObjC_AsymmetricCryptoException : Swift.Int {
+  case unknownError = 300
+  case duplicateFoundWhileTryingToCreateKey
+  case keyNotFound
+  case authFailed
+  case unableToAddPublicKeyToKeychain
+  case wrongInputDataFormat
+  case unableToEncrypt
+  case unableToDecrypt
+  case unableToSignData
+  case unableToVerifySignedData
+  case unableToPerformHashOfData
+  case unableToGenerateAccessControlWithGivenSecurity
+  case outOfMemory
+  public typealias RawValue = Swift.Int
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc(BIIDCRCertificateException) public enum ObjC_CertificateException : Swift.Int {
+  case certificateNotFound = 400
+  case noCertificateReturned
+  case unableToDeleteFromKeychain
+  case unableToLoadFromKeychain
+  case unableToSaveToKeychain
+  public typealias RawValue = Swift.Int
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc(BIIDCREntity) @objcMembers public class ObjC_Entity : ObjectiveC.NSObject {
+  @objc public init(id: Swift.String)
+  @objc public var id: Swift.String? {
+    @objc get
+  }
+  @objc public var name: Swift.String? {
+    @objc get
+  }
+  @objc public var url: Swift.String? {
+    @objc get
+  }
+  @objc public var iconURL: Swift.String? {
+    @objc get
+  }
+  @objc public var selected: Swift.Bool {
+    @objc get
+  }
+  @objc public var terms: biidCoreSDK.ObjC_Document? {
+    @objc get
+  }
+  @objc public var privacy: biidCoreSDK.ObjC_Document? {
+    @objc get
+  }
+  @objc public var entityDescription: Swift.String? {
+    @objc get
+  }
+  @objc public var userStatus: biidCoreSDK.ObjC_UserStatus {
+    @objc get
+  }
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public var debugDescription: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension ObjC_Entity {
+  @objc dynamic public func getPrivacyURL() -> Swift.String?
+  @objc dynamic public func getTermsURL() -> Swift.String?
+  @objc override dynamic public func isEqual(_ object: Any?) -> Swift.Bool
+}
+@objc(BIIDCRUserNotCertifiedError) @objcMembers public class ObjC_UserNotCertifiedError : biidCoreSDK.ObjC_InvalidUserStateError {
+  @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc deinit
+}
+@objc(BIIDCROpeningHoursDay) @objcMembers public class ObjC_OpeningHoursDay : ObjectiveC.NSObject {
+  @objc public var dayOfWeek: Swift.Int {
+    @objc get
+  }
+  @objc public var open24Hours: Swift.Bool {
+    @objc get
+  }
+  @objc public var openingHours: [biidCoreSDK.ObjC_OpeningHours]? {
+    @objc get
+  }
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public var debugDescription: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension ObjC_OpeningHoursDay {
+  @objc override dynamic public func isEqual(_ object: Any?) -> Swift.Bool
+}
+final public class BiidNotification : Swift.CustomStringConvertible, Swift.CustomDebugStringConvertible {
+  final public var notificationTitle: Swift.String {
+    get
+    }
+  final public var notificationDescription: Swift.String {
+    get
+    }
+  final public var username: Swift.String {
+    get
+    }
+  final public var entityURL: Swift.String {
+    get
+    }
+  final public var transactionId: Swift.String? {
+    get
+    }
+  final public var type: biidCoreSDK.BiidNotification.NotificationType {
+    get
+    }
+  public enum NotificationType : Swift.String {
+    case auth
+    case authWEB
+    case authIDV
+    case doc
+    case docPDF
+    case docXML
+    case docMIXED
+    case msg
+    case cert
+    case certError
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  final public var description: Swift.String {
+    get
+  }
+  final public var debugDescription: Swift.String {
+    get
+  }
+  public static func areEqual(_ lhs: biidCoreSDK.BiidNotification, _ rhs: biidCoreSDK.BiidNotification) -> Swift.Bool
+  @objc deinit
+}
+final public class OpeningHoursDay : Swift.CustomStringConvertible, Swift.CustomDebugStringConvertible {
+  final public var dayOfWeek: Swift.Int? {
+    get
+    }
+  final public var open24Hours: Swift.Bool? {
+    get
+    }
+  final public var openingHours: [biidCoreSDK.OpeningHours]? {
+    get
+    }
+  final public var description: Swift.String {
+    get
+  }
+  final public var debugDescription: Swift.String {
+    get
+  }
+  public static func areEqual(_ lhs: biidCoreSDK.OpeningHoursDay, _ rhs: biidCoreSDK.OpeningHoursDay) -> Swift.Bool
+  @objc deinit
+}
+@objc(BIIDCRUserLockedError) @objcMembers public class ObjC_UserLockedError : Foundation.NSError {
+  @objc public static let bundleID: Swift.String
+  @objc public static let errorDomain: Swift.String
+  @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public init(domain: Swift.String, code: Swift.Int, userInfo dict: [Swift.String : Any]? = nil)
+  @objc deinit
+}
+public class Entity : Swift.CustomStringConvertible, Swift.CustomDebugStringConvertible {
+  public var id: Swift.String {
+    get
+    }
+  public var name: Swift.String {
+    get
+    }
+  public var url: Swift.String {
+    get
+    }
+  public var iconURL: Swift.String? {
+    get
+    }
+  public var selected: Swift.Bool {
+    get
+    }
+  public var terms: biidCoreSDK.Document? {
+    get
+    }
+  public var privacy: biidCoreSDK.Document? {
+    get
+    }
+  public var entityDescription: Swift.String? {
+    get
+    }
+  public var userStatus: biidCoreSDK.User.Status? {
+    get
+    }
+  public init(id: Swift.String, name: Swift.String, url: Swift.String, iconURL: Swift.String?, selected: Swift.Bool, terms: biidCoreSDK.Document?, privacy: biidCoreSDK.Document?, description: Swift.String?, userStatus: biidCoreSDK.User.Status?)
+  convenience public init(withID id: Swift.String)
+  public func getPrivacyURL() -> Swift.String?
+  public func getTermsURL() -> Swift.String?
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+  public static func areEqual(_ lhs: biidCoreSDK.Entity, _ rhs: biidCoreSDK.Entity) -> Swift.Bool
+  @objc deinit
+}
+@objc(BIIDCRCountry) @objcMembers public class ObjC_Country : ObjectiveC.NSObject {
+  @objc public var key: Swift.String? {
+    @objc get
+  }
+  @objc public var label: Swift.String? {
+    @objc get
+  }
+  @objc public var phonePrefix: Swift.String? {
+    @objc get
+  }
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public var debugDescription: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension ObjC_Country {
+  @objc override dynamic public func isEqual(_ object: Any?) -> Swift.Bool
+}
+@objc(BIIDCRUserStatus) public enum ObjC_UserStatus : Swift.Int {
+  case unverified
+  case unregistered
+  case unaccredited
+  case uncertified
+  case certificatePending
+  case certified
+  case locked
+  case unknown
+  public typealias RawValue = Swift.Int
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc(BIIDCRAccreditationLevel) public enum ObjC_AccreditationLevel : Swift.Int {
+  case unaccredited
+  case l1
+  case l2
+  case l3
+  public typealias RawValue = Swift.Int
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc(BIIDCRUser) @objcMembers public class ObjC_User : ObjectiveC.NSObject {
+  @objc(kUsername) public static let fieldUsername: Swift.String
+  @objc(kPhoneNumber) public static let fieldPhoneNumber: Swift.String
+  @objc(kStatus) public static let fieldStatus: Swift.String
+  @objc(kAccreditationLevel) public static let accreditationLevel: Swift.String
+  @objc override dynamic public init()
+  @objc public var status: biidCoreSDK.ObjC_UserStatus {
+    @objc get
+  }
+  @objc public var username: Swift.String? {
+    @objc get
+  }
+  @objc public var accreditationLevel: biidCoreSDK.ObjC_AccreditationLevel {
+    @objc get
+  }
+  @objc public var additionalProperties: biidCoreSDK.AdditionalProperties {
+    @objc get
+  }
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public var debugDescription: Swift.String {
+    @objc get
+  }
+  @objc public subscript(key: Swift.String) -> Any? {
+    @objc get
+    @objc set
+  }
+  @objc deinit
+}
+extension ObjC_User {
+  @objc override dynamic public func isEqual(_ object: Any?) -> Swift.Bool
+}
+final public class Signatory : Swift.CustomStringConvertible, Swift.CustomDebugStringConvertible {
+  final public var user: biidCoreSDK.SignatoryUser? {
+    get
+    }
+  final public var device: biidCoreSDK.SignatoryDevice? {
+    get
+    }
+  final public var location: biidCoreSDK.Location? {
+    get
+    }
+  final public var description: Swift.String {
+    get
+  }
+  final public var debugDescription: Swift.String {
+    get
+  }
+  public static func areEqual(_ lhs: biidCoreSDK.Signatory, _ rhs: biidCoreSDK.Signatory) -> Swift.Bool
+  @objc deinit
+}
+final public class Country : Swift.CustomStringConvertible, Swift.CustomDebugStringConvertible {
+  final public var key: Swift.String? {
+    get
+    }
+  final public var label: Swift.String? {
+    get
+    }
+  final public var phonePrefix: Swift.String? {
+    get
+    }
+  final public var description: Swift.String {
+    get
+  }
+  final public var debugDescription: Swift.String {
+    get
+  }
+  public static func areEqual(_ lhs: biidCoreSDK.Country, _ rhs: biidCoreSDK.Country) -> Swift.Bool
+  @objc deinit
+}
+@objc(BIIDCRMessageTransaction) @objcMembers public class ObjC_MessageTransaction : biidCoreSDK.ObjC_AuthenticationTransaction {
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public var debugDescription: Swift.String {
+    @objc get
+  }
+  @objc deinit
+}
+@objc(BIIDCRNotificationType) public enum ObjC_NotificationType : Swift.Int {
+  case auth
+  case authWEB
+  case authIDV
+  case doc
+  case docPDF
+  case docXML
+  case docMIXED
+  case msg
+  case cert
+  case certError
+  public typealias RawValue = Swift.Int
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc(BIIDCRNotification) @objcMembers public class ObjC_BiidNotification : ObjectiveC.NSObject {
+  @objc public var notificationTitle: Swift.String {
+    @objc get
+  }
+  @objc public var notificationDescription: Swift.String {
+    @objc get
+  }
+  @objc public var username: Swift.String {
+    @objc get
+  }
+  @objc public var entityURL: Swift.String {
+    @objc get
+  }
+  @objc public var transactionId: Swift.String? {
+    @objc get
+  }
+  @objc public var type: biidCoreSDK.ObjC_NotificationType {
+    @objc get
+  }
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public var debugDescription: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension ObjC_BiidNotification {
+  @objc override dynamic public func isEqual(_ object: Any?) -> Swift.Bool
+}
+public func optionalArraysAreEqual<T1>(lhsArray: [T1]?, rhsArray: [T1]?) -> Swift.Bool where T1 : Swift.Equatable
+@objc(BIIDCRUserDeviceAlreadyVerifiedError) @objcMembers public class ObjC_UserDeviceAlreadyVerifiedError : biidCoreSDK.ObjC_InvalidUserStateError {
+  @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc deinit
+}
+final public class CheckpointDetails : biidCoreSDK.Checkpoint {
+  final public var openingHoursSchedules: [biidCoreSDK.OpeningHoursSchedule]? {
+    get
+    }
+  final public var holidays: [biidCoreSDK.Holiday]? {
+    get
+    }
+  override final public var description: Swift.String {
+    get
+  }
+  override final public var debugDescription: Swift.String {
+    get
+  }
+  public static func == (lhs: biidCoreSDK.CheckpointDetails, rhs: biidCoreSDK.CheckpointDetails) -> Swift.Bool
+  @objc deinit
+}
+@objc(BIIDCRVerificationCodeExpiredError) @objcMembers public class ObjC_VerificationCodeExpiredError : Foundation.NSError {
+  @objc public static let bundleID: Swift.String
+  @objc public static let errorDomain: Swift.String
+  @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public init(domain: Swift.String, code: Swift.Int, userInfo dict: [Swift.String : Any]? = nil)
+  @objc deinit
+}
+public protocol Client {
+  typealias ClientErrorCallBack = (biidCoreSDK.ClientError) -> Swift.Void
+  typealias VerificationCodeAttemptsErrorCallBack = (biidCoreSDK.VerificationCodeAttemptsError) -> Swift.Void
+  typealias VerificationCodeExpiredErrorCallBack = (biidCoreSDK.VerificationCodeExpiredError) -> Swift.Void
+  typealias VerificationRequestLimitErrorCallBack = (biidCoreSDK.VerificationRequestLimitError) -> Swift.Void
+  typealias InvalidTokenErrorCallBack = (biidCoreSDK.InvalidTokenError) -> Swift.Void
+  typealias NoConnectionCallBack = () -> Swift.Void
+  typealias TransactionNotPendingErrorCallBack = (biidCoreSDK.TransactionNotPendingError) -> Swift.Void
+  typealias UserLockedErrorCallBack = (biidCoreSDK.UserLockedError) -> Swift.Void
+  typealias ValidationErrorCallBack = (biidCoreSDK.ValidationError) -> Swift.Void
+  typealias DIACLimitErrorCallBack = (biidCoreSDK.DIACLimitError) -> Swift.Void
+  typealias InvalidUserStateErrorCallBack = (biidCoreSDK.InvalidUserStateError) -> Swift.Void
+  func initialize() throws
+  func authenticate(withUsername username: Swift.String, securityProviderAccessToken accessToken: Swift.String, entity: biidCoreSDK.Entity?, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func reauthenticate(onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func logout() throws
+  func setInstallationID(installationID: Swift.String) throws
+  func getInstallationID() throws -> Swift.String
+  func getRoles() throws -> biidCoreSDK.Roles
+  func checkEntityExists(withURLName urlName: Swift.String, onSuccess: @escaping (biidCoreSDK.Entity?) -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func requestEntity(withURLName urlName: Swift.String, onSuccess: @escaping (biidCoreSDK.Entity) -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onValidationError: @escaping Self.ValidationErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func requestEntitiesForUser(onSuccess: @escaping ([biidCoreSDK.Entity]) -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func selectEntity(entity entityToSelect: biidCoreSDK.Entity, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func selectEntity(withEntityID id: Swift.String, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func getSelectedEntity() throws -> biidCoreSDK.Entity
+  func isMultiEntityConfig() throws -> Swift.Bool
+  func isSingleEntityConfig() throws -> Swift.Bool
+  func requestEntityDetails(onSuccess: @escaping (biidCoreSDK.EntityDetails) -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func requestCheckpoints(max maxResults: Swift.Int?, offset resultsOffset: Swift.Int?, location somelocation: CoreLocation.CLLocation?, sortOrder sortBy: biidCoreSDK.Checkpoints.sortOrder?, onSuccess: @escaping ([biidCoreSDK.Checkpoint]) -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func requestNearestCheckpoints(max maxResults: Swift.Int?, offset resultsOffset: Swift.Int?, location somelocation: CoreLocation.CLLocation, onSuccess: @escaping ([biidCoreSDK.Checkpoint]) -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func requestCheckpointDetails(checkpointID id: Swift.String, location someLocation: CoreLocation.CLLocation?, onSuccess: @escaping (biidCoreSDK.CheckpointDetails) -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func requestCountries(onSuccess: @escaping ([biidCoreSDK.Country]) -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func requestUser(onSuccess: @escaping (biidCoreSDK.User) -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func registerUser(withUser user: biidCoreSDK.User, onSuccess: @escaping (biidCoreSDK.User) -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onValidationError: @escaping Self.ValidationErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func updateUser(withUser user: biidCoreSDK.User, onSuccess: @escaping (biidCoreSDK.User) -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onValidationError: @escaping Self.ValidationErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func updateUserPhoneNumber(withPhoneNumber phoneNumber: Swift.String, withDIAC diac: Swift.String, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onValidationError: @escaping Self.ValidationErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func requestUserDevices(onSuccess: @escaping ([biidCoreSDK.UserDevice]) -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func requestTransactions(max maxResults: Swift.Int?, offset resultsOffset: Swift.Int?, status transStatus: [biidCoreSDK.Transaction.Status]?, type transType: biidCoreSDK.Transaction.TransactionType?, documentType docType: biidCoreSDK.Document.DocumentType?, onSuccess: @escaping ([biidCoreSDK.Transaction]) -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func requestExtendPermissions(withDIAC diac: Swift.String, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onValidationError: @escaping Self.ValidationErrorCallBack, onDIACLimitError: @escaping Self.DIACLimitErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func requestUserDeviceVerification(onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onVerificationRequestLimitError: @escaping Self.VerificationRequestLimitErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func verifyUserDevice(withVericationCode code: Swift.String, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onValidationError: @escaping Self.ValidationErrorCallBack, onVerificationCodeExpiredError: @escaping Self.VerificationCodeExpiredErrorCallBack, onVerificationCodeAttemptsError: @escaping Self.VerificationCodeAttemptsErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func certifyUserAtLevel1(onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func certifyUser(withDIAC diac: Swift.String, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onValidationError: @escaping Self.ValidationErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func uncertify(onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func createAuthenticationTransaction(withTransactionInfo transactionInfo: biidCoreSDK.TransactionInfo, onSuccess: @escaping (biidCoreSDK.AuthenticationTransaction) -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onValidationError: @escaping Self.ValidationErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func requestAuthenticationTransaction(forTransactionID transactionID: Swift.String, onSuccess: @escaping (biidCoreSDK.AuthenticationTransaction) -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func confirmAuthentication(forTransaction transaction: biidCoreSDK.AuthenticationTransaction, withLocation location: CoreLocation.CLLocation?, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onTransactionNotPendingError: @escaping Self.TransactionNotPendingErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func rejectAuthenticationTransaction(forTransactionID transactionID: Swift.String, withLocation location: CoreLocation.CLLocation?, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onTransactionNotPendingError: @escaping Self.TransactionNotPendingErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func requestDocumentsTransaction(forTransactionID transactionID: Swift.String, onSuccess: @escaping (biidCoreSDK.DocumentsTransaction) -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func signDocuments(forTransaction transaction: biidCoreSDK.DocumentsTransaction, withLocation location: CoreLocation.CLLocation?, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onTransactionNotPendingError: @escaping Self.TransactionNotPendingErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func rejectDocuments(forTransactionID transactionID: Swift.String, withLocation location: CoreLocation.CLLocation?, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onTransactionNotPendingError: @escaping Self.TransactionNotPendingErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func requestMessageTransaction(forTransactionID transactionID: Swift.String, onSuccess: @escaping (biidCoreSDK.MessageTransaction) -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func dismissMessage(forTransaction transaction: biidCoreSDK.MessageTransaction, withLocation location: CoreLocation.CLLocation?, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onTransactionNotPendingError: @escaping Self.TransactionNotPendingErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func requestDocument(forDocumentID documentID: Swift.String, onSuccess: @escaping (biidCoreSDK.Document) -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func requestDocumentContent(forDocument document: biidCoreSDK.Document, onSuccess: @escaping (Foundation.URL) -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func requestDocumentPreview(forDocument document: biidCoreSDK.Document, onSuccess: @escaping (Foundation.URL) -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func downloadPublicDocument(named document: Swift.String, onSuccess: @escaping (Foundation.URL) -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func forceAuthenticationOnNextKeyAccess(withReason reason: Swift.String)
+  @available(iOS 11.0, *)
+  func setAuthenticationReason(to reason: Swift.String)
+  func registerUserDevice(withDeviceToken deviceToken: Foundation.Data, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func unregisterUserDevice(onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func onPushNotificationReceived(_ userInfo: [Swift.AnyHashable : Any], onSuccess: @escaping (biidCoreSDK.BiidNotification) -> Swift.Void, onClientError: @escaping Self.ClientErrorCallBack)
+  func getLanguage() throws -> Swift.String
+  func setLanguage(toLanguage language: Swift.String?, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  func getVersion() -> Swift.String
+}
+final public class SignatoryUser : Swift.CustomStringConvertible, Swift.CustomDebugStringConvertible {
+  final public var username: Swift.String? {
+    get
+    }
+  final public var description: Swift.String {
+    get
+  }
+  final public var debugDescription: Swift.String {
+    get
+  }
+  public static func areEqual(_ lhs: biidCoreSDK.SignatoryUser, _ rhs: biidCoreSDK.SignatoryUser) -> Swift.Bool
+  @objc deinit
+}
+final public class Checkpoints {
+  public enum sort : Swift.String {
+    case abc
+    case spatial
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+    public init?(rawValue: Swift.String)
+  }
+  public enum sortOrder : Swift.String {
+    case ascending
+    case descending
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+    public init?(rawValue: Swift.String)
+  }
+  @objc deinit
+}
+public class Checkpoint : Swift.CustomStringConvertible, Swift.CustomDebugStringConvertible {
+  public var id: Swift.String? {
+    get
+    }
+  public var name: Swift.String? {
+    get
+    }
+  public var notes: Swift.String? {
+    get
+    }
+  public var contactDetails: biidCoreSDK.ContactDetails? {
+    get
+    }
+  public var address: biidCoreSDK.Address? {
+    get
+    }
+  public var distance: Swift.Double? {
+    get
+    }
+  public var openingHoursStatus: biidCoreSDK.Checkpoint.OpeningHoursStatus? {
+    get
+    }
+  public enum OpeningHoursStatus : Swift.String {
+    case open
+    case closed
+    case unknown
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+  public static func areEqual(_ lhs: biidCoreSDK.Checkpoint, _ rhs: biidCoreSDK.Checkpoint) -> Swift.Bool
+  @objc deinit
+}
+public class UserDevice : biidCoreSDK.Device {
+  public var lastUsed: Swift.String? {
+    get
+    }
+  public var currentDevice: Swift.Bool? {
+    get
+    }
+  public var userStatus: biidCoreSDK.User.Status? {
+    get
+    }
+  override public var description: Swift.String {
+    get
+  }
+  public static func areEqual(_ lhs: biidCoreSDK.UserDevice, _ rhs: biidCoreSDK.UserDevice) -> Swift.Bool
+  @objc deinit
+}
+final public class DocumentsTransaction : biidCoreSDK.Transaction {
+  final public var documents: [biidCoreSDK.Document]? {
+    get
+    }
+  override final public var description: Swift.String {
+    get
+  }
+  public static func == (lhs: biidCoreSDK.DocumentsTransaction, rhs: biidCoreSDK.DocumentsTransaction) -> Swift.Bool
+  @objc deinit
+}
+@objc(BIIDCRTransactionInfo) @objcMembers public class ObjC_TransactionInfo : ObjectiveC.NSObject {
+  @objc(kTitle) public static let title: Swift.String
+  @objc(kDescription) public static let description: Swift.String
+  @objc(kLocation) public static let location: Swift.String
+  @objc override dynamic public init()
+  @objc public var title: Swift.String? {
+    @objc get
+  }
+  @objc public var transactionDescription: Swift.String? {
+    @objc get
+  }
+  @objc public var location: biidCoreSDK.ObjC_Location? {
+    @objc get
+    @objc set(newValue)
+  }
+  @objc public var additionalProperties: biidCoreSDK.AdditionalProperties {
+    @objc get
+  }
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public var debugDescription: Swift.String {
+    @objc get
+  }
+  @objc public subscript(key: Swift.String) -> Any? {
+    @objc get
+    @objc set
+  }
+  @objc deinit
+}
+extension ObjC_TransactionInfo {
+  @objc override dynamic public func isEqual(_ object: Any?) -> Swift.Bool
+}
+final public class ContactDetails : Swift.CustomStringConvertible, Swift.CustomDebugStringConvertible {
+  final public var website: Swift.String? {
+    get
+    }
+  final public var email: Swift.String? {
+    get
+    }
+  final public var phone: Swift.String? {
+    get
+    }
+  final public var fax: Swift.String? {
+    get
+    }
+  final public var facebook: Swift.String? {
+    get
+    }
+  final public var twitter: Swift.String? {
+    get
+    }
+  final public var instagram: Swift.String? {
+    get
+    }
+  final public var pinterest: Swift.String? {
+    get
+    }
+  final public var foursquare: Swift.String? {
+    get
+    }
+  final public var description: Swift.String {
+    get
+  }
+  final public var debugDescription: Swift.String {
+    get
+  }
+  public static func areEqual(_ lhs: biidCoreSDK.ContactDetails, _ rhs: biidCoreSDK.ContactDetails) -> Swift.Bool
+  @objc deinit
+}
+final public class TransactionInfo : Swift.CustomStringConvertible, Swift.CustomDebugStringConvertible {
+  public static let title: Swift.String
+  public static let description: Swift.String
+  public static let location: Swift.String
+  final public var title: Swift.String? {
+    get
+    }
+  final public var transactionDescription: Swift.String? {
+    get
+    }
+  final public var location: biidCoreSDK.Location?
+  final public var additionalProperties: biidCoreSDK.AdditionalProperties {
+    get
+    }
+  public init()
+  final public subscript(key: Swift.String) -> Any? {
+    get
+    set
+  }
+  final public var description: Swift.String {
+    get
+  }
+  final public var debugDescription: Swift.String {
+    get
+  }
+  public static func areEqual(_ lhs: biidCoreSDK.TransactionInfo, _ rhs: biidCoreSDK.TransactionInfo) -> Swift.Bool
+  @objc deinit
+}
+@objc(BIIDCRDocumentsTransaction) @objcMembers public class ObjC_DocumentsTransaction : biidCoreSDK.ObjC_Transaction {
+  @objc public var documents: [biidCoreSDK.ObjC_Document]? {
+    @objc get
+  }
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public var debugDescription: Swift.String {
+    @objc get
+  }
+  @objc deinit
+}
+extension ObjC_DocumentsTransaction {
+  @objc override dynamic public func isEqual(_ object: Any?) -> Swift.Bool
+}
+open class SecureRequestBuilder<T> : biidPublicAPIClient.AlamofireRequestBuilder<T> {
+  override open func createSessionManager() -> Alamofire.SessionManager
+  required public init(method: Swift.String, URLString: Swift.String, parameters: [Swift.String : Any]?, isBody: Swift.Bool, headers: [Swift.String : Swift.String] = super)
+  @objc deinit
+}
+open class SecureDecodableRequestBuilder<T> : biidPublicAPIClient.AlamofireDecodableRequestBuilder<T> where T : Swift.Decodable {
+  override open func createSessionManager() -> Alamofire.SessionManager
+  required public init(method: Swift.String, URLString: Swift.String, parameters: [Swift.String : Any]?, isBody: Swift.Bool, headers: [Swift.String : Swift.String] = super)
+  @objc deinit
+}
+@objc(BIIDCREntityDetails) @objcMembers public class ObjC_EntityDetails : biidCoreSDK.ObjC_Entity {
+  @objc public var userFieldDefinitions: [biidCoreSDK.ObjC_FieldDefinition]? {
+    @objc get
+  }
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public var debugDescription: Swift.String {
+    @objc get
+  }
+  @objc override public init(id: Swift.String)
+  @objc deinit
+}
+extension ObjC_EntityDetails {
+  @objc override dynamic public func isEqual(_ object: Any?) -> Swift.Bool
+}
+final public class Document : Swift.CustomStringConvertible, Swift.CustomDebugStringConvertible {
+  final public var title: Swift.String? {
+    get
+    }
+  final public var type: biidCoreSDK.Document.DocumentType? {
+    get
+    }
+  final public var id: Swift.String? {
+    get
+    }
+  final public var hashToSign: Swift.String? {
+    get
+    }
+  final public var publicURL: Swift.String? {
+    get
+    }
+  public enum DocumentType : Swift.String {
+    case pdf
+    case xml
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+    public init?(rawValue: Swift.String)
+  }
+  final public var description: Swift.String {
+    get
+  }
+  final public var debugDescription: Swift.String {
+    get
+  }
+  public static func areEqual(_ lhs: biidCoreSDK.Document, _ rhs: biidCoreSDK.Document) -> Swift.Bool
+  @objc deinit
+}
+@objc(Client) public protocol ObjC_Client : AnyObject {
+  typealias ClientErrorCallBack = (biidCoreSDK.ObjC_ClientError) -> Swift.Void
+  typealias VerificationCodeAttemptsErrorCallBack = (biidCoreSDK.ObjC_VerificationCodeAttemptsError) -> Swift.Void
+  typealias VerificationCodeExpiredErrorCallBack = (biidCoreSDK.ObjC_VerificationCodeExpiredError) -> Swift.Void
+  typealias VerificationRequestLimitErrorCallBack = (biidCoreSDK.ObjC_VerificationRequestLimitError) -> Swift.Void
+  typealias InvalidTokenErrorCallBack = (biidCoreSDK.ObjC_InvalidTokenError) -> Swift.Void
+  typealias NoConnectionCallBack = () -> Swift.Void
+  typealias TransactionNotPendingErrorCallBack = (biidCoreSDK.ObjC_TransactionNotPendingError) -> Swift.Void
+  typealias UserLockedErrorCallBack = (biidCoreSDK.ObjC_UserLockedError) -> Swift.Void
+  typealias ValidationErrorCallBack = (biidCoreSDK.ObjC_ValidationError) -> Swift.Void
+  typealias DIACLimitErrorCallBack = (biidCoreSDK.ObjC_DIACLimitError) -> Swift.Void
+  typealias InvalidUserStateErrorCallBack = (biidCoreSDK.ObjC_InvalidUserStateError) -> Swift.Void
+  @objc(getLanguage:) func getLanguage() throws -> Swift.String
+  @objc(initialize:) func initialize() throws
+  @objc(setLanguageToLanguage:onSuccess:onNoConnection:onInvalidToken:onClientError:) func setLanguage(toLanguage language: Swift.String?, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  @objc(authenticateWithUsername:securityProviderAccessToken:entity:onSuccess:onNoConnection:onInvalidToken:onClientError:) func authenticate(withUsername username: Swift.String, securityProviderAccessToken accessToken: Swift.String, entity: biidCoreSDK.ObjC_Entity?, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  @objc(reauthenticateOnSuccess:onNoConnection:onInvalidToken:onClientError:) func reauthenticate(onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  @objc(logout:) func logout() throws
+  @objc(setInstallationID:error:) func setInstallationID(installationID: Swift.String) throws
+  @objc(getInstallationID:) func getInstallationID() throws -> Swift.String
+  @objc(getRoles:) func getRoles() throws -> [Swift.Int]
+  @objc(checkEntityExistsWithURLName:onSuccess:onNoConnection:onClientError:) func checkEntityExists(withURLName: Swift.String, onSuccess: @escaping (biidCoreSDK.ObjC_Entity?) -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  @objc(requestEntityWithURLName:onSuccess:onNoConnection:onInvalidUserStateError:onInvalidToken:onValidationError:onClientError:) func requestEntity(withURLName: Swift.String, onSuccess: @escaping (biidCoreSDK.ObjC_Entity) -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onValidationError: @escaping Self.ValidationErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  @objc(requestEntitiesForUserOnSuccess:onNoConnection:onInvalidUserStateError:onInvalidToken:onClientError:) func requestEntitiesForUser(onSuccess: @escaping ([biidCoreSDK.ObjC_Entity]) -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  @objc(selectEntity:onSuccess:onNoConnection:onInvalidToken:onClientError:) func selectEntity(entity: biidCoreSDK.ObjC_Entity, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  @objc(selectEntityWithEntityID:onSuccess:onNoConnection:onInvalidToken:onClientError:) func selectEntity(withEntityID id: Swift.String, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  @objc(getSelectedEntity:) func getSelectedEntity() throws -> biidCoreSDK.ObjC_Entity
+  @objc(isMultiEntityConfig:) func isMultiEntityConfig() throws -> Foundation.NSNumber
+  @objc(isSingleEntityConfig:) func isSingleEntityConfig() throws -> Foundation.NSNumber
+  @objc(requestEntityDetailsOnSuccess:onNoConnection:onInvalidToken:onUserLockedError:onClientError:) func requestEntityDetails(onSuccess: @escaping (biidCoreSDK.ObjC_EntityDetails) -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  @objc(requestCheckpointsWithMax:offset:location:sortOrder:onSuccess:onNoConnection:onInvalidToken:onUserLockedError:onClientError:) func requestCheckpoints(_ max: Swift.Int, _ offset: Swift.Int, _ location: CoreLocation.CLLocation?, _ sortOrder: biidCoreSDK.ObjC_CheckpointsSortOrder, onSuccess: @escaping ([biidCoreSDK.ObjC_Checkpoint]) -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  @objc(requestNearestCheckpointsWithMax:offset:location:onSuccess:onNoConnection:onInvalidToken:onUserLockedError:onClientError:) func requestNearestCheckpoints(_ max: Swift.Int, _ offset: Swift.Int, _ location: CoreLocation.CLLocation, onSuccess: @escaping ([biidCoreSDK.ObjC_Checkpoint]) -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  @objc(requestCheckpointDetailsWithCheckpointID:location:onSuccess:onNoConnection:onInvalidToken:onUserLockedError:onClientError:) func requestCheckpointDetails(_ checkpointID: Swift.String, _ location: CoreLocation.CLLocation?, onSuccess: @escaping (biidCoreSDK.ObjC_CheckpointDetails) -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  @objc(requestCountriesOnSuccess:onNoConnection:onInvalidToken:onClientError:) func requestCountries(onSuccess: @escaping ([biidCoreSDK.ObjC_Country]) -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  @objc(requestUserOnSuccess:onNoConnection:onInvalidToken:onUserLockedError:onClientError:) func requestUser(onSuccess: @escaping (biidCoreSDK.ObjC_User) -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  @objc(registerUser:onSuccess:onNoConnection:onInvalidUserStateError:onInvalidToken:onValidationError:onUserLockedError:onClientError:) func registerUser(user: biidCoreSDK.ObjC_User, onSuccess: @escaping (biidCoreSDK.ObjC_User) -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onValidationError: @escaping Self.ValidationErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  @objc(updateUser:onSuccess:onNoConnection:onInvalidUserStateError:onInvalidToken:onValidationError:onUserLockedError:onClientError:) func updateUser(user: biidCoreSDK.ObjC_User, onSuccess: @escaping (biidCoreSDK.ObjC_User) -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onValidationError: @escaping Self.ValidationErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  @objc(updateUserPhoneNumber:withDiac:onSuccess:onNoConnection:onInvalidUserStateError:onInvalidToken:onValidationError:onUserLockedError:onClientError:) func updateUserPhoneNumber(phoneNumber: Swift.String, withDIAC diac: Swift.String, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onValidationError: @escaping Self.ValidationErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  @objc(requestUserDevicesOnSuccess:onNoConnection:onInvalidUserStateError:onInvalidToken:onUserLockedError:onClientError:) func requestUserDevices(onSuccess: @escaping ([biidCoreSDK.ObjC_UserDevice]) -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  @objc(requestUserDeviceVerificationOnSuccess:onNoConnection:onInvalidUserStateError:onInvalidToken:onVerificationRequestLimitError:onUserLockedError:onClientError:) func requestUserDeviceVerification(onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onVerificationRequestLimitError: @escaping Self.VerificationRequestLimitErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  @objc(verifyUserDeviceWithVericationCode:onSuccess:onNoConnection:onInvalidUserStateError:onInvalidToken:onValidationError:onVerificationCodeExpiredError:onVerificationCodeAttemptsError:onUserLockedError:onClientError:) func verifyUserDevice(withVericationCode code: Swift.String, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onValidationError: @escaping Self.ValidationErrorCallBack, onVerificationCodeExpiredError: @escaping Self.VerificationCodeExpiredErrorCallBack, onVerificationCodeAttemptsError: @escaping Self.VerificationCodeAttemptsErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  @objc(certifyUserAtLevel1OnSuccess:onNoConnection:onInvalidUserStateError:onInvalidToken:onUserLockedError:onClientError:) func certifyUserAtLevel1(onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  @objc(certifyUserWithDIAC:onSuccess:onNoConnection:onInvalidUserStateError:onInvalidToken:onValidationError:onUserLockedError:onClientError:) func certifyUser(withDIAC diac: Swift.String, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onValidationError: @escaping Self.ValidationErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  @objc(uncertifyOnSuccess:onNoConnection:onInvalidUserStateError:onInvalidToken:onUserLockedError:onClientError:) func uncertify(onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  @objc(requestTransactionsWithMax:offset:transactionStatus:transactionType:documentType:onSuccess:onNoConnection:onInvalidUserStateError:onInvalidToken:onUserLockedError:onClientError:) func requestTransactions(max: Swift.Int, offset: Swift.Int, transactionStatus: [Foundation.NSNumber], transactionType: biidCoreSDK.ObjC_TransactionType, documentType: biidCoreSDK.ObjC_DocumentType, onSuccess: @escaping ([biidCoreSDK.ObjC_Transaction]) -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  @objc(requestExtendPermissionsWithDIAC:onSuccess:onNoConnection:onInvalidUserStateError:onInvalidToken:onValidationError:onDIACLimitError:onUserLockedError:onClientError:) func requestExtendPermissions(withDIAC diac: Swift.String, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onValidationError: @escaping Self.ValidationErrorCallBack, onDIACLimitError: @escaping Self.DIACLimitErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  @objc(createAuthenticationTransactionWithTransactionInfo:onSuccess:onNoConnection:onInvalidUserStateError:onInvalidToken:onValidationError:onUserLockedError:onClientError:) func createAuthenticationTransaction(withTransactionInfo transactionInfo: biidCoreSDK.ObjC_TransactionInfo, onSuccess: @escaping (biidCoreSDK.ObjC_AuthenticationTransaction) -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onValidationError: @escaping Self.ValidationErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  @objc(requestAuthenticationTransactionWithID:onSuccess:onNoConnection:onInvalidUserStateError:onInvalidToken:onUserLockedError:onClientError:) func requestAuthenticationTransaction(transactionID: Swift.String, onSuccess: @escaping (biidCoreSDK.ObjC_AuthenticationTransaction) -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  @objc(confirmAuthenticationForTransaction:withLocation:onSuccess:onNoConnection:onInvalidUserStateError:onInvalidToken:onTransactionNotPendingError:onUserLockedError:onClientError:) func confirmAuthentication(forTransaction transaction: biidCoreSDK.ObjC_AuthenticationTransaction, withLocation location: CoreLocation.CLLocation?, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onTransactionNotPendingError: @escaping Self.TransactionNotPendingErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  @objc(rejectAuthenticationTransactionWithID:withLocation:onSuccess:onNoConnection:onInvalidUserStateError:onInvalidToken:onTransactionNotPendingError:onUserLockedError:onClientError:) func rejectAuthenticationTransaction(transactionID: Swift.String, withLocation location: CoreLocation.CLLocation?, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onTransactionNotPendingError: @escaping Self.TransactionNotPendingErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  @objc(requestDocumentsTransactionWithID:onSuccess:onNoConnection:onInvalidUserStateError:onInvalidToken:onUserLockedError:onClientError:) func requestDocumentsTransaction(transactionID: Swift.String, onSuccess: @escaping (biidCoreSDK.ObjC_DocumentsTransaction) -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  @objc(requestDocumentForDocumentID:onSuccess:onNoConnection:onInvalidUserStateError:onInvalidToken:onUserLockedError:onClientError:) func requestDocument(forDocumentID documentID: Swift.String, onSuccess: @escaping (biidCoreSDK.ObjC_Document) -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  @objc(requestDocumentContentForDocument:onSuccess:onNoConnection:onInvalidUserStateError:onInvalidToken:onUserLockedError:onClientError:) func requestDocumentContent(forDocument document: biidCoreSDK.ObjC_Document, onSuccess: @escaping (Foundation.URL) -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  @objc(requestDocumentPreviewForDocument:onSuccess:onNoConnection:onInvalidUserStateError:onInvalidToken:onUserLockedError:onClientError:) func requestDocumentPreview(forDocument document: biidCoreSDK.ObjC_Document, onSuccess: @escaping (Foundation.URL) -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  @objc(downloadPublicDocumentNamed:onSuccess:onNoConnection:onInvalidUserStateError:onInvalidToken:onClientError:) func downloadPublicDocument(named document: Swift.String, onSuccess: @escaping (Foundation.URL) -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  @objc(signDocuments:withLocation:onSuccess:onNoConnection:onInvalidUserStateError:onInvalidToken:onTransactionNotPendingError:onUserLockedError:onClientError:) func signDocuments(transaction: biidCoreSDK.ObjC_DocumentsTransaction, withLocation location: CoreLocation.CLLocation?, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onTransactionNotPendingError: @escaping Self.TransactionNotPendingErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  @objc(rejectDocuments:withLocation:onSuccess:onNoConnection:onInvalidUserStateError:onInvalidToken:onTransactionNotPendingError:onUserLockedError:onClientError:) func rejectDocuments(transactionID: Swift.String, withLocation location: CoreLocation.CLLocation?, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onTransactionNotPendingError: @escaping Self.TransactionNotPendingErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  @objc(requestMessageTransactionWithID:onSuccess:onNoConnection:onInvalidUserStateError:onInvalidToken:onUserLockedError:onClientError:) func requestMessageTransaction(transactionID: Swift.String, onSuccess: @escaping (biidCoreSDK.ObjC_MessageTransaction) -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  @objc(dismissMessageForTransaction:withLocation:onSuccess:onNoConnection:onInvalidUserStateError:onInvalidToken:onTransactionNotPendingError:onUserLockedError:onClientError:) func dismissMessage(forTransaction transaction: biidCoreSDK.ObjC_MessageTransaction, withLocation location: CoreLocation.CLLocation?, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidUserStateError: @escaping Self.InvalidUserStateErrorCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onTransactionNotPendingError: @escaping Self.TransactionNotPendingErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  @objc(forceAuthenticationOnNextKeyAccessWithReason:) func forceAuthenticationOnNextKeyAccess(withReason reason: Swift.String)
+  @available(iOS 11.0, *)
+  @objc(setAuthenticationReasonTo:) func setAuthenticationReason(to reason: Swift.String)
+  @objc(registerUserDeviceWithDeviceToken:onSuccess:onNoConnection:onInvalidToken:onUserLockedError:onClientError:) func registerUserDevice(withDeviceToken deviceToken: Foundation.Data, onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  @objc(unregisterUserDeviceOnSuccess:onNoConnection:onInvalidToken:onUserLockedError:onClientError:) func unregisterUserDevice(onSuccess: @escaping () -> Swift.Void, onNoConnection: @escaping Self.NoConnectionCallBack, onInvalidToken: @escaping Self.InvalidTokenErrorCallBack, onUserLockedError: @escaping Self.UserLockedErrorCallBack, onClientError: @escaping Self.ClientErrorCallBack)
+  @objc(onPushNotificationReceivedUserInfo:onSuccess:onClientError:) func onPushNotificationReceived(userInfo: [Swift.AnyHashable : Any], onSuccess: @escaping (biidCoreSDK.ObjC_BiidNotification?) -> Swift.Void, onClientError: @escaping Self.ClientErrorCallBack)
+  @objc(getVersion) func getVersion() -> Swift.String
+}
+public class Transaction : Swift.CustomStringConvertible, Swift.CustomDebugStringConvertible {
+  public var id: Swift.String? {
+    get
+    }
+  public var creationDate: Swift.String? {
+    get
+    }
+  public var expirationDate: Swift.String? {
+    get
+    }
+  public var executionDate: Swift.String? {
+    get
+    }
+  public var status: biidCoreSDK.Transaction.Status? {
+    get
+    }
+  public var info: biidCoreSDK.TransactionInfo? {
+    get
+    }
+  public var type: biidCoreSDK.Transaction.TransactionType? {
+    get
+    }
+  public var subType: biidCoreSDK.Transaction.TransactionSubType? {
+    get
+    }
+  public var signatory: biidCoreSDK.Signatory? {
+    get
+    }
+  public enum TransactionType : Swift.String {
+    case auth
+    case doc
+    case msg
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+    public init?(rawValue: Swift.String)
+  }
+  public enum TransactionSubType : Swift.String {
+    case docPDF
+    case docXML
+    case docMIXED
+    case authWEB
+    case authIDV
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public enum Status : Swift.String {
+    case pending
+    case expired
+    case cancelled
+    case failed
+    case rejected
+    case successful
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+  public static func areEqual(_ lhs: biidCoreSDK.Transaction, _ rhs: biidCoreSDK.Transaction) -> Swift.Bool
+  @objc deinit
+}
+@objc(BIIDCRVerificationRequestLimitError) @objcMembers public class ObjC_VerificationRequestLimitError : Foundation.NSError {
+  @objc public static let bundleID: Swift.String
+  @objc public static let errorDomain: Swift.String
+  @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public init(domain: Swift.String, code: Swift.Int, userInfo dict: [Swift.String : Any]? = nil)
+  @objc deinit
+}
+public typealias Roles = [biidCoreSDK.Role]
+public enum Role : Swift.String, Swift.CustomStringConvertible {
+  case guest
+  case user
+  case userCertified
+  case userExtended
+  case userLocked
+  public var description: Swift.String {
+    get
+  }
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+  public init?(rawValue: Swift.String)
+}
+@objc(Role) public enum ObjC_Role : Swift.Int {
+  case guest
+  case user
+  case userCertified
+  case userExtended
+  case userLocked
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+  public init?(rawValue: Swift.Int)
+}
+@objc(BIIDCRTransactionType) public enum ObjC_TransactionType : Swift.Int {
+  case all
+  case auth
+  case doc
+  case msg
+  public typealias RawValue = Swift.Int
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc(BIIDCRTransactionSubType) public enum ObjC_TransactionSubType : Swift.Int {
+  case docPDF
+  case docXML
+  case docMIXED
+  case authWEB
+  case authIDV
+  case none
+  public typealias RawValue = Swift.Int
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc(BIIDCRTransactionStatus) public enum ObjC_TransactionStatus : Swift.Int {
+  case all
+  case pending
+  case expired
+  case failed
+  case cancelled
+  case rejected
+  case successful
+  public typealias RawValue = Swift.Int
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc(BIIDCRTransaction) @objcMembers public class ObjC_Transaction : ObjectiveC.NSObject {
+  @objc public var id: Swift.String? {
+    @objc get
+  }
+  @objc public var creationDate: Swift.String? {
+    @objc get
+  }
+  @objc public var expirationDate: Swift.String? {
+    @objc get
+  }
+  @objc public var executionDate: Swift.String? {
+    @objc get
+  }
+  @objc public var status: biidCoreSDK.ObjC_TransactionStatus {
+    @objc get
+  }
+  @objc public var type: biidCoreSDK.ObjC_TransactionType {
+    @objc get
+  }
+  @objc public var subType: biidCoreSDK.ObjC_TransactionSubType {
+    @objc get
+  }
+  @objc public var signatory: biidCoreSDK.ObjC_Signatory? {
+    @objc get
+  }
+  @objc public var info: biidCoreSDK.ObjC_TransactionInfo? {
+    @objc get
+  }
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public var debugDescription: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension ObjC_Transaction {
+  @objc override dynamic public func isEqual(_ object: Any?) -> Swift.Bool
+}
+final public class OptionValue : Swift.CustomStringConvertible, Swift.CustomDebugStringConvertible {
+  final public var key: Swift.String? {
+    get
+    }
+  final public var label: Swift.String? {
+    get
+    }
+  final public subscript(key: Swift.String?) -> Swift.String? {
+    get
+    set
+  }
+  final public var description: Swift.String {
+    get
+  }
+  final public var debugDescription: Swift.String {
+    get
+  }
+  public static func areEqual(_ lhs: biidCoreSDK.OptionValue, _ rhs: biidCoreSDK.OptionValue) -> Swift.Bool
+  @objc deinit
+}
+@objc(BIIDCRSignatory) @objcMembers public class ObjC_Signatory : ObjectiveC.NSObject {
+  @objc public var user: biidCoreSDK.ObjC_SignatoryUser? {
+    @objc get
+    @objc set(newValue)
+  }
+  @objc public var device: biidCoreSDK.ObjC_SignatoryDevice? {
+    @objc get
+    @objc set(newValue)
+  }
+  @objc public var location: biidCoreSDK.ObjC_Location? {
+    @objc get
+    @objc set(newValue)
+  }
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public var debugDescription: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension ObjC_Signatory {
+  @objc override dynamic public func isEqual(_ object: Any?) -> Swift.Bool
+}
+final public class Holiday : Swift.CustomStringConvertible, Swift.CustomDebugStringConvertible {
+  final public var from: Foundation.Date? {
+    get
+    }
+  final public var to: Foundation.Date? {
+    get
+    }
+  final public var name: Swift.String? {
+    get
+    }
+  final public var description: Swift.String {
+    get
+  }
+  final public var debugDescription: Swift.String {
+    get
+  }
+  public static func areEqual(_ lhs: biidCoreSDK.Holiday, _ rhs: biidCoreSDK.Holiday) -> Swift.Bool
+  @objc deinit
+}
+@objc(BIIDCRSignatoryDevice) @objcMembers public class ObjC_SignatoryDevice : biidCoreSDK.ObjC_Device {
+  @objc public var id: Swift.String? {
+    @objc get
+  }
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public var debugDescription: Swift.String {
+    @objc get
+  }
+  @objc deinit
+}
+extension ObjC_SignatoryDevice {
+  @objc override dynamic public func isEqual(_ object: Any?) -> Swift.Bool
+}
+@objc(BIIDCRHoliday) @objcMembers public class ObjC_Holiday : ObjectiveC.NSObject {
+  @objc public var from: Foundation.Date? {
+    @objc get
+  }
+  @objc public var to: Foundation.Date? {
+    @objc get
+  }
+  @objc public var name: Swift.String? {
+    @objc get
+  }
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public var debugDescription: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension ObjC_Holiday {
+  @objc override dynamic public func isEqual(_ object: Any?) -> Swift.Bool
+}
+@objc(BIIDCRUserAlreadyRegisteredError) @objcMembers public class ObjC_UserAlreadyRegisteredError : biidCoreSDK.ObjC_InvalidUserStateError {
+  @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc deinit
+}
+final public class Location {
+  final public var latitude: Swift.Double? {
+    get
+    }
+  final public var longitude: Swift.Double? {
+    get
+    }
+  public init(latitude: Swift.Double, longitude: Swift.Double)
+  final public var description: Swift.String {
+    get
+  }
+  final public var debugDescription: Swift.String {
+    get
+  }
+  public static func areEqual(_ lhs: biidCoreSDK.Location, _ rhs: biidCoreSDK.Location) -> Swift.Bool
+  @objc deinit
+}
+final public class Address : Swift.CustomStringConvertible, Swift.CustomDebugStringConvertible {
+  final public var fullAddress: Swift.String? {
+    get
+    }
+  final public var street: Swift.String? {
+    get
+    }
+  final public var street2: Swift.String? {
+    get
+    }
+  final public var street3: Swift.String? {
+    get
+    }
+  final public var postcode: Swift.String? {
+    get
+    }
+  final public var city: Swift.String? {
+    get
+    }
+  final public var region: Swift.String? {
+    get
+    }
+  final public var countryCode: Swift.String? {
+    get
+    }
+  final public var country: Swift.String? {
+    get
+    }
+  final public var location: biidCoreSDK.Location? {
+    get
+    }
+  final public var description: Swift.String {
+    get
+  }
+  final public var debugDescription: Swift.String {
+    get
+  }
+  public static func areEqual(_ lhs: biidCoreSDK.Address, _ rhs: biidCoreSDK.Address) -> Swift.Bool
+  @objc deinit
+}
+@objc(BIIDCRDocumentType) public enum ObjC_DocumentType : Swift.Int {
+  case all
+  case pdf
+  case xml
+  public typealias RawValue = Swift.Int
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc(BIIDCRDocument) @objcMembers public class ObjC_Document : ObjectiveC.NSObject {
+  @objc public var title: Swift.String? {
+    @objc get
+  }
+  @objc public var type: biidCoreSDK.ObjC_DocumentType {
+    @objc get
+  }
+  @objc public var id: Swift.String? {
+    @objc get
+  }
+  @objc public var hashToSign: Swift.String? {
+    @objc get
+  }
+  @objc public var publicURL: Swift.String? {
+    @objc get
+  }
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public var debugDescription: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension ObjC_Document {
+  @objc override dynamic public func isEqual(_ object: Any?) -> Swift.Bool
+}
+@objc(BIIDCRCheckpointDetails) @objcMembers public class ObjC_CheckpointDetails : biidCoreSDK.ObjC_Checkpoint {
+  @objc public var openingHoursSchedules: [biidCoreSDK.ObjC_OpeningHoursSchedule]? {
+    @objc get
+  }
+  @objc public var holidays: [biidCoreSDK.ObjC_Holiday]? {
+    @objc get
+  }
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public var debugDescription: Swift.String {
+    @objc get
+  }
+  @objc deinit
+}
+extension ObjC_CheckpointDetails {
+  @objc override dynamic public func isEqual(_ object: Any?) -> Swift.Bool
+}
+@objc(BIIDCRAddress) @objcMembers public class ObjC_Address : ObjectiveC.NSObject {
+  @objc public var fullAddress: Swift.String? {
+    @objc get
+  }
+  @objc public var street: Swift.String? {
+    @objc get
+  }
+  @objc public var street2: Swift.String? {
+    @objc get
+  }
+  @objc public var street3: Swift.String? {
+    @objc get
+  }
+  @objc public var postcode: Swift.String? {
+    @objc get
+  }
+  @objc public var city: Swift.String? {
+    @objc get
+  }
+  @objc public var region: Swift.String? {
+    @objc get
+  }
+  @objc public var countryCode: Swift.String? {
+    @objc get
+  }
+  @objc public var country: Swift.String? {
+    @objc get
+  }
+  @objc public var location: biidCoreSDK.ObjC_Location? {
+    @objc get
+  }
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public var debugDescription: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension ObjC_Address {
+  @objc override dynamic public func isEqual(_ object: Any?) -> Swift.Bool
+}
+final public class MessageTransaction : biidCoreSDK.AuthenticationTransaction {
+  @objc deinit
+}
+@objc(BIIDCRUserNotAccreditedError) @objcMembers public class ObjC_UserNotAccreditedError : biidCoreSDK.ObjC_InvalidUserStateError {
+  @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc deinit
+}
+@objc(BIIDCRSignatoryUser) @objcMembers public class ObjC_SignatoryUser : ObjectiveC.NSObject {
+  @objc public var username: Swift.String? {
+    @objc get
+  }
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public var debugDescription: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension ObjC_SignatoryUser {
+  @objc override dynamic public func isEqual(_ object: Any?) -> Swift.Bool
+}
+@objc(BIIDCROpeningHours) @objcMembers public class ObjC_OpeningHours : ObjectiveC.NSObject {
+  @objc public var from: Swift.String? {
+    @objc get
+  }
+  @objc public var to: Swift.String? {
+    @objc get
+  }
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public var debugDescription: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension ObjC_OpeningHours {
+  @objc override dynamic public func isEqual(_ object: Any?) -> Swift.Bool
+}
+final public class SignatoryDevice : biidCoreSDK.Device {
+  final public var installationID: Swift.String? {
+    get
+    }
+  override final public var description: Swift.String {
+    get
+  }
+  public static func areEqual(_ lhs: biidCoreSDK.SignatoryDevice, _ rhs: biidCoreSDK.SignatoryDevice) -> Swift.Bool
+  @objc deinit
+}
+@objc(BIIDCRValidationError) @objcMembers public class ObjC_ValidationError : Foundation.NSError {
+  @objc public static let bundleID: Swift.String
+  @objc public static let errorDomain: Swift.String
+  @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public init(domain: Swift.String, code: Swift.Int, userInfo dict: [Swift.String : Any]? = nil)
+  @objc deinit
+}
+@objc(BIIDCROptionValue) @objcMembers public class ObjC_OptionValue : ObjectiveC.NSObject {
+  @objc public var key: Swift.String? {
+    @objc get
+  }
+  @objc public var label: Swift.String? {
+    @objc get
+  }
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public var debugDescription: Swift.String {
+    @objc get
+  }
+  @objc public subscript(key: Swift.String) -> Swift.String? {
+    @objc get
+    @objc set
+  }
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension ObjC_OptionValue {
+  @objc override dynamic public func isEqual(_ object: Any?) -> Swift.Bool
+}
+@objc(BIIDCRDIACLimitError) @objcMembers public class ObjC_DIACLimitError : Foundation.NSError {
+  @objc public static let bundleID: Swift.String
+  @objc public static let errorDomain: Swift.String
+  @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public init(domain: Swift.String, code: Swift.Int, userInfo dict: [Swift.String : Any]? = nil)
+  @objc deinit
+}
+@objc(BIIDCRTransactionNotPendingError) @objcMembers public class ObjC_TransactionNotPendingError : Foundation.NSError {
+  @objc public static let bundleID: Swift.String
+  @objc public static let errorDomain: Swift.String
+  @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public init(domain: Swift.String, code: Swift.Int, userInfo dict: [Swift.String : Any]? = nil)
+  @objc deinit
+}
+extension ErrorResponse : Swift.CustomStringConvertible, Swift.CustomDebugStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+final public class OpeningHoursSchedule : Swift.CustomStringConvertible, Swift.CustomDebugStringConvertible {
+  final public var from: Foundation.Date? {
+    get
+    }
+  final public var to: Foundation.Date? {
+    get
+    }
+  final public var days: [biidCoreSDK.OpeningHoursDay]? {
+    get
+    }
+  final public var description: Swift.String {
+    get
+  }
+  final public var debugDescription: Swift.String {
+    get
+  }
+  public static func areEqual(_ lhs: biidCoreSDK.OpeningHoursSchedule, _ rhs: biidCoreSDK.OpeningHoursSchedule) -> Swift.Bool
+  @objc deinit
+}
+final public class FieldDefinition : Swift.CustomStringConvertible, Swift.CustomDebugStringConvertible {
+  final public var name: Swift.String? {
+    get
+    }
+  final public var required: Swift.Bool? {
+    get
+    }
+  final public var label: Swift.String? {
+    get
+    }
+  final public var hint: Swift.String? {
+    get
+    }
+  final public var inputType: biidCoreSDK.FieldDefinition.InputType? {
+    get
+    }
+  final public var readOnly: Swift.Bool? {
+    get
+    }
+  final public var secured: Swift.Bool? {
+    get
+    }
+  final public var options: [biidCoreSDK.OptionValue]? {
+    get
+    }
+  public enum InputType : Swift.String {
+    case text
+    case emailAddress
+    case phoneNumber
+    case selection
+    case countryCode
+    case numeric
+    case date
+    case boolean
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  final public var description: Swift.String {
+    get
+  }
+  final public var debugDescription: Swift.String {
+    get
+  }
+  public static func areEqual(_ lhs: biidCoreSDK.FieldDefinition, _ rhs: biidCoreSDK.FieldDefinition) -> Swift.Bool
+  @objc deinit
+}
+@objc(BIIDCRFieldDefinitionInputType) public enum ObjC_FieldDefinitionInputType : Swift.Int {
+  case none
+  case text
+  case emailAddress
+  case phoneNumber
+  case selection
+  case countryCode
+  case numeric
+  case date
+  case boolean
+  public typealias RawValue = Swift.Int
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc(BIIDCRFieldDefinition) @objcMembers public class ObjC_FieldDefinition : ObjectiveC.NSObject {
+  @objc public var name: Swift.String? {
+    @objc get
+  }
+  @objc public var required: Swift.Bool {
+    @objc get
+  }
+  @objc public var label: Swift.String? {
+    @objc get
+  }
+  @objc public var hint: Swift.String? {
+    @objc get
+  }
+  @objc public var inputType: biidCoreSDK.ObjC_FieldDefinitionInputType {
+    @objc get
+  }
+  @objc public var readOnly: Swift.Bool {
+    @objc get
+  }
+  @objc public var secured: Swift.Bool {
+    @objc get
+  }
+  @objc public var options: [biidCoreSDK.ObjC_OptionValue]? {
+    @objc get
+  }
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public var debugDescription: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension ObjC_FieldDefinition {
+  @objc override dynamic public func isEqual(_ object: Any?) -> Swift.Bool
+}
+final public class SDK {
+  public static var getClient: biidCoreSDK.Client {
+    get
+  }
+  @objc deinit
+}
+@objc(BIIDCRInvalidTokenErrorCode) public enum ObjC_InvalidTokenResolution : Swift.Int {
+  case login = 1500
+  case retry = 1501
+  public typealias RawValue = Swift.Int
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc(BIIDCRInvalidTokenError) @objcMembers public class ObjC_InvalidTokenError : Foundation.NSError {
+  @objc public static let bundleID: Swift.String
+  @objc public var action: biidCoreSDK.ObjC_InvalidTokenResolution
+  @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public init(domain: Swift.String, code: Swift.Int, userInfo dict: [Swift.String : Any]? = nil)
+  @objc deinit
+}
+public typealias AdditionalProperties = [Swift.String : Any]
+final public class User : Swift.CustomStringConvertible, Swift.CustomDebugStringConvertible {
+  public static let username: Swift.String
+  public static let phoneNumber: Swift.String
+  public static let status: Swift.String
+  public static let accreditationLevel: Swift.String
+  final public var username: Swift.String? {
+    get
+    }
+  final public var status: biidCoreSDK.User.Status? {
+    get
+    }
+  final public var accreditationLevel: biidCoreSDK.User.AccreditationLevel? {
+    get
+    }
+  public enum Status : Swift.String {
+    case unverified
+    case unregistered
+    case unaccredited
+    case uncertified
+    case certificatePending
+    case certified
+    case locked
+    case unknown
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public enum AccreditationLevel : Swift.String {
+    case l1
+    case l2
+    case l3
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public init()
+  final public subscript(key: Swift.String) -> Any? {
+    get
+    set
+  }
+  final public var description: Swift.String {
+    get
+  }
+  final public var debugDescription: Swift.String {
+    get
+  }
+  public static func areEqual(_ lhs: biidCoreSDK.User, _ rhs: biidCoreSDK.User) -> Swift.Bool
+  @objc deinit
+}
+@objc(BIIDCRUserDevice) @objcMembers public class ObjC_UserDevice : biidCoreSDK.ObjC_Device {
+  @objc public var lastUsed: Swift.String? {
+    @objc get
+  }
+  @objc public var currentDevice: Swift.Bool {
+    @objc get
+  }
+  @objc public var userStatus: biidCoreSDK.ObjC_UserStatus {
+    @objc get
+  }
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public var debugDescription: Swift.String {
+    @objc get
+  }
+  @objc deinit
+}
+extension ObjC_UserDevice {
+  @objc override dynamic public func isEqual(_ object: Any?) -> Swift.Bool
+}
+@objc(BIIDCRVerificationCodeAttemptsError) @objcMembers public class ObjC_VerificationCodeAttemptsError : Foundation.NSError {
+  @objc public static let bundleID: Swift.String
+  @objc public static let errorDomain: Swift.String
+  @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public init(domain: Swift.String, code: Swift.Int, userInfo dict: [Swift.String : Any]? = nil)
+  @objc deinit
+}
+@objc(BIIDCRContactDetails) @objcMembers public class ObjC_ContactDetails : ObjectiveC.NSObject {
+  @objc public var website: Swift.String? {
+    @objc get
+  }
+  @objc public var email: Swift.String? {
+    @objc get
+  }
+  @objc public var phone: Swift.String? {
+    @objc get
+  }
+  @objc public var fax: Swift.String? {
+    @objc get
+  }
+  @objc public var facebook: Swift.String? {
+    @objc get
+  }
+  @objc public var twitter: Swift.String? {
+    @objc get
+  }
+  @objc public var instagram: Swift.String? {
+    @objc get
+  }
+  @objc public var pinterest: Swift.String? {
+    @objc get
+  }
+  @objc public var foursquare: Swift.String? {
+    @objc get
+  }
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public var debugDescription: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension ObjC_ContactDetails {
+  @objc override dynamic public func isEqual(_ object: Any?) -> Swift.Bool
+}
+public class Device : Swift.CustomStringConvertible, Swift.CustomDebugStringConvertible {
+  public var name: Swift.String? {
+    get
+    }
+  public var os: Swift.String? {
+    get
+    }
+  public var version: Swift.String? {
+    get
+    }
+  public var model: Swift.String? {
+    get
+    }
+  public var SDKVersion: Swift.String? {
+    get
+    }
+  public var language: Swift.String? {
+    get
+    }
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+  public static func areEqual(_ lhs: biidCoreSDK.Device, _ rhs: biidCoreSDK.Device) -> Swift.Bool
+  @objc deinit
+}
+extension biidCoreSDK.ClientError : Swift.CustomStringConvertible {}
+extension biidCoreSDK.DIACLimitError : Swift.CustomStringConvertible {}
+extension biidCoreSDK.DIACLimitError : Swift.Error {}
+extension biidCoreSDK.InvalidTokenError : Swift.CustomStringConvertible {}
+extension biidCoreSDK.InvalidTokenError : Swift.Error {}
+extension biidCoreSDK.InvalidTokenError.Resolution : Swift.Equatable {}
+extension biidCoreSDK.InvalidTokenError.Resolution : Swift.Hashable {}
+extension biidCoreSDK.InvalidTokenError.Resolution : Swift.RawRepresentable {}
+extension biidCoreSDK.TransactionNotPendingError : Swift.CustomStringConvertible {}
+extension biidCoreSDK.TransactionNotPendingError : Swift.Error {}
+extension biidCoreSDK.UserLockedError : Swift.CustomStringConvertible {}
+extension biidCoreSDK.UserLockedError : Swift.Error {}
+extension biidCoreSDK.ValidationError : Swift.CustomStringConvertible {}
+extension biidCoreSDK.ValidationError : Swift.Error {}
+extension biidCoreSDK.VerificationCodeAttemptsError : Swift.CustomStringConvertible {}
+extension biidCoreSDK.VerificationCodeAttemptsError : Swift.Error {}
+extension biidCoreSDK.VerificationRequestLimitError : Swift.CustomStringConvertible {}
+extension biidCoreSDK.VerificationRequestLimitError : Swift.Error {}
+extension biidCoreSDK.VerificationCodeExpiredError : Swift.CustomStringConvertible {}
+extension biidCoreSDK.VerificationCodeExpiredError : Swift.Error {}
+extension biidCoreSDK.InvalidUserStateError : Swift.CustomStringConvertible {}
+extension biidCoreSDK.InvalidUserStateError : Swift.Error {}
+extension biidCoreSDK.InvalidUserStateError.InvalidState : Swift.Equatable {}
+extension biidCoreSDK.InvalidUserStateError.InvalidState : Swift.Hashable {}
+extension biidCoreSDK.InvalidUserStateError.InvalidState : Swift.RawRepresentable {}
+extension biidCoreSDK.JWEException : Swift.Equatable {}
+extension biidCoreSDK.JWEException : Swift.Hashable {}
+extension biidCoreSDK.CertificateException : Swift.Equatable {}
+extension biidCoreSDK.CertificateException : Swift.Hashable {}
+extension biidCoreSDK.OpeningHours : Swift.Equatable {}
+extension biidCoreSDK.ObjC_InvalidState : Swift.Equatable {}
+extension biidCoreSDK.ObjC_InvalidState : Swift.Hashable {}
+extension biidCoreSDK.ObjC_InvalidState : Swift.RawRepresentable {}
+extension biidCoreSDK.ObjC_CheckpointsSortOrder : Swift.Equatable {}
+extension biidCoreSDK.ObjC_CheckpointsSortOrder : Swift.Hashable {}
+extension biidCoreSDK.ObjC_CheckpointsSortOrder : Swift.RawRepresentable {}
+extension biidCoreSDK.ObjC_OpeningHoursStatus : Swift.Equatable {}
+extension biidCoreSDK.ObjC_OpeningHoursStatus : Swift.Hashable {}
+extension biidCoreSDK.ObjC_OpeningHoursStatus : Swift.RawRepresentable {}
+extension biidCoreSDK.Checkpoint.OpeningHoursStatus : Swift.Equatable {}
+extension biidCoreSDK.Checkpoint.OpeningHoursStatus : Swift.Hashable {}
+extension biidCoreSDK.Checkpoint.OpeningHoursStatus : Swift.RawRepresentable {}
+extension biidCoreSDK.ObjC_ClientException : Swift.Equatable {}
+extension biidCoreSDK.ObjC_ClientException : Swift.Hashable {}
+extension biidCoreSDK.ObjC_ClientException : Swift.RawRepresentable {}
+extension biidCoreSDK.ObjC_JWEException : Swift.Equatable {}
+extension biidCoreSDK.ObjC_JWEException : Swift.Hashable {}
+extension biidCoreSDK.ObjC_JWEException : Swift.RawRepresentable {}
+extension biidCoreSDK.ObjC_AsymmetricCryptoException : Swift.Equatable {}
+extension biidCoreSDK.ObjC_AsymmetricCryptoException : Swift.Hashable {}
+extension biidCoreSDK.ObjC_AsymmetricCryptoException : Swift.RawRepresentable {}
+extension biidCoreSDK.ObjC_CertificateException : Swift.Equatable {}
+extension biidCoreSDK.ObjC_CertificateException : Swift.Hashable {}
+extension biidCoreSDK.ObjC_CertificateException : Swift.RawRepresentable {}
+extension biidCoreSDK.BiidNotification : Swift.Equatable {}
+extension biidCoreSDK.BiidNotification.NotificationType : Swift.Equatable {}
+extension biidCoreSDK.BiidNotification.NotificationType : Swift.Hashable {}
+extension biidCoreSDK.BiidNotification.NotificationType : Swift.RawRepresentable {}
+extension biidCoreSDK.OpeningHoursDay : Swift.Equatable {}
+extension biidCoreSDK.Entity : Swift.Equatable {}
+extension biidCoreSDK.ObjC_UserStatus : Swift.Hashable {}
+extension biidCoreSDK.ObjC_UserStatus : Swift.RawRepresentable {}
+extension biidCoreSDK.User.Status : Swift.Hashable {}
+extension biidCoreSDK.User.Status : Swift.RawRepresentable {}
+extension biidCoreSDK.ObjC_AccreditationLevel : Swift.Equatable {}
+extension biidCoreSDK.ObjC_AccreditationLevel : Swift.Hashable {}
+extension biidCoreSDK.ObjC_AccreditationLevel : Swift.RawRepresentable {}
+extension biidCoreSDK.User.AccreditationLevel : Swift.Equatable {}
+extension biidCoreSDK.User.AccreditationLevel : Swift.Hashable {}
+extension biidCoreSDK.User.AccreditationLevel : Swift.RawRepresentable {}
+extension biidCoreSDK.Signatory : Swift.Equatable {}
+extension biidCoreSDK.Country : Swift.Equatable {}
+extension biidCoreSDK.ObjC_NotificationType : Swift.Equatable {}
+extension biidCoreSDK.ObjC_NotificationType : Swift.Hashable {}
+extension biidCoreSDK.ObjC_NotificationType : Swift.RawRepresentable {}
+extension biidCoreSDK.SignatoryUser : Swift.Equatable {}
+extension biidCoreSDK.Checkpoints.sort : Swift.Equatable {}
+extension biidCoreSDK.Checkpoints.sort : Swift.Hashable {}
+extension biidCoreSDK.Checkpoints.sort : Swift.RawRepresentable {}
+extension biidCoreSDK.Checkpoints.sortOrder : Swift.Equatable {}
+extension biidCoreSDK.Checkpoints.sortOrder : Swift.Hashable {}
+extension biidCoreSDK.Checkpoints.sortOrder : Swift.RawRepresentable {}
+extension biidCoreSDK.Checkpoint : Swift.Equatable {}
+extension biidCoreSDK.ContactDetails : Swift.Equatable {}
+extension biidCoreSDK.TransactionInfo : Swift.Equatable {}
+extension biidCoreSDK.Document : Swift.Equatable {}
+extension biidCoreSDK.Document.DocumentType : Swift.Equatable {}
+extension biidCoreSDK.Document.DocumentType : Swift.Hashable {}
+extension biidCoreSDK.Document.DocumentType : Swift.RawRepresentable {}
+extension biidCoreSDK.Transaction : Swift.Equatable {}
+extension biidCoreSDK.Transaction.TransactionType : Swift.Equatable {}
+extension biidCoreSDK.Transaction.TransactionType : Swift.Hashable {}
+extension biidCoreSDK.Transaction.TransactionType : Swift.RawRepresentable {}
+extension biidCoreSDK.Transaction.TransactionSubType : Swift.Equatable {}
+extension biidCoreSDK.Transaction.TransactionSubType : Swift.Hashable {}
+extension biidCoreSDK.Transaction.TransactionSubType : Swift.RawRepresentable {}
+extension biidCoreSDK.Transaction.Status : Swift.Equatable {}
+extension biidCoreSDK.Transaction.Status : Swift.Hashable {}
+extension biidCoreSDK.Transaction.Status : Swift.RawRepresentable {}
+extension biidCoreSDK.Role : Swift.Hashable {}
+extension biidCoreSDK.Role : Swift.RawRepresentable {}
+extension biidCoreSDK.ObjC_Role : Swift.Equatable {}
+extension biidCoreSDK.ObjC_Role : Swift.Hashable {}
+extension biidCoreSDK.ObjC_Role : Swift.RawRepresentable {}
+extension biidCoreSDK.ObjC_TransactionType : Swift.Equatable {}
+extension biidCoreSDK.ObjC_TransactionType : Swift.Hashable {}
+extension biidCoreSDK.ObjC_TransactionType : Swift.RawRepresentable {}
+extension biidCoreSDK.ObjC_TransactionSubType : Swift.Equatable {}
+extension biidCoreSDK.ObjC_TransactionSubType : Swift.Hashable {}
+extension biidCoreSDK.ObjC_TransactionSubType : Swift.RawRepresentable {}
+extension biidCoreSDK.ObjC_TransactionStatus : Swift.Equatable {}
+extension biidCoreSDK.ObjC_TransactionStatus : Swift.Hashable {}
+extension biidCoreSDK.ObjC_TransactionStatus : Swift.RawRepresentable {}
+extension biidCoreSDK.OptionValue : Swift.Equatable {}
+extension biidCoreSDK.Holiday : Swift.Equatable {}
+extension biidCoreSDK.Location : Swift.Equatable {}
+extension biidCoreSDK.Address : Swift.Equatable {}
+extension biidCoreSDK.ObjC_DocumentType : Swift.Equatable {}
+extension biidCoreSDK.ObjC_DocumentType : Swift.Hashable {}
+extension biidCoreSDK.ObjC_DocumentType : Swift.RawRepresentable {}
+extension biidCoreSDK.OpeningHoursSchedule : Swift.Equatable {}
+extension biidCoreSDK.FieldDefinition : Swift.Equatable {}
+extension biidCoreSDK.FieldDefinition.InputType : Swift.Hashable {}
+extension biidCoreSDK.FieldDefinition.InputType : Swift.RawRepresentable {}
+extension biidCoreSDK.ObjC_FieldDefinitionInputType : Swift.Equatable {}
+extension biidCoreSDK.ObjC_FieldDefinitionInputType : Swift.Hashable {}
+extension biidCoreSDK.ObjC_FieldDefinitionInputType : Swift.RawRepresentable {}
+extension biidCoreSDK.ObjC_InvalidTokenResolution : Swift.Equatable {}
+extension biidCoreSDK.ObjC_InvalidTokenResolution : Swift.Hashable {}
+extension biidCoreSDK.ObjC_InvalidTokenResolution : Swift.RawRepresentable {}
+extension biidCoreSDK.User : Swift.Equatable {}
+extension biidCoreSDK.Device : Swift.Equatable {}

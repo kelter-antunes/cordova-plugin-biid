@@ -1,0 +1,4 @@
+framework module biidCoreSDK {
+  header "biidCoreSDK-Swift.h"
+  requires objc
+}

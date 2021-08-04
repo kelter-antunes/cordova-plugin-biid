@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="cordova-plugin-biid" version="1.0.0">
+	<name>
+		BiidPlugin
+	</name>
+
+
+    <engines>
+        <engine name="cordova" version=">=9.0.0" />
+        <engine name="cordova-ios" version=">=5.0.0" />
+    </engines>
+
+
+	<js-module name="BiidPlugin" src="www/BiidPlugin.js">
+		<clobbers target="BiidPlugin" />
+	</js-module>
+
+
+	<platform name="ios">
+		<config-file parent="/*" target="config.xml">
+			<feature name="BiidPlugin">
+				<param name="ios-package" value="BiidPlugin" />
+			</feature>
+		</config-file>
+
+		<source-file src="src/ios/BiidPlugin.swift" />
+		<resource-file src="src/ios/certs/biid-manifest.plist" />
+		<resource-file src="src/ios/certs/Mobile.cer" />
+		<resource-file src="src/ios/certs/Security.cer" />
+		<resource-file src="src/ios/certs/sp-manifest.plist" />
+		<framework src="src/ios/biidCoreSDK.framework" custom="true" embed="true" />
+		<framework src="src/ios/biidSecProvSDK.framework" custom="true" embed="true" />
+		<framework src="src/ios/biidCommonLib.framework" custom="true" embed="true" />
+		<framework src="src/ios/biidPublicAPIClient.framework" custom="true" embed="true" />
+		<framework src="src/ios/biidSecProvAPIClient.framework" custom="true" embed="true" />
+		<podspec>
+			<config>
+				<source url="https://github.com/CocoaPods/Specs.git" />
+			</config>
+			<pods use-frameworks="true">
+				<pod name="Alamofire" spec="~> 4.5.0" swift-version="4.2" />
+				<pod name="HTTPStatusCodes" spec="~> 3.3.1" />
+				<pod name="JOSESwift" spec="~> 1.8.1" />
+				<pod name="SwiftyRSA" spec="~> 1.5.0" />
+			</pods>
+		</podspec>
+
+		<dependency id="cordova-plugin-add-swift-support" version="2.0.2" />
+
+	</platform>
+</plugin>

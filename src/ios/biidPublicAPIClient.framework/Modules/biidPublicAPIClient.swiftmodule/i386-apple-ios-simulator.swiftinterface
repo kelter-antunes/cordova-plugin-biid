@@ -1,0 +1,1856 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.2.2 effective-4.2 (swiftlang-1103.0.32.6 clang-1103.0.32.51)
+// swift-module-flags: -target i386-apple-ios10.3-simulator -enable-objc-interop -enable-library-evolution -swift-version 4.2 -enforce-exclusivity=checked -O -module-name biidPublicAPIClient
+import Alamofire
+import Foundation
+import Swift
+@_exported import biidPublicAPIClient
+public struct CsrAttributeResponse : Swift.Codable {
+  public var name: Swift.String?
+  public var value: Swift.String?
+  public var oid: Swift.String?
+  public var oidEncoded: Swift.String?
+  public init(name: Swift.String?, value: Swift.String?, oid: Swift.String?, oidEncoded: Swift.String?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct AppConfig : Swift.Codable {
+  public var configuration: Swift.String?
+  public init(configuration: Swift.String?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+@_hasMissingDesignatedInitializers open class VerificationAPI {
+  open class func createVerificationProcess(body: biidPublicAPIClient.VerificationProcessRequest, completion: @escaping ((biidPublicAPIClient.VerificationProcess?, Swift.Error?) -> Swift.Void))
+  open class func createVerificationProcessWithRequestBuilder(body: biidPublicAPIClient.VerificationProcessRequest) -> biidPublicAPIClient.RequestBuilder<biidPublicAPIClient.VerificationProcess>
+  @objc deinit
+}
+public typealias EncodeResult = (data: Foundation.Data?, error: Swift.Error?)
+@_hasMissingDesignatedInitializers open class CodableHelper {
+  public static var dateformatter: Foundation.DateFormatter?
+  open class func decode<T>(_ type: T.Type, from data: Foundation.Data) -> (decodableObj: T?, error: Swift.Error?) where T : Swift.Decodable
+  open class func encode<T>(_ value: T, prettyPrint: Swift.Bool = false) -> biidPublicAPIClient.EncodeResult where T : Swift.Encodable
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers open class DocumentsAPI {
+  open class func downloadDocument(_id: Swift.String, completion: @escaping ((Foundation.URL?, Swift.Error?) -> Swift.Void))
+  open class func downloadDocumentWithRequestBuilder(_id: Swift.String) -> biidPublicAPIClient.RequestBuilder<Foundation.URL>
+  open class func downloadPublicDocument(_id: Swift.String, completion: @escaping ((Foundation.URL?, Swift.Error?) -> Swift.Void))
+  open class func downloadPublicDocumentWithRequestBuilder(_id: Swift.String) -> biidPublicAPIClient.RequestBuilder<Foundation.URL>
+  open class func getDocumentInfo(_id: Swift.String, completion: @escaping ((biidPublicAPIClient.Document?, Swift.Error?) -> Swift.Void))
+  open class func getDocumentInfoWithRequestBuilder(_id: Swift.String) -> biidPublicAPIClient.RequestBuilder<biidPublicAPIClient.Document>
+  open class func previewDocument(_id: Swift.String, completion: @escaping ((Foundation.URL?, Swift.Error?) -> Swift.Void))
+  open class func previewDocumentWithRequestBuilder(_id: Swift.String) -> biidPublicAPIClient.RequestBuilder<Foundation.URL>
+  @objc deinit
+}
+public struct EntityField : Swift.Codable {
+  public enum InputType : Swift.String, Swift.Codable {
+    case text
+    case emailAddress
+    case date
+    case phoneNumber
+    case numeric
+    case boolean
+    case selection
+    case countryCode
+    case documentType
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public var name: Swift.String?
+  public var _required: Swift.Bool?
+  public var inputType: biidPublicAPIClient.EntityField.InputType?
+  public var secured: Swift.Bool?
+  public var readOnly: Swift.Bool?
+  public var label: Swift.String?
+  public var hint: Swift.String?
+  public var options: [biidPublicAPIClient.EntityFieldOption]?
+  public init(name: Swift.String?, _required: Swift.Bool?, inputType: biidPublicAPIClient.EntityField.InputType?, secured: Swift.Bool?, readOnly: Swift.Bool?, label: Swift.String?, hint: Swift.String?, options: [biidPublicAPIClient.EntityFieldOption]?)
+  public enum CodingKeys : Swift.String, Swift.CodingKey {
+    case name
+    case _required
+    case inputType
+    case secured
+    case readOnly
+    case label
+    case hint
+    case options
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+    public init?(stringValue: Swift.String)
+    public var intValue: Swift.Int? {
+      get
+    }
+    public init?(intValue: Swift.Int)
+  }
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct EntityList : Swift.Codable {
+  public var meta: biidPublicAPIClient.TotalMeta?
+  public var items: [biidPublicAPIClient.EntityListItem]?
+  public init(meta: biidPublicAPIClient.TotalMeta?, items: [biidPublicAPIClient.EntityListItem]?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct SignatureRejectRequest : Swift.Codable {
+  public var _id: Swift.String
+  public var signatory: biidPublicAPIClient.Signatory?
+  public init(_id: Swift.String, signatory: biidPublicAPIClient.Signatory?)
+  public enum CodingKeys : Swift.String, Swift.CodingKey {
+    case _id
+    case signatory
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+    public init?(stringValue: Swift.String)
+    public var intValue: Swift.Int? {
+      get
+    }
+    public init?(intValue: Swift.Int)
+  }
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct UserDeviceResponse : Swift.Codable {
+  public enum UserStatus : Swift.String, Swift.Codable {
+    case unverified
+    case unregistered
+    case unaccredited
+    case uncertified
+    case certificatePending
+    case certified
+    case locked
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public var _id: Swift.Int64?
+  public var os: Swift.String?
+  public var version: Swift.String?
+  public var language: Swift.String?
+  public var model: Swift.String?
+  public var name: Swift.String?
+  public var dateCreated: Swift.String?
+  public var userStatus: biidPublicAPIClient.UserDeviceResponse.UserStatus?
+  public var sdkVersion: Swift.String?
+  public var dateLastUsed: Swift.String?
+  public var isCurrentDevice: Swift.Bool?
+  public init(_id: Swift.Int64?, os: Swift.String?, version: Swift.String?, language: Swift.String?, model: Swift.String?, name: Swift.String?, dateCreated: Swift.String?, userStatus: biidPublicAPIClient.UserDeviceResponse.UserStatus?, sdkVersion: Swift.String?, dateLastUsed: Swift.String?, isCurrentDevice: Swift.Bool?)
+  public enum CodingKeys : Swift.String, Swift.CodingKey {
+    case _id
+    case os
+    case version
+    case language
+    case model
+    case name
+    case dateCreated
+    case userStatus
+    case sdkVersion
+    case dateLastUsed
+    case isCurrentDevice
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+    public init?(stringValue: Swift.String)
+    public var intValue: Swift.Int? {
+      get
+    }
+    public init?(intValue: Swift.Int)
+  }
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct Device : Swift.Codable {
+  public var duid: Swift.String?
+  public var os: Swift.String?
+  public var version: Swift.String?
+  public var language: Swift.String?
+  public var model: Swift.String?
+  public var name: Swift.String?
+  public var sdkVersion: Swift.String?
+  public init(duid: Swift.String?, os: Swift.String?, version: Swift.String?, language: Swift.String?, model: Swift.String?, name: Swift.String?, sdkVersion: Swift.String?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct VerificationProcessRequest : Swift.Codable {
+  public var verificationData: biidPublicAPIClient.VerificationData?
+  public init(verificationData: biidPublicAPIClient.VerificationData?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct ListMeta : Swift.Codable {
+  public var totalCount: Swift.Int?
+  public var offset: Swift.Int?
+  public var max: Swift.Int?
+  public init(totalCount: Swift.Int?, offset: Swift.Int?, max: Swift.Int?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct SearchEntityResponse : Swift.Codable {
+  public var _id: Swift.String?
+  public var name: Swift.String?
+  public var iconUrl: Swift.String?
+  public var _description: Swift.String?
+  public var terms: biidPublicAPIClient.Document?
+  public var privacy: biidPublicAPIClient.Document?
+  public init(_id: Swift.String?, name: Swift.String?, iconUrl: Swift.String?, _description: Swift.String?, terms: biidPublicAPIClient.Document?, privacy: biidPublicAPIClient.Document?)
+  public enum CodingKeys : Swift.String, Swift.CodingKey {
+    case _id
+    case name
+    case iconUrl
+    case _description
+    case terms
+    case privacy
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+    public init?(stringValue: Swift.String)
+    public var intValue: Swift.Int? {
+      get
+    }
+    public init?(intValue: Swift.Int)
+  }
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct Document : Swift.Codable {
+  public var _id: Swift.String?
+  public var title: Swift.String?
+  public var _description: Swift.String?
+  public var size: Swift.Int64?
+  public var type: Swift.String?
+  public var previewUrl: Swift.String?
+  public var publicUrl: Swift.String?
+  public init(_id: Swift.String?, title: Swift.String?, _description: Swift.String?, size: Swift.Int64?, type: Swift.String?, previewUrl: Swift.String?, publicUrl: Swift.String?)
+  public enum CodingKeys : Swift.String, Swift.CodingKey {
+    case _id
+    case title
+    case _description
+    case size
+    case type
+    case previewUrl
+    case publicUrl
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+    public init?(stringValue: Swift.String)
+    public var intValue: Swift.Int? {
+      get
+    }
+    public init?(intValue: Swift.Int)
+  }
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct TransactionInfo : Swift.Codable {
+  public var title: Swift.String
+  public var _description: Swift.String
+  public var location: biidPublicAPIClient.Location?
+  public init(title: Swift.String, _description: Swift.String, location: biidPublicAPIClient.Location?)
+  public init(title: Swift.String, _description: Swift.String, location: biidPublicAPIClient.Location?, additionalProperties: [Swift.String : biidPublicAPIClient.JSONValue]?)
+  public var additionalProperties: [Swift.String : biidPublicAPIClient.JSONValue]
+  public subscript(key: Swift.String) -> biidPublicAPIClient.JSONValue? {
+    get
+    set
+  }
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct EvidenceInfo : Swift.Codable {
+  public var commonName: Swift.String?
+  public var orgUnit: Swift.String?
+  public var organization: Swift.String?
+  public var locality: Swift.String?
+  public var state: Swift.String?
+  public var countryCode: Swift.String?
+  public var email: Swift.String?
+  public init(commonName: Swift.String?, orgUnit: Swift.String?, organization: Swift.String?, locality: Swift.String?, state: Swift.String?, countryCode: Swift.String?, email: Swift.String?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct Hours : Swift.Codable {
+  public var start: Swift.String?
+  public var end: Swift.String?
+  public init(start: Swift.String?, end: Swift.String?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+@_hasMissingDesignatedInitializers open class JSONEncodingHelper {
+  open class func encodingParameters<T>(forEncodableObject encodableObj: T?) -> Alamofire.Parameters? where T : Swift.Encodable
+  open class func encodingParameters(forEncodableObject encodableObj: Any?) -> Alamofire.Parameters?
+  @objc deinit
+}
+public struct SignTransactionsRequest : Swift.Codable {
+  public var transactions: [biidPublicAPIClient.SignatureConfirmRequest]
+  public var password: Swift.String?
+  public init(transactions: [biidPublicAPIClient.SignatureConfirmRequest], password: Swift.String?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct ClientFullCheckpointResponse : Swift.Codable {
+  public enum OpeningHoursStatus : Swift.String, Swift.Codable {
+    case _open
+    case closed
+    case unknown
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public var _id: Swift.String?
+  public var name: Swift.String
+  public var notes: Swift.String?
+  public var openingHoursStatus: biidPublicAPIClient.ClientFullCheckpointResponse.OpeningHoursStatus?
+  public var contacts: biidPublicAPIClient.Contacts?
+  public var address: biidPublicAPIClient.Address?
+  public var distance: Swift.Double?
+  public var openingHours: [biidPublicAPIClient.OpeningHours]?
+  public var holidays: [biidPublicAPIClient.Holidays]?
+  public init(_id: Swift.String?, name: Swift.String, notes: Swift.String?, openingHoursStatus: biidPublicAPIClient.ClientFullCheckpointResponse.OpeningHoursStatus?, contacts: biidPublicAPIClient.Contacts?, address: biidPublicAPIClient.Address?, distance: Swift.Double?, openingHours: [biidPublicAPIClient.OpeningHours]?, holidays: [biidPublicAPIClient.Holidays]?)
+  public enum CodingKeys : Swift.String, Swift.CodingKey {
+    case _id
+    case name
+    case notes
+    case openingHoursStatus
+    case contacts
+    case address
+    case distance
+    case openingHours
+    case holidays
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+    public init?(stringValue: Swift.String)
+    public var intValue: Swift.Int? {
+      get
+    }
+    public init?(intValue: Swift.Int)
+  }
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct Signatory : Swift.Codable {
+  public var user: biidPublicAPIClient.User?
+  public var location: biidPublicAPIClient.Location?
+  public var device: biidPublicAPIClient.Device?
+  public init(user: biidPublicAPIClient.User?, location: biidPublicAPIClient.Location?, device: biidPublicAPIClient.Device?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct OnboardingEvidence : Swift.Codable {
+  public var _id: Swift.Double?
+  public var type: Swift.String?
+  public var name: Swift.String?
+  public var data: Swift.String?
+  public init(_id: Swift.Double?, type: Swift.String?, name: Swift.String?, data: Swift.String?)
+  public enum CodingKeys : Swift.String, Swift.CodingKey {
+    case _id
+    case type
+    case name
+    case data
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+    public init?(stringValue: Swift.String)
+    public var intValue: Swift.Int? {
+      get
+    }
+    public init?(intValue: Swift.Int)
+  }
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public enum ErrorResponse : Swift.Error {
+  case error(Swift.Int, Foundation.Data?, Swift.Error)
+}
+open class Response<T> {
+  final public let statusCode: Swift.Int
+  final public let header: [Swift.String : Swift.String]
+  final public let body: T?
+  public init(statusCode: Swift.Int, header: [Swift.String : Swift.String], body: T?)
+  convenience public init(response: Foundation.HTTPURLResponse, body: T?)
+  @objc deinit
+}
+public enum JSONValue : Swift.Codable, Swift.Equatable {
+  case boolean(Swift.Bool)
+  case double(Swift.Double)
+  case integer(Swift.Int)
+  case string(Swift.String)
+  case array([biidPublicAPIClient.JSONValue?])
+  case object([Swift.String : biidPublicAPIClient.JSONValue?])
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from elements: biidPublicAPIClient.JSONValue?...)
+  public init(from elements: [biidPublicAPIClient.JSONValue?])
+  public init(from elements: (Swift.String, biidPublicAPIClient.JSONValue?)...)
+  public init(from elements: [Swift.String : biidPublicAPIClient.JSONValue])
+  public init(from value: Swift.Bool)
+  public init(from value: Swift.Int)
+  public init(from value: Swift.Double)
+  public init(from value: Swift.String)
+  public static func == (a: biidPublicAPIClient.JSONValue, b: biidPublicAPIClient.JSONValue) -> Swift.Bool
+}
+extension JSONValue : Swift.ExpressibleByBooleanLiteral {
+  public init(booleanLiteral value: Swift.Bool)
+  public typealias BooleanLiteralType = Swift.Bool
+}
+extension JSONValue : Swift.ExpressibleByIntegerLiteral {
+  public init(integerLiteral value: Swift.Int)
+  public typealias IntegerLiteralType = Swift.Int
+}
+extension JSONValue : Swift.ExpressibleByFloatLiteral {
+  public init(floatLiteral value: Swift.Double)
+  public typealias FloatLiteralType = Swift.Double
+}
+extension JSONValue : Swift.ExpressibleByStringLiteral {
+  public init(stringLiteral value: Swift.String)
+  public typealias StringLiteralType = Swift.String
+  public typealias ExtendedGraphemeClusterLiteralType = Swift.String
+  public typealias UnicodeScalarLiteralType = Swift.String
+}
+extension JSONValue : Swift.ExpressibleByArrayLiteral {
+  public init(arrayLiteral elements: biidPublicAPIClient.JSONValue?...)
+  public typealias ArrayLiteralElement = biidPublicAPIClient.JSONValue?
+}
+extension JSONValue : Swift.ExpressibleByDictionaryLiteral {
+  public init(dictionaryLiteral elements: (Swift.String, biidPublicAPIClient.JSONValue?)...)
+  public typealias Key = Swift.String
+  public typealias Value = biidPublicAPIClient.JSONValue?
+}
+extension JSONValue {
+  public static func toJSONValue(fromDictionary additionalProperties: [Swift.String : Any]) -> [Swift.String : biidPublicAPIClient.JSONValue]?
+  public static func toJSONValue(fromArray array: [Any]) -> [biidPublicAPIClient.JSONValue]?
+}
+extension JSONValue : Swift.CustomStringConvertible, Swift.CustomDebugStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers open class Configuration {
+  public static var dateFormat: Swift.String
+  @objc deinit
+}
+public struct RegisterDeviceRequest : Swift.Codable {
+  public var pushId: Swift.String?
+  public var publicKey: Swift.String?
+  public init(pushId: Swift.String?, publicKey: Swift.String?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct DiacCode : Swift.Codable {
+  public var diac: Swift.String
+  public init(diac: Swift.String)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct EvidenceResponse : Swift.Codable {
+  public var _id: Swift.String?
+  public var originalFile: Swift.String?
+  public var signedFile: Swift.String?
+  public var receiptFile: Swift.String?
+  public var info: biidPublicAPIClient.EvidenceInfo?
+  public var dateCreated: Swift.String?
+  public init(_id: Swift.String?, originalFile: Swift.String?, signedFile: Swift.String?, receiptFile: Swift.String?, info: biidPublicAPIClient.EvidenceInfo?, dateCreated: Swift.String?)
+  public enum CodingKeys : Swift.String, Swift.CodingKey {
+    case _id
+    case originalFile
+    case signedFile
+    case receiptFile
+    case info
+    case dateCreated
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+    public init?(stringValue: Swift.String)
+    public var intValue: Swift.Int? {
+      get
+    }
+    public init?(intValue: Swift.Int)
+  }
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct ValidationErrorDetails : Swift.Codable {
+  public var total: Swift.Int?
+  public var embedded: biidPublicAPIClient.ValidationErrorList?
+  public init(total: Swift.Int?, embedded: biidPublicAPIClient.ValidationErrorList?)
+  public enum CodingKeys : Swift.String, Swift.CodingKey {
+    case total
+    case embedded
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+    public init?(stringValue: Swift.String)
+    public var intValue: Swift.Int? {
+      get
+    }
+    public init?(intValue: Swift.Int)
+  }
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct CountryResponse : Swift.Codable {
+  public var key: Swift.String?
+  public var label: Swift.String?
+  public var phonePrefix: Swift.String?
+  public init(key: Swift.String?, label: Swift.String?, phonePrefix: Swift.String?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct EntityListItem : Swift.Codable {
+  public enum Status : Swift.String, Swift.Codable {
+    case unverified
+    case unregistered
+    case unaccredited
+    case uncertified
+    case certificatePending
+    case certified
+    case locked
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public var _id: Swift.String?
+  public var name: Swift.String?
+  public var iconUrl: Swift.String?
+  public var _description: Swift.String?
+  public var urlName: Swift.String?
+  public var isSystemEntity: Swift.Bool?
+  public var isOnboarding: Swift.Bool?
+  public var terms: biidPublicAPIClient.Document?
+  public var privacy: biidPublicAPIClient.Document?
+  public var status: biidPublicAPIClient.EntityListItem.Status?
+  public init(_id: Swift.String?, name: Swift.String?, iconUrl: Swift.String?, _description: Swift.String?, urlName: Swift.String?, isSystemEntity: Swift.Bool?, isOnboarding: Swift.Bool?, terms: biidPublicAPIClient.Document?, privacy: biidPublicAPIClient.Document?, status: biidPublicAPIClient.EntityListItem.Status?)
+  public enum CodingKeys : Swift.String, Swift.CodingKey {
+    case _id
+    case name
+    case iconUrl
+    case _description
+    case urlName
+    case isSystemEntity
+    case isOnboarding
+    case terms
+    case privacy
+    case status
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+    public init?(stringValue: Swift.String)
+    public var intValue: Swift.Int? {
+      get
+    }
+    public init?(intValue: Swift.Int)
+  }
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct Address : Swift.Codable {
+  public var fullAddress: Swift.String?
+  public var street: Swift.String?
+  public var street2: Swift.String?
+  public var street3: Swift.String?
+  public var postCode: Swift.String?
+  public var city: Swift.String?
+  public var region: Swift.String?
+  public var countryCode: Swift.String?
+  public var country: Swift.String?
+  public var location: biidPublicAPIClient.Location?
+  public init(fullAddress: Swift.String?, street: Swift.String?, street2: Swift.String?, street3: Swift.String?, postCode: Swift.String?, city: Swift.String?, region: Swift.String?, countryCode: Swift.String?, country: Swift.String?, location: biidPublicAPIClient.Location?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct Location : Swift.Codable {
+  public var latitude: Swift.Double?
+  public var longitude: Swift.Double?
+  public init(latitude: Swift.Double?, longitude: Swift.Double?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct UserRequest : Swift.Codable {
+  public init()
+  public init(additionalProperties: [Swift.String : Swift.String]?)
+  public var additionalProperties: [Swift.String : Swift.String]
+  public subscript(key: Swift.String) -> Swift.String? {
+    get
+    set
+  }
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct ValidationError : Swift.Codable {
+  public var message: Swift.String?
+  public var path: Swift.String?
+  public var links: biidPublicAPIClient.ValidationErrorLinks?
+  public init(message: Swift.String?, path: Swift.String?, links: biidPublicAPIClient.ValidationErrorLinks?)
+  public enum CodingKeys : Swift.String, Swift.CodingKey {
+    case message
+    case path
+    case links
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+    public init?(stringValue: Swift.String)
+    public var intValue: Swift.Int? {
+      get
+    }
+    public init?(intValue: Swift.Int)
+  }
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct VerificationData : Swift.Codable {
+  public init()
+  public init(additionalProperties: [Swift.String : Swift.String]?)
+  public var additionalProperties: [Swift.String : Swift.String]
+  public subscript(key: Swift.String) -> Swift.String? {
+    get
+    set
+  }
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct OpeningHoursDay : Swift.Codable {
+  public var day: Swift.Int?
+  public var fullDay: Swift.Bool?
+  public var closed: Swift.Bool?
+  public var _open: [biidPublicAPIClient.Hours]?
+  public init(day: Swift.Int?, fullDay: Swift.Bool?, closed: Swift.Bool?, _open: [biidPublicAPIClient.Hours]?)
+  public enum CodingKeys : Swift.String, Swift.CodingKey {
+    case day
+    case fullDay
+    case closed
+    case _open
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+    public init?(stringValue: Swift.String)
+    public var intValue: Swift.Int? {
+      get
+    }
+    public init?(intValue: Swift.Int)
+  }
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+@_hasMissingDesignatedInitializers open class OnboardingAPI {
+  open class func createOnboardingProcess(body: biidPublicAPIClient.OnboardingProcessRequest, completion: @escaping ((biidPublicAPIClient.OnboardingProcess?, Swift.Error?) -> Swift.Void))
+  open class func createOnboardingProcessWithRequestBuilder(body: biidPublicAPIClient.OnboardingProcessRequest) -> biidPublicAPIClient.RequestBuilder<biidPublicAPIClient.OnboardingProcess>
+  @objc deinit
+}
+public struct VerificationProcess : Swift.Codable {
+  public enum Provider : Swift.String, Swift.Codable {
+    case ondato
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public enum Status : Swift.String, Swift.Codable {
+    case started
+    case onprocess
+    case accepted
+    case rejected
+    case cancelled
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public var _id: Swift.Double?
+  public var userId: Swift.String?
+  public var entityId: Swift.Double?
+  public var provider: biidPublicAPIClient.VerificationProcess.Provider?
+  public var externalId: Swift.String?
+  public var verificationData: biidPublicAPIClient.VerificationData?
+  public var status: biidPublicAPIClient.VerificationProcess.Status?
+  public var dateCreated: Swift.String?
+  public var lastUpdated: Swift.String?
+  public init(_id: Swift.Double?, userId: Swift.String?, entityId: Swift.Double?, provider: biidPublicAPIClient.VerificationProcess.Provider?, externalId: Swift.String?, verificationData: biidPublicAPIClient.VerificationData?, status: biidPublicAPIClient.VerificationProcess.Status?, dateCreated: Swift.String?, lastUpdated: Swift.String?)
+  public enum CodingKeys : Swift.String, Swift.CodingKey {
+    case _id
+    case userId
+    case entityId
+    case provider
+    case externalId
+    case verificationData
+    case status
+    case dateCreated
+    case lastUpdated
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+    public init?(stringValue: Swift.String)
+    public var intValue: Swift.Int? {
+      get
+    }
+    public init?(intValue: Swift.Int)
+  }
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct UserTransactionResponse : Swift.Codable {
+  public var meta: biidPublicAPIClient.ListMeta?
+  public var items: [biidPublicAPIClient.UserTransactionItem]?
+  public init(meta: biidPublicAPIClient.ListMeta?, items: [biidPublicAPIClient.UserTransactionItem]?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct APIHelper {
+  public static func rejectNil(_ source: [Swift.String : Any?]) -> [Swift.String : Any]?
+  public static func rejectNilHeaders(_ source: [Swift.String : Any?]) -> [Swift.String : Swift.String]
+  public static func convertBoolToString(_ source: [Swift.String : Any]?) -> [Swift.String : Any]?
+  public static func mapValuesToQueryItems(collectionFormat: Swift.String, _ source: [Swift.String : Any?]) -> [Foundation.URLQueryItem]?
+}
+public struct AuthTransactionRequest : Swift.Codable {
+  public var disableNotification: Swift.Bool?
+  public var info: biidPublicAPIClient.TransactionInfo
+  public init(disableNotification: Swift.Bool?, info: biidPublicAPIClient.TransactionInfo)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct UserResponse : Swift.Codable {
+  public enum OnboardingStatus : Swift.String, Swift.Codable {
+    case started
+    case onProcess
+    case accepted
+    case rejected
+    case cancelled
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public enum Status : Swift.String, Swift.Codable {
+    case unverified
+    case unregistered
+    case unaccredited
+    case uncertified
+    case certificatePending
+    case certified
+    case locked
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public enum AccreditationLevel : Swift.String, Swift.Codable {
+    case l1
+    case l2
+    case l3
+    case l4
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public var username: Swift.String?
+  public var onboardingStatus: biidPublicAPIClient.UserResponse.OnboardingStatus?
+  public var status: biidPublicAPIClient.UserResponse.Status?
+  public var accreditationLevel: biidPublicAPIClient.UserResponse.AccreditationLevel?
+  public init(username: Swift.String?, onboardingStatus: biidPublicAPIClient.UserResponse.OnboardingStatus?, status: biidPublicAPIClient.UserResponse.Status?, accreditationLevel: biidPublicAPIClient.UserResponse.AccreditationLevel?)
+  public init(username: Swift.String?, onboardingStatus: biidPublicAPIClient.UserResponse.OnboardingStatus?, status: biidPublicAPIClient.UserResponse.Status?, accreditationLevel: biidPublicAPIClient.UserResponse.AccreditationLevel?, additionalProperties: [Swift.String : Swift.String]?)
+  public var additionalProperties: [Swift.String : Swift.String]
+  public subscript(key: Swift.String) -> Swift.String? {
+    get
+    set
+  }
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct Transaction : Swift.Codable {
+  public var signature: biidPublicAPIClient.TransactionSignature?
+  public init(signature: biidPublicAPIClient.TransactionSignature?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct RejectTransactionsRequest : Swift.Codable {
+  public var transactions: [biidPublicAPIClient.SignatureRejectRequest]
+  public init(transactions: [biidPublicAPIClient.SignatureRejectRequest])
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct AuthorizationErrorResponse : Swift.Codable {
+  public var error: Swift.String?
+  public var errorDescription: Swift.String?
+  public init(error: Swift.String?, errorDescription: Swift.String?)
+  public enum CodingKeys : Swift.String, Swift.CodingKey {
+    case error
+    case errorDescription
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+    public init?(stringValue: Swift.String)
+    public var intValue: Swift.Int? {
+      get
+    }
+    public init?(intValue: Swift.Int)
+  }
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct ClientCheckpointList : Swift.Codable {
+  public var meta: biidPublicAPIClient.ListMeta?
+  public var items: [biidPublicAPIClient.ClientCheckpointResponse]?
+  public init(meta: biidPublicAPIClient.ListMeta?, items: [biidPublicAPIClient.ClientCheckpointResponse]?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+@_hasMissingDesignatedInitializers open class ConfigAPI {
+  open class func customizationConfig(appKey: Swift.String, completion: @escaping ((biidPublicAPIClient.AppConfig?, Swift.Error?) -> Swift.Void))
+  open class func customizationConfigWithRequestBuilder(appKey: Swift.String) -> biidPublicAPIClient.RequestBuilder<biidPublicAPIClient.AppConfig>
+  open class func listCountries(completion: @escaping (([biidPublicAPIClient.CountryResponse]?, Swift.Error?) -> Swift.Void))
+  open class func listCountriesWithRequestBuilder() -> biidPublicAPIClient.RequestBuilder<[biidPublicAPIClient.CountryResponse]>
+  open class func listDocumentTypes(completion: @escaping (([biidPublicAPIClient.DocumentTypesResponse]?, Swift.Error?) -> Swift.Void))
+  open class func listDocumentTypesWithRequestBuilder() -> biidPublicAPIClient.RequestBuilder<[biidPublicAPIClient.DocumentTypesResponse]>
+  open class func menuConfig(appKey: Swift.String, completion: @escaping ((biidPublicAPIClient.AppConfig?, Swift.Error?) -> Swift.Void))
+  open class func menuConfigWithRequestBuilder(appKey: Swift.String) -> biidPublicAPIClient.RequestBuilder<biidPublicAPIClient.AppConfig>
+  @objc deinit
+}
+public struct JSONDataEncoding : Alamofire.ParameterEncoding {
+  public func encode(_ urlRequest: Alamofire.URLRequestConvertible, with parameters: Alamofire.Parameters?) throws -> Foundation.URLRequest
+  public static func encodingParameters(jsonData: Foundation.Data?) -> Alamofire.Parameters?
+}
+public struct ClientCheckpointResponse : Swift.Codable {
+  public enum OpeningHoursStatus : Swift.String, Swift.Codable {
+    case _open
+    case closed
+    case unknown
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public var _id: Swift.String?
+  public var name: Swift.String
+  public var notes: Swift.String?
+  public var openingHoursStatus: biidPublicAPIClient.ClientCheckpointResponse.OpeningHoursStatus?
+  public var contacts: biidPublicAPIClient.Contacts?
+  public var address: biidPublicAPIClient.Address?
+  public var distance: Swift.Double?
+  public init(_id: Swift.String?, name: Swift.String, notes: Swift.String?, openingHoursStatus: biidPublicAPIClient.ClientCheckpointResponse.OpeningHoursStatus?, contacts: biidPublicAPIClient.Contacts?, address: biidPublicAPIClient.Address?, distance: Swift.Double?)
+  public enum CodingKeys : Swift.String, Swift.CodingKey {
+    case _id
+    case name
+    case notes
+    case openingHoursStatus
+    case contacts
+    case address
+    case distance
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+    public init?(stringValue: Swift.String)
+    public var intValue: Swift.Int? {
+      get
+    }
+    public init?(intValue: Swift.Int)
+  }
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct TransactionSignature : Swift.Codable {
+  public var hashToSign: Swift.String?
+  public var signedHash: Swift.String?
+  public init(hashToSign: Swift.String?, signedHash: Swift.String?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+extension String : Swift.CodingKey {
+  public var stringValue: Swift.String {
+    get
+  }
+  public init?(stringValue: Swift.String)
+  public var intValue: Swift.Int? {
+    get
+  }
+  public init?(intValue: Swift.Int)
+}
+extension KeyedEncodingContainerProtocol {
+  public mutating func encodeArray<T>(_ values: [T], forKey key: Self.Key) throws where T : Swift.Encodable
+  public mutating func encodeArrayIfPresent<T>(_ values: [T]?, forKey key: Self.Key) throws where T : Swift.Encodable
+  public mutating func encodeMap<T>(_ pairs: [Self.Key : T]) throws where T : Swift.Encodable, Self.Key : Swift.Hashable
+  public mutating func encodeMapIfPresent<T>(_ pairs: [Self.Key : T]?) throws where T : Swift.Encodable, Self.Key : Swift.Hashable
+}
+extension KeyedDecodingContainerProtocol {
+  public func decodeArray<T>(_ type: T.Type, forKey key: Self.Key) throws -> [T] where T : Swift.Decodable
+  public func decodeArrayIfPresent<T>(_ type: T.Type, forKey key: Self.Key) throws -> [T]? where T : Swift.Decodable
+  public func decodeMap<T>(_ type: T.Type, excludedKeys: Swift.Set<Self.Key>) throws -> [Self.Key : T] where T : Swift.Decodable, Self.Key : Swift.Hashable
+}
+public struct ValidationErrorLinks : Swift.Codable {
+  public var _self: biidPublicAPIClient.ValidationErrorLink?
+  public init(_self: biidPublicAPIClient.ValidationErrorLink?)
+  public enum CodingKeys : Swift.String, Swift.CodingKey {
+    case _self
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+    public init?(stringValue: Swift.String)
+    public var intValue: Swift.Int? {
+      get
+    }
+    public init?(intValue: Swift.Int)
+  }
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct SignTransactionsResponse : Swift.Codable {
+  public var transactions: [biidPublicAPIClient.UserTransactionItem]
+  public init(transactions: [biidPublicAPIClient.UserTransactionItem])
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct UserTransactionItem : Swift.Codable {
+  public enum Status : Swift.String, Swift.Codable {
+    case pending
+    case expired
+    case failed
+    case rejected
+    case cancelled
+    case successful
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public var type: Swift.String?
+  public var subType: Swift.String?
+  public var _id: Swift.String?
+  public var expirationDate: Swift.String?
+  public var executionDate: Swift.String?
+  public var dateCreated: Swift.String?
+  public var status: biidPublicAPIClient.UserTransactionItem.Status?
+  public var info: biidPublicAPIClient.TransactionInfo?
+  public var actions: [Swift.String]?
+  public var authentication: biidPublicAPIClient.Transaction?
+  public var documents: [biidPublicAPIClient.UserTransactionDocument]?
+  public var signatory: biidPublicAPIClient.Signatory?
+  public init(type: Swift.String?, subType: Swift.String?, _id: Swift.String?, expirationDate: Swift.String?, executionDate: Swift.String?, dateCreated: Swift.String?, status: biidPublicAPIClient.UserTransactionItem.Status?, info: biidPublicAPIClient.TransactionInfo?, actions: [Swift.String]?, authentication: biidPublicAPIClient.Transaction?, documents: [biidPublicAPIClient.UserTransactionDocument]?, signatory: biidPublicAPIClient.Signatory?)
+  public enum CodingKeys : Swift.String, Swift.CodingKey {
+    case type
+    case subType
+    case _id
+    case expirationDate
+    case executionDate
+    case dateCreated
+    case status
+    case info
+    case actions
+    case authentication
+    case documents
+    case signatory
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+    public init?(stringValue: Swift.String)
+    public var intValue: Swift.Int? {
+      get
+    }
+    public init?(intValue: Swift.Int)
+  }
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+@_hasMissingDesignatedInitializers open class EntitiesAPI {
+  open class func getCurrentEntity(completion: @escaping ((biidPublicAPIClient.CurrentEntityResponse?, Swift.Error?) -> Swift.Void))
+  open class func getCurrentEntityWithRequestBuilder() -> biidPublicAPIClient.RequestBuilder<biidPublicAPIClient.CurrentEntityResponse>
+  open class func getEntityByUrl(urlName: Swift.String, completion: @escaping ((biidPublicAPIClient.EntityResponse?, Swift.Error?) -> Swift.Void))
+  open class func getEntityByUrlWithRequestBuilder(urlName: Swift.String) -> biidPublicAPIClient.RequestBuilder<biidPublicAPIClient.EntityResponse>
+  open class func searchForEntity(urlName: Swift.String, completion: @escaping ((biidPublicAPIClient.SearchEntityResponse?, Swift.Error?) -> Swift.Void))
+  open class func searchForEntityWithRequestBuilder(urlName: Swift.String) -> biidPublicAPIClient.RequestBuilder<biidPublicAPIClient.SearchEntityResponse>
+  @objc deinit
+}
+public struct SignatureConfirmRequest : Swift.Codable {
+  public var _id: Swift.String
+  public var signature: biidPublicAPIClient.TransactionSignature
+  public var signatory: biidPublicAPIClient.Signatory?
+  public init(_id: Swift.String, signature: biidPublicAPIClient.TransactionSignature, signatory: biidPublicAPIClient.Signatory?)
+  public enum CodingKeys : Swift.String, Swift.CodingKey {
+    case _id
+    case signature
+    case signatory
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+    public init?(stringValue: Swift.String)
+    public var intValue: Swift.Int? {
+      get
+    }
+    public init?(intValue: Swift.Int)
+  }
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+@_hasMissingDesignatedInitializers open class CheckpointsAPI {
+  open class func getCheckpoint(_id: Swift.String, location: Swift.String? = nil, completion: @escaping ((biidPublicAPIClient.ClientFullCheckpointResponse?, Swift.Error?) -> Swift.Void))
+  open class func getCheckpointWithRequestBuilder(_id: Swift.String, location: Swift.String? = nil) -> biidPublicAPIClient.RequestBuilder<biidPublicAPIClient.ClientFullCheckpointResponse>
+  public enum Sort_listCheckpoints : Swift.String {
+    case abc
+    case spatial
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public enum Order_listCheckpoints : Swift.String {
+    case asc
+    case desc
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  open class func listCheckpoints(max: Swift.Int? = nil, offset: Swift.Int? = nil, location: Swift.String? = nil, sort: biidPublicAPIClient.CheckpointsAPI.Sort_listCheckpoints? = nil, order: biidPublicAPIClient.CheckpointsAPI.Order_listCheckpoints? = nil, completion: @escaping ((biidPublicAPIClient.ClientCheckpointList?, Swift.Error?) -> Swift.Void))
+  open class func listCheckpointsWithRequestBuilder(max: Swift.Int? = nil, offset: Swift.Int? = nil, location: Swift.String? = nil, sort: biidPublicAPIClient.CheckpointsAPI.Sort_listCheckpoints? = nil, order: biidPublicAPIClient.CheckpointsAPI.Order_listCheckpoints? = nil) -> biidPublicAPIClient.RequestBuilder<biidPublicAPIClient.ClientCheckpointList>
+  @objc deinit
+}
+public struct ValidationErrorList : Swift.Codable {
+  public var errors: [biidPublicAPIClient.ValidationError]?
+  public init(errors: [biidPublicAPIClient.ValidationError]?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct ModelErrorResponse : Swift.Codable {
+  public var error: Swift.String?
+  public var errorDescription: Swift.String?
+  public var errorDetails: biidPublicAPIClient.JSONValue?
+  public var traceId: Swift.String?
+  public init(error: Swift.String?, errorDescription: Swift.String?, errorDetails: biidPublicAPIClient.JSONValue?, traceId: Swift.String?)
+  public enum CodingKeys : Swift.String, Swift.CodingKey {
+    case error
+    case errorDescription
+    case errorDetails
+    case traceId
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+    public init?(stringValue: Swift.String)
+    public var intValue: Swift.Int? {
+      get
+    }
+    public init?(intValue: Swift.Int)
+  }
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+@_hasMissingDesignatedInitializers open class SwaggerClientAPI {
+  public static var basePath: Swift.String
+  public static var credential: Foundation.URLCredential?
+  public static var customHeaders: [Swift.String : Swift.String]
+  public static var requestBuilderFactory: biidPublicAPIClient.RequestBuilderFactory
+  @objc deinit
+}
+open class RequestBuilder<T> {
+  final public let parameters: [Swift.String : Any]?
+  final public let isBody: Swift.Bool
+  final public let method: Swift.String
+  final public let URLString: Swift.String
+  public var onProgressReady: ((Foundation.Progress) -> ())?
+  required public init(method: Swift.String, URLString: Swift.String, parameters: [Swift.String : Any]?, isBody: Swift.Bool, headers: [Swift.String : Swift.String] = [:])
+  open func addHeaders(_ aHeaders: [Swift.String : Swift.String])
+  open func execute(_ completion: @escaping (biidPublicAPIClient.Response<T>?, Swift.Error?) -> Swift.Void)
+  public func addHeader(name: Swift.String, value: Swift.String) -> Self
+  open func addCredential() -> Self
+  @objc deinit
+}
+public protocol RequestBuilderFactory {
+  func getNonDecodableBuilder<T>() -> biidPublicAPIClient.RequestBuilder<T>.Type
+  func getBuilder<T>() -> biidPublicAPIClient.RequestBuilder<T>.Type where T : Swift.Decodable
+}
+public struct CurrentEntityResponse : Swift.Codable {
+  public enum Status : Swift.String, Swift.Codable {
+    case unverified
+    case unregistered
+    case unaccredited
+    case uncertified
+    case certificatePending
+    case certified
+    case locked
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public var _id: Swift.String?
+  public var name: Swift.String?
+  public var iconUrl: Swift.String?
+  public var _description: Swift.String?
+  public var urlName: Swift.String?
+  public var isSystemEntity: Swift.Bool?
+  public var isOnboarding: Swift.Bool?
+  public var terms: biidPublicAPIClient.Document?
+  public var privacy: biidPublicAPIClient.Document?
+  public var status: biidPublicAPIClient.CurrentEntityResponse.Status?
+  public var fields: [biidPublicAPIClient.EntityField]?
+  public init(_id: Swift.String?, name: Swift.String?, iconUrl: Swift.String?, _description: Swift.String?, urlName: Swift.String?, isSystemEntity: Swift.Bool?, isOnboarding: Swift.Bool?, terms: biidPublicAPIClient.Document?, privacy: biidPublicAPIClient.Document?, status: biidPublicAPIClient.CurrentEntityResponse.Status?, fields: [biidPublicAPIClient.EntityField]?)
+  public enum CodingKeys : Swift.String, Swift.CodingKey {
+    case _id
+    case name
+    case iconUrl
+    case _description
+    case urlName
+    case isSystemEntity
+    case isOnboarding
+    case terms
+    case privacy
+    case status
+    case fields
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+    public init?(stringValue: Swift.String)
+    public var intValue: Swift.Int? {
+      get
+    }
+    public init?(intValue: Swift.Int)
+  }
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+@_hasMissingDesignatedInitializers open class AuthorizationAPI {
+  open class func getClientToken(grantType: Swift.String, assertion: Swift.String, completion: @escaping ((biidPublicAPIClient.AccessToken?, Swift.Error?) -> Swift.Void))
+  open class func getClientTokenWithRequestBuilder(grantType: Swift.String, assertion: Swift.String) -> biidPublicAPIClient.RequestBuilder<biidPublicAPIClient.AccessToken>
+  @objc deinit
+}
+public struct DocumentTypesResponse : Swift.Codable {
+  public var key: Swift.String?
+  public var label: Swift.String?
+  public init(key: Swift.String?, label: Swift.String?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+@_inheritsConvenienceInitializers open class AlamofireRequestBuilder<T> : biidPublicAPIClient.RequestBuilder<T> {
+  required public init(method: Swift.String, URLString: Swift.String, parameters: [Swift.String : Any]?, isBody: Swift.Bool, headers: [Swift.String : Swift.String] = [:])
+  open func createSessionManager() -> Alamofire.SessionManager
+  open func contentTypeForFormPart(fileURL: Foundation.URL) -> Swift.String?
+  open func makeRequest(manager: Alamofire.SessionManager, method: Alamofire.HTTPMethod, encoding: Alamofire.ParameterEncoding, headers: [Swift.String : Swift.String]) -> Alamofire.DataRequest
+  override open func execute(_ completion: @escaping (biidPublicAPIClient.Response<T>?, Swift.Error?) -> Swift.Void)
+  open func buildHeaders() -> [Swift.String : Swift.String]
+  @objc deinit
+}
+public enum AlamofireDecodableRequestBuilderError : Swift.Error {
+  case emptyDataResponse
+  case nilHTTPResponse
+  case jsonDecoding(Swift.DecodingError)
+  case generalError(Swift.Error)
+}
+@_inheritsConvenienceInitializers open class AlamofireDecodableRequestBuilder<T> : biidPublicAPIClient.AlamofireRequestBuilder<T> where T : Swift.Decodable {
+  @objc deinit
+  required public init(method: Swift.String, URLString: Swift.String, parameters: [Swift.String : Any]?, isBody: Swift.Bool, headers: [Swift.String : Swift.String] = super)
+}
+public struct CreateUserRequest : Swift.Codable {
+  public var phoneNumber: Swift.String?
+  public init(phoneNumber: Swift.String?)
+  public init(phoneNumber: Swift.String?, additionalProperties: [Swift.String : Swift.String]?)
+  public var additionalProperties: [Swift.String : Swift.String]
+  public subscript(key: Swift.String) -> Swift.String? {
+    get
+    set
+  }
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct UserTransactionDocument : Swift.Codable {
+  public var _id: Swift.String?
+  public var signature: biidPublicAPIClient.TransactionSignature?
+  public var document: biidPublicAPIClient.Document?
+  public init(_id: Swift.String?, signature: biidPublicAPIClient.TransactionSignature?, document: biidPublicAPIClient.Document?)
+  public enum CodingKeys : Swift.String, Swift.CodingKey {
+    case _id
+    case signature
+    case document
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+    public init?(stringValue: Swift.String)
+    public var intValue: Swift.Int? {
+      get
+    }
+    public init?(intValue: Swift.Int)
+  }
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct UpdatePhoneRequest : Swift.Codable {
+  public var phoneNumber: Swift.String
+  public var diac: Swift.String
+  public init(phoneNumber: Swift.String, diac: Swift.String)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct ValidationErrorLink : Swift.Codable {
+  public var href: Swift.String?
+  public init(href: Swift.String?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct EntityFieldOption : Swift.Codable {
+  public var key: Swift.String?
+  public var label: Swift.String?
+  public init(key: Swift.String?, label: Swift.String?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct User : Swift.Codable {
+  public var username: Swift.String?
+  public init(username: Swift.String?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+@_hasMissingDesignatedInitializers open class TransactionsAPI {
+  open class func findEvidence(_id: Swift.String, completion: @escaping ((biidPublicAPIClient.EvidenceResponse?, Swift.Error?) -> Swift.Void))
+  open class func findEvidenceWithRequestBuilder(_id: Swift.String) -> biidPublicAPIClient.RequestBuilder<biidPublicAPIClient.EvidenceResponse>
+  open class func getTransactionInfo(_id: Swift.String, completion: @escaping ((biidPublicAPIClient.UserTransactionItem?, Swift.Error?) -> Swift.Void))
+  open class func getTransactionInfoWithRequestBuilder(_id: Swift.String) -> biidPublicAPIClient.RequestBuilder<biidPublicAPIClient.UserTransactionItem>
+  open class func rejectTransaction(body: biidPublicAPIClient.RejectTransactionsRequest, completion: @escaping ((biidPublicAPIClient.SignTransactionsResponse?, Swift.Error?) -> Swift.Void))
+  open class func rejectTransactionWithRequestBuilder(body: biidPublicAPIClient.RejectTransactionsRequest) -> biidPublicAPIClient.RequestBuilder<biidPublicAPIClient.SignTransactionsResponse>
+  open class func requestAuthTransaction(body: biidPublicAPIClient.AuthTransactionRequest, completion: @escaping ((biidPublicAPIClient.UserTransactionItem?, Swift.Error?) -> Swift.Void))
+  open class func requestAuthTransactionWithRequestBuilder(body: biidPublicAPIClient.AuthTransactionRequest) -> biidPublicAPIClient.RequestBuilder<biidPublicAPIClient.UserTransactionItem>
+  open class func showDocumentEvidence(_id: Swift.String, seid: Swift.String, completion: @escaping ((biidPublicAPIClient.EvidenceResponse?, Swift.Error?) -> Swift.Void))
+  open class func showDocumentEvidenceWithRequestBuilder(_id: Swift.String, seid: Swift.String) -> biidPublicAPIClient.RequestBuilder<biidPublicAPIClient.EvidenceResponse>
+  open class func showEvidence(_id: Swift.String, completion: @escaping ((biidPublicAPIClient.EvidenceResponse?, Swift.Error?) -> Swift.Void))
+  open class func showEvidenceWithRequestBuilder(_id: Swift.String) -> biidPublicAPIClient.RequestBuilder<biidPublicAPIClient.EvidenceResponse>
+  open class func signTransaction(body: biidPublicAPIClient.SignTransactionsRequest, completion: @escaping ((biidPublicAPIClient.SignTransactionsResponse?, Swift.Error?) -> Swift.Void))
+  open class func signTransactionWithRequestBuilder(body: biidPublicAPIClient.SignTransactionsRequest) -> biidPublicAPIClient.RequestBuilder<biidPublicAPIClient.SignTransactionsResponse>
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers open class UsersAPI {
+  open class func certifyUser(body: biidPublicAPIClient.CertifyRequest, completion: @escaping ((biidPublicAPIClient.CertifyResponse?, Swift.Error?) -> Swift.Void))
+  open class func certifyUserWithRequestBuilder(body: biidPublicAPIClient.CertifyRequest) -> biidPublicAPIClient.RequestBuilder<biidPublicAPIClient.CertifyResponse>
+  open class func confirmDevice(body: biidPublicAPIClient.VerifyPhoneRequest, completion: @escaping ((biidPublicAPIClient.UserResponse?, Swift.Error?) -> Swift.Void))
+  open class func confirmDeviceWithRequestBuilder(body: biidPublicAPIClient.VerifyPhoneRequest) -> biidPublicAPIClient.RequestBuilder<biidPublicAPIClient.UserResponse>
+  open class func deleteDevice(_id: Swift.Int, completion: @escaping ((Swift.Void?, Swift.Error?) -> Swift.Void))
+  open class func deleteDeviceWithRequestBuilder(_id: Swift.Int) -> biidPublicAPIClient.RequestBuilder<Swift.Void>
+  open class func extendPermissions(body: biidPublicAPIClient.DiacCode, completion: @escaping ((Swift.Void?, Swift.Error?) -> Swift.Void))
+  open class func extendPermissionsWithRequestBuilder(body: biidPublicAPIClient.DiacCode) -> biidPublicAPIClient.RequestBuilder<Swift.Void>
+  open class func generateDiacForL1(completion: @escaping ((biidPublicAPIClient.DiacCode?, Swift.Error?) -> Swift.Void))
+  open class func generateDiacForL1WithRequestBuilder() -> biidPublicAPIClient.RequestBuilder<biidPublicAPIClient.DiacCode>
+  open class func getCsrData(completion: @escaping ((biidPublicAPIClient.CsrResponse?, Swift.Error?) -> Swift.Void))
+  open class func getCsrDataWithRequestBuilder() -> biidPublicAPIClient.RequestBuilder<biidPublicAPIClient.CsrResponse>
+  open class func getUsersCertificate(completion: @escaping ((biidPublicAPIClient.CertifyResponse?, Swift.Error?) -> Swift.Void))
+  open class func getUsersCertificateWithRequestBuilder() -> biidPublicAPIClient.RequestBuilder<biidPublicAPIClient.CertifyResponse>
+  open class func getUsersData(completion: @escaping ((biidPublicAPIClient.UserResponse?, Swift.Error?) -> Swift.Void))
+  open class func getUsersDataWithRequestBuilder() -> biidPublicAPIClient.RequestBuilder<biidPublicAPIClient.UserResponse>
+  open class func listUsersDevices(completion: @escaping ((biidPublicAPIClient.UserDeviceList?, Swift.Error?) -> Swift.Void))
+  open class func listUsersDevicesWithRequestBuilder() -> biidPublicAPIClient.RequestBuilder<biidPublicAPIClient.UserDeviceList>
+  open class func listUsersEntities(completion: @escaping ((biidPublicAPIClient.EntityList?, Swift.Error?) -> Swift.Void))
+  open class func listUsersEntitiesWithRequestBuilder() -> biidPublicAPIClient.RequestBuilder<biidPublicAPIClient.EntityList>
+  public enum Status_listUsersTransactions : Swift.String {
+    case pending
+    case expired
+    case failed
+    case rejected
+    case cancelled
+    case successful
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public enum ModelType_listUsersTransactions : Swift.String {
+    case auth
+    case doc
+    case msg
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public enum DocumentType_listUsersTransactions : Swift.String {
+    case pdf
+    case xml
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  open class func listUsersTransactions(max: Swift.Int? = nil, offset: Swift.Int? = nil, status: [Swift.String]? = nil, type: [Swift.String]? = nil, documentType: [Swift.String]? = nil, completion: @escaping ((biidPublicAPIClient.UserTransactionResponse?, Swift.Error?) -> Swift.Void))
+  open class func listUsersTransactionsWithRequestBuilder(max: Swift.Int? = nil, offset: Swift.Int? = nil, status: [Swift.String]? = nil, type: [Swift.String]? = nil, documentType: [Swift.String]? = nil) -> biidPublicAPIClient.RequestBuilder<biidPublicAPIClient.UserTransactionResponse>
+  open class func registerUser(body: biidPublicAPIClient.CreateUserRequest, completion: @escaping ((biidPublicAPIClient.UserResponse?, Swift.Error?) -> Swift.Void))
+  open class func registerUserWithRequestBuilder(body: biidPublicAPIClient.CreateUserRequest) -> biidPublicAPIClient.RequestBuilder<biidPublicAPIClient.UserResponse>
+  open class func requestDeviceVerification(completion: @escaping ((Swift.Void?, Swift.Error?) -> Swift.Void))
+  open class func requestDeviceVerificationWithRequestBuilder() -> biidPublicAPIClient.RequestBuilder<Swift.Void>
+  open class func setDevicePushId(body: biidPublicAPIClient.RegisterDeviceRequest, completion: @escaping ((biidPublicAPIClient.RegisterDeviceRequest?, Swift.Error?) -> Swift.Void))
+  open class func setDevicePushIdWithRequestBuilder(body: biidPublicAPIClient.RegisterDeviceRequest) -> biidPublicAPIClient.RequestBuilder<biidPublicAPIClient.RegisterDeviceRequest>
+  open class func uncertifyUser(completion: @escaping ((Swift.Void?, Swift.Error?) -> Swift.Void))
+  open class func uncertifyUserWithRequestBuilder() -> biidPublicAPIClient.RequestBuilder<Swift.Void>
+  open class func unsetDevicePushId(completion: @escaping ((Swift.Void?, Swift.Error?) -> Swift.Void))
+  open class func unsetDevicePushIdWithRequestBuilder() -> biidPublicAPIClient.RequestBuilder<Swift.Void>
+  open class func updateUsersData(body: biidPublicAPIClient.UserRequest, completion: @escaping ((biidPublicAPIClient.UserResponse?, Swift.Error?) -> Swift.Void))
+  open class func updateUsersDataWithRequestBuilder(body: biidPublicAPIClient.UserRequest) -> biidPublicAPIClient.RequestBuilder<biidPublicAPIClient.UserResponse>
+  open class func updateUsersPhone(body: biidPublicAPIClient.UpdatePhoneRequest, completion: @escaping ((Swift.Void?, Swift.Error?) -> Swift.Void))
+  open class func updateUsersPhoneWithRequestBuilder(body: biidPublicAPIClient.UpdatePhoneRequest) -> biidPublicAPIClient.RequestBuilder<Swift.Void>
+  @objc deinit
+}
+public struct VerifyPhoneRequest : Swift.Codable {
+  public var code: Swift.String
+  public init(code: Swift.String)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct OnboardingProcess : Swift.Codable {
+  public enum Provider : Swift.String, Swift.Codable {
+    case ondato
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public enum Lang : Swift.String, Swift.Codable {
+    case en
+    case es
+    case ca
+    case lt
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public enum Status : Swift.String, Swift.Codable {
+    case started
+    case onprocess
+    case accepted
+    case rejected
+    case cancelled
+    case expired
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public var _id: Swift.Double?
+  public var identityId: Swift.Double?
+  public var entityId: Swift.Double?
+  public var provider: biidPublicAPIClient.OnboardingProcess.Provider?
+  public var externalId: Swift.String?
+  public var nextUrl: Swift.String?
+  public var callbackUrl: biidPublicAPIClient.JSONValue?
+  public var lang: biidPublicAPIClient.OnboardingProcess.Lang?
+  public var evidences: [biidPublicAPIClient.OnboardingEvidence]?
+  public var data: Swift.String?
+  public var status: biidPublicAPIClient.OnboardingProcess.Status?
+  public var dateCreated: Swift.String?
+  public var lastUpdated: Swift.String?
+  public init(_id: Swift.Double?, identityId: Swift.Double?, entityId: Swift.Double?, provider: biidPublicAPIClient.OnboardingProcess.Provider?, externalId: Swift.String?, nextUrl: Swift.String?, callbackUrl: biidPublicAPIClient.JSONValue?, lang: biidPublicAPIClient.OnboardingProcess.Lang?, evidences: [biidPublicAPIClient.OnboardingEvidence]?, data: Swift.String?, status: biidPublicAPIClient.OnboardingProcess.Status?, dateCreated: Swift.String?, lastUpdated: Swift.String?)
+  public enum CodingKeys : Swift.String, Swift.CodingKey {
+    case _id
+    case identityId
+    case entityId
+    case provider
+    case externalId
+    case nextUrl
+    case callbackUrl
+    case lang
+    case evidences
+    case data
+    case status
+    case dateCreated
+    case lastUpdated
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+    public init?(stringValue: Swift.String)
+    public var intValue: Swift.Int? {
+      get
+    }
+    public init?(intValue: Swift.Int)
+  }
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct TotalMeta : Swift.Codable {
+  public var totalCount: Swift.Int?
+  public init(totalCount: Swift.Int?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct CertifyRequest : Swift.Codable {
+  public var diac: Swift.String
+  public var csr: Swift.String
+  public var password: Swift.String?
+  public init(diac: Swift.String, csr: Swift.String, password: Swift.String?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct CsrResponse : Swift.Codable {
+  public var attributes: [biidPublicAPIClient.CsrAttributeResponse]?
+  public init(attributes: [biidPublicAPIClient.CsrAttributeResponse]?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct ValidationErrorResponse : Swift.Codable {
+  public var error: Swift.String?
+  public var errorDescription: Swift.String?
+  public var errorDetails: biidPublicAPIClient.ValidationErrorDetails?
+  public init(error: Swift.String?, errorDescription: Swift.String?, errorDetails: biidPublicAPIClient.ValidationErrorDetails?)
+  public enum CodingKeys : Swift.String, Swift.CodingKey {
+    case error
+    case errorDescription
+    case errorDetails
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+    public init?(stringValue: Swift.String)
+    public var intValue: Swift.Int? {
+      get
+    }
+    public init?(intValue: Swift.Int)
+  }
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct CertifyResponse : Swift.Codable {
+  public var type: Swift.String?
+  public var status: Swift.String?
+  public var content: Swift.String?
+  public var expiresAt: Swift.String?
+  public var serialNumber: Swift.String?
+  public init(type: Swift.String?, status: Swift.String?, content: Swift.String?, expiresAt: Swift.String?, serialNumber: Swift.String?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct UserDeviceList : Swift.Codable {
+  public var meta: biidPublicAPIClient.TotalMeta?
+  public var items: [biidPublicAPIClient.UserDeviceResponse]?
+  public init(meta: biidPublicAPIClient.TotalMeta?, items: [biidPublicAPIClient.UserDeviceResponse]?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct OnboardingProcessRequest : Swift.Codable {
+  public enum Lang : Swift.String, Swift.Codable {
+    case en
+    case es
+    case ca
+    case lt
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public var nextUrl: Swift.String?
+  public var callbackUrl: biidPublicAPIClient.JSONValue?
+  public var lang: biidPublicAPIClient.OnboardingProcessRequest.Lang?
+  public init(nextUrl: Swift.String?, callbackUrl: biidPublicAPIClient.JSONValue?, lang: biidPublicAPIClient.OnboardingProcessRequest.Lang?)
+  public enum CodingKeys : Swift.String, Swift.CodingKey {
+    case nextUrl
+    case callbackUrl
+    case lang
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+    public init?(stringValue: Swift.String)
+    public var intValue: Swift.Int? {
+      get
+    }
+    public init?(intValue: Swift.Int)
+  }
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct Holidays : Swift.Codable {
+  public var dateFrom: Foundation.Date?
+  public var dateTo: Foundation.Date?
+  public var name: Swift.String?
+  public init(dateFrom: Foundation.Date?, dateTo: Foundation.Date?, name: Swift.String?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct AccessToken : Swift.Codable {
+  public var expiresIn: Swift.Int?
+  public var tokenType: Swift.String?
+  public var roles: [Swift.String]?
+  public var accessToken: Swift.String?
+  public var username: Swift.String?
+  public init(expiresIn: Swift.Int?, tokenType: Swift.String?, roles: [Swift.String]?, accessToken: Swift.String?, username: Swift.String?)
+  public enum CodingKeys : Swift.String, Swift.CodingKey {
+    case expiresIn
+    case tokenType
+    case roles
+    case accessToken
+    case username
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+    public init?(stringValue: Swift.String)
+    public var intValue: Swift.Int? {
+      get
+    }
+    public init?(intValue: Swift.Int)
+  }
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct Contacts : Swift.Codable {
+  public var website: Swift.String?
+  public var email: Swift.String?
+  public var phone: Swift.String?
+  public var fax: Swift.String?
+  public var facebook: Swift.String?
+  public var twitter: Swift.String?
+  public var instagram: Swift.String?
+  public var pinterest: Swift.String?
+  public var foursquare: Swift.String?
+  public init(website: Swift.String?, email: Swift.String?, phone: Swift.String?, fax: Swift.String?, facebook: Swift.String?, twitter: Swift.String?, instagram: Swift.String?, pinterest: Swift.String?, foursquare: Swift.String?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct OpeningHours : Swift.Codable {
+  public var dateFrom: Foundation.Date?
+  public var dateTo: Foundation.Date?
+  public var schedule: [biidPublicAPIClient.OpeningHoursDay]?
+  public init(dateFrom: Foundation.Date?, dateTo: Foundation.Date?, schedule: [biidPublicAPIClient.OpeningHoursDay]?)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct EntityResponse : Swift.Codable {
+  public enum Status : Swift.String, Swift.Codable {
+    case unverified
+    case unregistered
+    case unaccredited
+    case uncertified
+    case certificatePending
+    case certified
+    case locked
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public var _id: Swift.String?
+  public var name: Swift.String?
+  public var iconUrl: Swift.String?
+  public var _description: Swift.String?
+  public var urlName: Swift.String?
+  public var isSystemEntity: Swift.Bool?
+  public var isOnboarding: Swift.Bool?
+  public var terms: biidPublicAPIClient.Document?
+  public var privacy: biidPublicAPIClient.Document?
+  public var status: biidPublicAPIClient.EntityResponse.Status?
+  public init(_id: Swift.String?, name: Swift.String?, iconUrl: Swift.String?, _description: Swift.String?, urlName: Swift.String?, isSystemEntity: Swift.Bool?, isOnboarding: Swift.Bool?, terms: biidPublicAPIClient.Document?, privacy: biidPublicAPIClient.Document?, status: biidPublicAPIClient.EntityResponse.Status?)
+  public enum CodingKeys : Swift.String, Swift.CodingKey {
+    case _id
+    case name
+    case iconUrl
+    case _description
+    case urlName
+    case isSystemEntity
+    case isOnboarding
+    case terms
+    case privacy
+    case status
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+    public init?(stringValue: Swift.String)
+    public var intValue: Swift.Int? {
+      get
+    }
+    public init?(intValue: Swift.Int)
+  }
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+extension biidPublicAPIClient.EntityField.InputType : Swift.Equatable {}
+extension biidPublicAPIClient.EntityField.InputType : Swift.Hashable {}
+extension biidPublicAPIClient.EntityField.InputType : Swift.RawRepresentable {}
+extension biidPublicAPIClient.EntityField.CodingKeys : Swift.Equatable {}
+extension biidPublicAPIClient.EntityField.CodingKeys : Swift.Hashable {}
+extension biidPublicAPIClient.EntityField.CodingKeys : Swift.RawRepresentable {}
+extension biidPublicAPIClient.SignatureRejectRequest.CodingKeys : Swift.Equatable {}
+extension biidPublicAPIClient.SignatureRejectRequest.CodingKeys : Swift.Hashable {}
+extension biidPublicAPIClient.SignatureRejectRequest.CodingKeys : Swift.RawRepresentable {}
+extension biidPublicAPIClient.UserDeviceResponse.UserStatus : Swift.Equatable {}
+extension biidPublicAPIClient.UserDeviceResponse.UserStatus : Swift.Hashable {}
+extension biidPublicAPIClient.UserDeviceResponse.UserStatus : Swift.RawRepresentable {}
+extension biidPublicAPIClient.UserDeviceResponse.CodingKeys : Swift.Equatable {}
+extension biidPublicAPIClient.UserDeviceResponse.CodingKeys : Swift.Hashable {}
+extension biidPublicAPIClient.UserDeviceResponse.CodingKeys : Swift.RawRepresentable {}
+extension biidPublicAPIClient.SearchEntityResponse.CodingKeys : Swift.Equatable {}
+extension biidPublicAPIClient.SearchEntityResponse.CodingKeys : Swift.Hashable {}
+extension biidPublicAPIClient.SearchEntityResponse.CodingKeys : Swift.RawRepresentable {}
+extension biidPublicAPIClient.Document.CodingKeys : Swift.Equatable {}
+extension biidPublicAPIClient.Document.CodingKeys : Swift.Hashable {}
+extension biidPublicAPIClient.Document.CodingKeys : Swift.RawRepresentable {}
+extension biidPublicAPIClient.ClientFullCheckpointResponse.OpeningHoursStatus : Swift.Equatable {}
+extension biidPublicAPIClient.ClientFullCheckpointResponse.OpeningHoursStatus : Swift.Hashable {}
+extension biidPublicAPIClient.ClientFullCheckpointResponse.OpeningHoursStatus : Swift.RawRepresentable {}
+extension biidPublicAPIClient.ClientFullCheckpointResponse.CodingKeys : Swift.Equatable {}
+extension biidPublicAPIClient.ClientFullCheckpointResponse.CodingKeys : Swift.Hashable {}
+extension biidPublicAPIClient.ClientFullCheckpointResponse.CodingKeys : Swift.RawRepresentable {}
+extension biidPublicAPIClient.OnboardingEvidence.CodingKeys : Swift.Equatable {}
+extension biidPublicAPIClient.OnboardingEvidence.CodingKeys : Swift.Hashable {}
+extension biidPublicAPIClient.OnboardingEvidence.CodingKeys : Swift.RawRepresentable {}
+extension biidPublicAPIClient.EvidenceResponse.CodingKeys : Swift.Equatable {}
+extension biidPublicAPIClient.EvidenceResponse.CodingKeys : Swift.Hashable {}
+extension biidPublicAPIClient.EvidenceResponse.CodingKeys : Swift.RawRepresentable {}
+extension biidPublicAPIClient.ValidationErrorDetails.CodingKeys : Swift.Equatable {}
+extension biidPublicAPIClient.ValidationErrorDetails.CodingKeys : Swift.Hashable {}
+extension biidPublicAPIClient.ValidationErrorDetails.CodingKeys : Swift.RawRepresentable {}
+extension biidPublicAPIClient.EntityListItem.Status : Swift.Equatable {}
+extension biidPublicAPIClient.EntityListItem.Status : Swift.Hashable {}
+extension biidPublicAPIClient.EntityListItem.Status : Swift.RawRepresentable {}
+extension biidPublicAPIClient.EntityListItem.CodingKeys : Swift.Equatable {}
+extension biidPublicAPIClient.EntityListItem.CodingKeys : Swift.Hashable {}
+extension biidPublicAPIClient.EntityListItem.CodingKeys : Swift.RawRepresentable {}
+extension biidPublicAPIClient.ValidationError.CodingKeys : Swift.Equatable {}
+extension biidPublicAPIClient.ValidationError.CodingKeys : Swift.Hashable {}
+extension biidPublicAPIClient.ValidationError.CodingKeys : Swift.RawRepresentable {}
+extension biidPublicAPIClient.OpeningHoursDay.CodingKeys : Swift.Equatable {}
+extension biidPublicAPIClient.OpeningHoursDay.CodingKeys : Swift.Hashable {}
+extension biidPublicAPIClient.OpeningHoursDay.CodingKeys : Swift.RawRepresentable {}
+extension biidPublicAPIClient.VerificationProcess.Provider : Swift.Equatable {}
+extension biidPublicAPIClient.VerificationProcess.Provider : Swift.Hashable {}
+extension biidPublicAPIClient.VerificationProcess.Provider : Swift.RawRepresentable {}
+extension biidPublicAPIClient.VerificationProcess.Status : Swift.Equatable {}
+extension biidPublicAPIClient.VerificationProcess.Status : Swift.Hashable {}
+extension biidPublicAPIClient.VerificationProcess.Status : Swift.RawRepresentable {}
+extension biidPublicAPIClient.VerificationProcess.CodingKeys : Swift.Equatable {}
+extension biidPublicAPIClient.VerificationProcess.CodingKeys : Swift.Hashable {}
+extension biidPublicAPIClient.VerificationProcess.CodingKeys : Swift.RawRepresentable {}
+extension biidPublicAPIClient.UserResponse.OnboardingStatus : Swift.Equatable {}
+extension biidPublicAPIClient.UserResponse.OnboardingStatus : Swift.Hashable {}
+extension biidPublicAPIClient.UserResponse.OnboardingStatus : Swift.RawRepresentable {}
+extension biidPublicAPIClient.UserResponse.Status : Swift.Equatable {}
+extension biidPublicAPIClient.UserResponse.Status : Swift.Hashable {}
+extension biidPublicAPIClient.UserResponse.Status : Swift.RawRepresentable {}
+extension biidPublicAPIClient.UserResponse.AccreditationLevel : Swift.Equatable {}
+extension biidPublicAPIClient.UserResponse.AccreditationLevel : Swift.Hashable {}
+extension biidPublicAPIClient.UserResponse.AccreditationLevel : Swift.RawRepresentable {}
+extension biidPublicAPIClient.AuthorizationErrorResponse.CodingKeys : Swift.Equatable {}
+extension biidPublicAPIClient.AuthorizationErrorResponse.CodingKeys : Swift.Hashable {}
+extension biidPublicAPIClient.AuthorizationErrorResponse.CodingKeys : Swift.RawRepresentable {}
+extension biidPublicAPIClient.ClientCheckpointResponse.OpeningHoursStatus : Swift.Equatable {}
+extension biidPublicAPIClient.ClientCheckpointResponse.OpeningHoursStatus : Swift.Hashable {}
+extension biidPublicAPIClient.ClientCheckpointResponse.OpeningHoursStatus : Swift.RawRepresentable {}
+extension biidPublicAPIClient.ClientCheckpointResponse.CodingKeys : Swift.Equatable {}
+extension biidPublicAPIClient.ClientCheckpointResponse.CodingKeys : Swift.Hashable {}
+extension biidPublicAPIClient.ClientCheckpointResponse.CodingKeys : Swift.RawRepresentable {}
+extension biidPublicAPIClient.ValidationErrorLinks.CodingKeys : Swift.Equatable {}
+extension biidPublicAPIClient.ValidationErrorLinks.CodingKeys : Swift.Hashable {}
+extension biidPublicAPIClient.ValidationErrorLinks.CodingKeys : Swift.RawRepresentable {}
+extension biidPublicAPIClient.UserTransactionItem.Status : Swift.Equatable {}
+extension biidPublicAPIClient.UserTransactionItem.Status : Swift.Hashable {}
+extension biidPublicAPIClient.UserTransactionItem.Status : Swift.RawRepresentable {}
+extension biidPublicAPIClient.UserTransactionItem.CodingKeys : Swift.Equatable {}
+extension biidPublicAPIClient.UserTransactionItem.CodingKeys : Swift.Hashable {}
+extension biidPublicAPIClient.UserTransactionItem.CodingKeys : Swift.RawRepresentable {}
+extension biidPublicAPIClient.SignatureConfirmRequest.CodingKeys : Swift.Equatable {}
+extension biidPublicAPIClient.SignatureConfirmRequest.CodingKeys : Swift.Hashable {}
+extension biidPublicAPIClient.SignatureConfirmRequest.CodingKeys : Swift.RawRepresentable {}
+extension biidPublicAPIClient.CheckpointsAPI.Sort_listCheckpoints : Swift.Equatable {}
+extension biidPublicAPIClient.CheckpointsAPI.Sort_listCheckpoints : Swift.Hashable {}
+extension biidPublicAPIClient.CheckpointsAPI.Sort_listCheckpoints : Swift.RawRepresentable {}
+extension biidPublicAPIClient.CheckpointsAPI.Order_listCheckpoints : Swift.Equatable {}
+extension biidPublicAPIClient.CheckpointsAPI.Order_listCheckpoints : Swift.Hashable {}
+extension biidPublicAPIClient.CheckpointsAPI.Order_listCheckpoints : Swift.RawRepresentable {}
+extension biidPublicAPIClient.ModelErrorResponse.CodingKeys : Swift.Equatable {}
+extension biidPublicAPIClient.ModelErrorResponse.CodingKeys : Swift.Hashable {}
+extension biidPublicAPIClient.ModelErrorResponse.CodingKeys : Swift.RawRepresentable {}
+extension biidPublicAPIClient.CurrentEntityResponse.Status : Swift.Equatable {}
+extension biidPublicAPIClient.CurrentEntityResponse.Status : Swift.Hashable {}
+extension biidPublicAPIClient.CurrentEntityResponse.Status : Swift.RawRepresentable {}
+extension biidPublicAPIClient.CurrentEntityResponse.CodingKeys : Swift.Equatable {}
+extension biidPublicAPIClient.CurrentEntityResponse.CodingKeys : Swift.Hashable {}
+extension biidPublicAPIClient.CurrentEntityResponse.CodingKeys : Swift.RawRepresentable {}
+extension biidPublicAPIClient.UserTransactionDocument.CodingKeys : Swift.Equatable {}
+extension biidPublicAPIClient.UserTransactionDocument.CodingKeys : Swift.Hashable {}
+extension biidPublicAPIClient.UserTransactionDocument.CodingKeys : Swift.RawRepresentable {}
+extension biidPublicAPIClient.UsersAPI.Status_listUsersTransactions : Swift.Equatable {}
+extension biidPublicAPIClient.UsersAPI.Status_listUsersTransactions : Swift.Hashable {}
+extension biidPublicAPIClient.UsersAPI.Status_listUsersTransactions : Swift.RawRepresentable {}
+extension biidPublicAPIClient.UsersAPI.ModelType_listUsersTransactions : Swift.Equatable {}
+extension biidPublicAPIClient.UsersAPI.ModelType_listUsersTransactions : Swift.Hashable {}
+extension biidPublicAPIClient.UsersAPI.ModelType_listUsersTransactions : Swift.RawRepresentable {}
+extension biidPublicAPIClient.UsersAPI.DocumentType_listUsersTransactions : Swift.Equatable {}
+extension biidPublicAPIClient.UsersAPI.DocumentType_listUsersTransactions : Swift.Hashable {}
+extension biidPublicAPIClient.UsersAPI.DocumentType_listUsersTransactions : Swift.RawRepresentable {}
+extension biidPublicAPIClient.OnboardingProcess.Provider : Swift.Equatable {}
+extension biidPublicAPIClient.OnboardingProcess.Provider : Swift.Hashable {}
+extension biidPublicAPIClient.OnboardingProcess.Provider : Swift.RawRepresentable {}
+extension biidPublicAPIClient.OnboardingProcess.Lang : Swift.Equatable {}
+extension biidPublicAPIClient.OnboardingProcess.Lang : Swift.Hashable {}
+extension biidPublicAPIClient.OnboardingProcess.Lang : Swift.RawRepresentable {}
+extension biidPublicAPIClient.OnboardingProcess.Status : Swift.Equatable {}
+extension biidPublicAPIClient.OnboardingProcess.Status : Swift.Hashable {}
+extension biidPublicAPIClient.OnboardingProcess.Status : Swift.RawRepresentable {}
+extension biidPublicAPIClient.OnboardingProcess.CodingKeys : Swift.Equatable {}
+extension biidPublicAPIClient.OnboardingProcess.CodingKeys : Swift.Hashable {}
+extension biidPublicAPIClient.OnboardingProcess.CodingKeys : Swift.RawRepresentable {}
+extension biidPublicAPIClient.ValidationErrorResponse.CodingKeys : Swift.Equatable {}
+extension biidPublicAPIClient.ValidationErrorResponse.CodingKeys : Swift.Hashable {}
+extension biidPublicAPIClient.ValidationErrorResponse.CodingKeys : Swift.RawRepresentable {}
+extension biidPublicAPIClient.OnboardingProcessRequest.Lang : Swift.Equatable {}
+extension biidPublicAPIClient.OnboardingProcessRequest.Lang : Swift.Hashable {}
+extension biidPublicAPIClient.OnboardingProcessRequest.Lang : Swift.RawRepresentable {}
+extension biidPublicAPIClient.OnboardingProcessRequest.CodingKeys : Swift.Equatable {}
+extension biidPublicAPIClient.OnboardingProcessRequest.CodingKeys : Swift.Hashable {}
+extension biidPublicAPIClient.OnboardingProcessRequest.CodingKeys : Swift.RawRepresentable {}
+extension biidPublicAPIClient.AccessToken.CodingKeys : Swift.Equatable {}
+extension biidPublicAPIClient.AccessToken.CodingKeys : Swift.Hashable {}
+extension biidPublicAPIClient.AccessToken.CodingKeys : Swift.RawRepresentable {}
+extension biidPublicAPIClient.EntityResponse.Status : Swift.Equatable {}
+extension biidPublicAPIClient.EntityResponse.Status : Swift.Hashable {}
+extension biidPublicAPIClient.EntityResponse.Status : Swift.RawRepresentable {}
+extension biidPublicAPIClient.EntityResponse.CodingKeys : Swift.Equatable {}
+extension biidPublicAPIClient.EntityResponse.CodingKeys : Swift.Hashable {}
+extension biidPublicAPIClient.EntityResponse.CodingKeys : Swift.RawRepresentable {}

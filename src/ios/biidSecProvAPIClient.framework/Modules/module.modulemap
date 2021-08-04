@@ -1,0 +1,11 @@
+framework module biidSecProvAPIClient {
+  umbrella header "biidSecProvAPIClient.h"
+
+  export *
+  module * { export * }
+}
+
+module biidSecProvAPIClient.Swift {
+    header "biidSecProvAPIClient-Swift.h"
+    requires objc
+}

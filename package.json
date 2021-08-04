@@ -1,0 +1,21 @@
+{
+    "name": "cordova-plugin-biid",
+    "version": "1.0.0",
+    "description": "A Cordova/PhoneGap plugin that allows you to interact with biid Core SDK.",
+    "cordova": {
+        "id": "cordova-plugin-biid",
+        "platforms": [
+            "ios"
+        ]
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/blakgeek/cordova-plugin-app-name.git"
+    },
+    "keywords": [
+        "ecosystem:cordova",
+        "cordova-ios"
+    ],
+    "author": "",
+    "license": "ISC"
+}

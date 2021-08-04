@@ -1,0 +1,11 @@
+framework module biidPublicAPIClient {
+  umbrella header "biidPublicAPIClient.h"
+
+  export *
+  module * { export * }
+}
+
+module biidPublicAPIClient.Swift {
+    header "biidPublicAPIClient-Swift.h"
+    requires objc
+}
