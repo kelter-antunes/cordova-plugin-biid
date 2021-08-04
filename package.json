@@ -1,21 +1,29 @@
 {
-    "name": "cordova-plugin-biid",
-    "version": "1.0.0",
-    "description": "A Cordova/PhoneGap plugin that allows you to interact with biid Core SDK.",
-    "cordova": {
-        "id": "cordova-plugin-biid",
-        "platforms": [
-            "ios"
-        ]
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/kelter-antunes/cordova-plugin-biid.git"
-    },
-    "keywords": [
-        "ecosystem:cordova",
-        "cordova-ios"
-    ],
-    "author": "",
-    "license": "ISC"
+  "name": "cordova-plugin-biid",
+  "version": "1.0.0",
+  "description": "A Cordova/PhoneGap plugin that allows you to interact with biid Core SDK.",
+  "cordova": {
+    "id": "cordova-plugin-biid",
+    "platforms": [
+      "ios"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kelter-antunes/cordova-plugin-biid.git"
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-ios"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kelter-antunes/cordova-plugin-biid/issues"
+  },
+  "homepage": "https://github.com/kelter-antunes/cordova-plugin-biid#readme",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
 }
