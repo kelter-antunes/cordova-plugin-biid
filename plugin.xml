@@ -5,12 +5,6 @@
 	</name>
 
 
-    <engines>
-        <engine name="cordova" version=">=9.0.0" />
-        <engine name="cordova-ios" version=">=5.0.0" />
-    </engines>
-
-
 	<js-module name="BiidPlugin" src="www/BiidPlugin.js">
 		<clobbers target="BiidPlugin" />
 	</js-module>
